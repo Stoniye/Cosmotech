@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://2icv2igowlho"]
+
+[ext_resource type="Texture2D" uid="uid://dprr51ktju31j" path="res://Textures/Items/Coal.png" id="1_11asj"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_naexv"]
+[ext_resource type="Resource" uid="uid://yi15oq1o8o5" path="res://Resources/Items/Coal_Dust.tres" id="3_cjxs1"]
+
+[resource]
+script = ExtResource("1_naexv")
+image = ExtResource("1_11asj")
+name = "Coal"
+energy = 1
+stamped = ExtResource("3_cjxs1")
+extraction_type = "Drill"
+extraction_time = 1
+bullet_Color = Color(0, 0, 0, 1)
+bullet_damage = 0
+longDescription = "Can be used as Fuel with an burning energy of 1, can be stamped to coal dust"

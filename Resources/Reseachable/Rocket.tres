@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Reseachable" load_steps=7 format=3 uid="uid://d2qmjkg1psd4m"]
+
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="1_gdtcc"]
+[ext_resource type="Resource" uid="uid://cs1o24acah5l2" path="res://Resources/Buildings/Processing/Rocket.tres" id="1_np5ao"]
+[ext_resource type="Script" path="res://Resources/Scripts/Reseachable.gd" id="1_pj6oj"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="2_ytnm2"]
+[ext_resource type="Resource" uid="uid://qeickicucqks" path="res://Resources/Items/Crude_Oil.tres" id="3_adoy4"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="4_507io"]
+
+[resource]
+script = ExtResource("1_pj6oj")
+name = "Aiming high"
+Cost_Item = Array[Resource("res://Resources/Scripts/Item.gd")]([ExtResource("1_gdtcc"), ExtResource("2_ytnm2"), ExtResource("3_adoy4"), ExtResource("4_507io")])
+Cost_Count = Array[int]([200, 150, 230, 300])
+reseachBuilding = ExtResource("1_np5ao")

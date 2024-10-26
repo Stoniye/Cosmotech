@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b57qxp2eqch2t"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_7w7tf"]
+[ext_resource type="Texture2D" uid="uid://btlwpq2dvf8vy" path="res://Textures/Items/Iron_Plates.png" id="1_twe08"]
+
+[resource]
+script = ExtResource("1_7w7tf")
+image = ExtResource("1_twe08")
+name = "Iron Plates"
+energy = 0
+extraction_type = "Drill"
+extraction_time = 0
+bullet_Color = Color(0, 0, 0, 1)
+bullet_damage = 0
+longDescription = "Can be used as Alloy on Ammonation, has an damage multiplier of 1.4"
+alloyMultiplicator = 1.4

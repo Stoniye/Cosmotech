@@ -1,0 +1,330 @@
+[gd_scene load_steps=7 format=3 uid="uid://dt7atlw62epg6"]
+
+[ext_resource type="Texture2D" uid="uid://bb0upyjd836kw" path="res://Textures/UI/Button/Arrow_Back.png" id="1_20ja5"]
+[ext_resource type="Texture2D" uid="uid://c34bridj4k411" path="res://Textures/UI/Menus/MenuBackground.png" id="1_ccyxk"]
+[ext_resource type="FontFile" uid="uid://drl6md4kk1i1a" path="res://Textures/Fonts/MilkyNice-Clean.ttf" id="2_bltwb"]
+[ext_resource type="Texture2D" uid="uid://bcplsm06y2sgp" path="res://Textures/UI/Menus/Text_Background_Big.png" id="2_l7dfw"]
+[ext_resource type="Texture2D" uid="uid://lte3qdtcvto2" path="res://Textures/UI/Button/RoundedButton.png" id="4_uepf7"]
+
+[sub_resource type="GDScript" id="GDScript_ir2np"]
+script/source = "extends Node2D
+
+@onready var MenuClick: AudioStreamPlayer = $\"../MenuClicks\"
+
+func _on_back_button_pressed() -> void:
+	MenuClick.play()
+	get_tree().change_scene_to_file(\"res://Scenes/Menu.tscn\")
+"
+
+[node name="Settings" type="Node2D"]
+script = SubResource("GDScript_ir2np")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="CanvasGroup" parent="CanvasLayer"]
+
+[node name="Dark" type="TextureRect" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_right = 1380.0
+offset_bottom = 2770.0
+texture = ExtResource("1_ccyxk")
+
+[node name="Credits" type="Control" parent="CanvasLayer/UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DeveloperDesigner" type="TextureRect" parent="CanvasLayer/UI/Credits"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 94.0
+offset_right = 1040.0
+offset_bottom = 460.68
+texture = ExtResource("2_l7dfw")
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/Credits/DeveloperDesigner"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 54.0
+offset_right = 500.0
+offset_bottom = 220.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 91
+text = "Developer/Designer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EliasSteininger" type="Label" parent="CanvasLayer/UI/Credits/DeveloperDesigner"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 184.0
+offset_right = 500.0
+offset_bottom = 254.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 31
+text = "Elias Steininger"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Textures" type="TextureRect" parent="CanvasLayer/UI/Credits"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 514.0
+offset_right = 1040.0
+offset_bottom = 880.68
+texture = ExtResource("2_l7dfw")
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/Credits/Textures"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 54.0
+offset_right = 500.0
+offset_bottom = 220.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 91
+text = "Textures"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EliasSteininger" type="Label" parent="CanvasLayer/UI/Credits/Textures"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 184.0
+offset_right = 500.0
+offset_bottom = 254.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 31
+text = "Elias Steininger"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="TextureRect" parent="CanvasLayer/UI/Credits"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 934.0
+offset_right = 1040.0
+offset_bottom = 1300.68
+texture = ExtResource("2_l7dfw")
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/Credits/Music"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 54.0
+offset_right = 500.0
+offset_bottom = 220.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 91
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EliasSteininger" type="Label" parent="CanvasLayer/UI/Credits/Music"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 184.0
+offset_right = 500.0
+offset_bottom = 254.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 31
+text = "Elias Steininger"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="soulprodmusic" type="Label" parent="CanvasLayer/UI/Credits/Music"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 222.0
+offset_right = 500.0
+offset_bottom = 292.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 31
+text = "https://pixabay.com/de/users/soulprodmusic-30064790/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFX" type="TextureRect" parent="CanvasLayer/UI/Credits"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1354.0
+offset_right = 1040.0
+offset_bottom = 1720.68
+texture = ExtResource("2_l7dfw")
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/Credits/SFX"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 54.0
+offset_right = 500.0
+offset_bottom = 220.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 91
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EliasSteininger" type="Label" parent="CanvasLayer/UI/Credits/SFX"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 184.0
+offset_right = 500.0
+offset_bottom = 254.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 31
+text = "Elias Steininger"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfxrme" type="Label" parent="CanvasLayer/UI/Credits/SFX"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 222.0
+offset_right = 500.0
+offset_bottom = 292.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 31
+text = "https://sfxr.me/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpecialThanks" type="TextureRect" parent="CanvasLayer/UI/Credits"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1774.0
+offset_right = 1040.0
+offset_bottom = 2140.68
+texture = ExtResource("2_l7dfw")
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/Credits/SpecialThanks"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 54.0
+offset_right = 500.0
+offset_bottom = 220.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 91
+text = "Special Thanks"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="You" type="Label" parent="CanvasLayer/UI/Credits/SpecialThanks"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 184.0
+offset_right = 500.0
+offset_bottom = 254.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 31
+text = "You"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GodotVersion" type="Label" parent="CanvasLayer/UI/Credits"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 111.0
+offset_top = 2324.0
+offset_right = 954.0
+offset_bottom = 2394.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.418536, 0.418536, 0.418536, 1)
+theme_override_fonts/font = ExtResource("2_bltwb")
+theme_override_font_sizes/font_size = 36
+text = "created with Godot v4.3-stable"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 870.0
+offset_top = 2200.0
+offset_right = 1020.0
+offset_bottom = 2350.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("4_uepf7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/BackButton"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 140.0
+offset_bottom = 140.0
+texture = ExtResource("1_20ja5")
+expand_mode = 1
+
+[connection signal="pressed" from="CanvasLayer/UI/BackButton" to="." method="_on_back_button_pressed"]

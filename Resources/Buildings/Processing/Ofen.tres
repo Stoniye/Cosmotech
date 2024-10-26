@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Building" load_steps=8 format=3 uid="uid://d2d7tdhpmffgp"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_81ptl"]
+[ext_resource type="Script" path="res://Scripts/Buildings/Processing/Ofen.gd" id="1_nq2xh"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="2_x1kpv"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_ggpcs"]
+[ext_resource type="Texture2D" uid="uid://bfiu7dthvpmkd" path="res://Textures/Buildings/Processing/Ofen.png" id="3_qg8a0"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="4_c06fe"]
+[ext_resource type="PackedScene" uid="uid://dkftpckw4h284" path="res://Prefabs/Building Info Windows/Processing/Ofen Info Window.tscn" id="6_fpio6"]
+
+[resource]
+script = ExtResource("2_x1kpv")
+image = ExtResource("3_qg8a0")
+name = "Ofen"
+code = ExtResource("1_nq2xh")
+building_type = "1 Block Building"
+info_window = ExtResource("6_fpio6")
+receives_items = true
+gives_items = true
+maxToConnection = 4
+cost_item = Array[ExtResource("1_81ptl")]([ExtResource("3_ggpcs"), ExtResource("4_c06fe")])
+cost_count = Array[int]([400, 400])
+description = "Heats ores"
+ConveyorPlacing = false
+buildingHealth = 20
+has_to_align = false
+longDescription = "Heats ores"

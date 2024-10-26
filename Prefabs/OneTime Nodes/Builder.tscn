@@ -1,0 +1,230 @@
+[gd_scene load_steps=8 format=3 uid="uid://g2lx3yxwh1s5"]
+
+[ext_resource type="Texture2D" uid="uid://lte3qdtcvto2" path="res://Textures/UI/Button/RoundedButton.png" id="1_lxmws"]
+[ext_resource type="Texture2D" uid="uid://c6hgcvekqcebq" path="res://Textures/Buildings/Extraction/Drill.png" id="2_472qy"]
+[ext_resource type="Texture2D" uid="uid://dprr51ktju31j" path="res://Textures/Items/Coal.png" id="3_vasbo"]
+[ext_resource type="FontFile" uid="uid://drl6md4kk1i1a" path="res://Textures/Fonts/MilkyNice-Clean.ttf" id="4_nqglm"]
+[ext_resource type="AudioStream" uid="uid://da7t2n4xg7uf0" path="res://Sounds/SFX/Placing.mp3" id="5_3c3ak"]
+
+[sub_resource type="GDScript" id="GDScript_2m4je"]
+script/source = "extends Node2D
+##Builder##
+
+var placingBuilding: Building: set = update_info
+@onready var placeableZone: Control = $CanvasLayer/UI/PlaceableZone
+var ClickedPos: Vector2
+var ClickZone: Vector2 = Vector2(25, 25)
+@onready var TestingArea: Area2D = $TestingArea
+var overlappingAreas: Array[Area2D]
+
+func _process(_delta: float) -> void:
+	handl_testing_area()
+
+func handl_testing_area() -> void:
+	TestingArea.position = get_parent().screen_to_world_pos(Vector2(0, 359))
+	overlappingAreas = TestingArea.get_overlapping_areas()
+
+func buildingPos_valid(pos: Vector2) -> bool:
+	for area: Area2D in overlappingAreas:
+		if area.position == pos && area.get_parent() == get_node(\"..\").activePlanet.get_node(\"Buildings\"):
+			return false
+		
+	return true
+
+func placeBuilding(building: Building, pos: Vector2) -> Area2D:
+	var placedB: Area2D = load(\"res://Prefabs/Buildings/\" + building.building_type + \".tscn\").instantiate()
+	placedB.position = pos
+	placedB.get_node(\"Image\").texture = building.image
+	placedB.get_node(\"Script\").set_script(building.code)
+	placedB.buildingRes = building
+	get_node(\"..\").activePlanet.get_node(\"Buildings\").add_child(placedB)
+	play_placing_animation(placedB.get_node(\"Image\"))
+	
+	if building.resource_path.contains(\"Transportation\"):
+		placedB.add_to_group(\"isConveyor\")
+	
+	return placedB
+
+func play_placing_animation(sprite: Sprite2D) -> void:
+	var tween: Tween = get_tree().create_tween()
+	
+	sprite.scale = Vector2(1, 1)
+	
+	get_node(\"Placed\").play()
+	
+	tween.tween_property(
+		sprite, \"scale\", Vector2(0.93, 0.93), 0.1
+	).set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(
+		sprite, \"scale\", Vector2(1, 1), 0.1
+	).set_ease(Tween.EASE_OUT).set_delay(0.1)
+	
+	await tween.finished
+
+func pay_building(building: Building) -> bool:
+	for i: int in building.cost_item.size():
+		if !get_node(\"..\").item_avalable(building.cost_item[i], building.cost_count[i]):
+			return false
+	
+	for i: int in building.cost_item.size():
+		get_node(\"..\").use_item(building.cost_item[i], building.cost_count[i])
+	
+	return true
+
+func cancle() -> void:
+	queue_free()
+
+func update_info(building: Building) -> void:
+	placingBuilding = building
+	$CanvasLayer/UI/Description/Label.text = building.description
+	$CanvasLayer/UI/PlacingBuilding/Image.texture = building.image
+	
+	var itemPrefab: TextureRect = $CanvasLayer/UI/Cost/GridContainer/ItemPrefab
+	var newItem: TextureRect
+	
+	for child: TextureRect in $CanvasLayer/UI/Cost/GridContainer.get_children():
+		if !child.name.contains(\"Prefab\"):
+			child.queue_free()
+	
+	for i: int in building.cost_item.size():
+		newItem = itemPrefab.duplicate()
+		newItem.visible = true
+		newItem.get_node(\"Image\").texture = building.cost_item[i].image
+		newItem.get_node(\"Name\").text = building.cost_item[i].name + \": \" + str(building.cost_count[i])
+		$CanvasLayer/UI/Cost/GridContainer.add_child(newItem)
+		if !get_parent().item_avalable(building.cost_item[i], building.cost_count[i]):
+			newItem.get_node(\"Name\").self_modulate = Color(\"b2171c\")
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		if event.is_pressed():
+			ClickedPos = event.position
+		else:
+			#If Finger didn't drag
+			if (ClickedPos+ClickZone).x >= event.position.x && (ClickedPos-ClickZone).x <= event.position.x && (ClickedPos+ClickZone).y >= event.position.y && (ClickedPos-ClickZone).y <= event.position.y:
+				#If click is in Click Zone
+				if event.position.y >= placeableZone.position.y && event.position.y <= (placeableZone.position.y + placeableZone.size.y):
+					var pos: Vector2 = get_parent().alin_to_grid_pos(get_parent().screen_to_world_pos(event.position))
+					if buildingPos_valid(pos):
+						if pay_building(placingBuilding):
+							placeBuilding(placingBuilding, pos)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bbdh"]
+size = Vector2(1080, 1220)
+
+[node name="Builder" type="Node2D"]
+script = SubResource("GDScript_2m4je")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="UI" type="CanvasGroup" parent="CanvasLayer"]
+
+[node name="PlaceableZone" type="Control" parent="CanvasLayer/UI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 198.0
+offset_right = 1080.0
+offset_bottom = 1418.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlacingBuilding" type="TextureRect" parent="CanvasLayer/UI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 830.0
+offset_top = 1420.0
+offset_right = 1020.0
+offset_bottom = 1610.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("1_lxmws")
+expand_mode = 1
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/PlacingBuilding"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 170.0
+offset_bottom = 168.0
+texture = ExtResource("2_472qy")
+
+[node name="Cost" type="TextureRect" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+offset_left = 600.0
+offset_top = 1420.0
+offset_right = 830.0
+offset_bottom = 1610.0
+texture = ExtResource("1_lxmws")
+expand_mode = 1
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/Cost"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 143.0
+offset_bottom = 180.0
+theme_override_constants/v_separation = 3
+
+[node name="ItemPrefab" type="TextureRect" parent="CanvasLayer/UI/Cost/GridContainer"]
+visible = false
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("1_lxmws")
+expand_mode = 1
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/Cost/GridContainer/ItemPrefab"]
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 30.0
+texture = ExtResource("3_vasbo")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="CanvasLayer/UI/Cost/GridContainer/ItemPrefab"]
+layout_mode = 0
+offset_left = 33.0
+offset_right = 211.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 21
+text = "Coal: 5"
+
+[node name="Description" type="TextureRect" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+offset_left = 200.0
+offset_top = 1420.0
+offset_right = 600.0
+offset_bottom = 1610.0
+texture = ExtResource("1_lxmws")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/Description"]
+layout_mode = 0
+offset_left = 9.0
+offset_right = 392.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_nqglm")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Placed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_3c3ak")
+bus = &"SFX"
+
+[node name="TestingArea" type="Area2D" parent="."]
+position = Vector2(0, 359)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestingArea"]
+position = Vector2(540, 446.25)
+shape = SubResource("RectangleShape2D_2bbdh")

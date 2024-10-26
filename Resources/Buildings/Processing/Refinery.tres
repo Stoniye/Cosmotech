@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Building" load_steps=8 format=3 uid="uid://dih5lv6bgl7xc"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Processing/Refinery.gd" id="1_hcwk3"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="2_2skse"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_v88br"]
+[ext_resource type="Texture2D" uid="uid://cxeovwte3i7qn" path="res://Textures/Buildings/Processing/Refinery.png" id="3_qjctg"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="3_yuq3i"]
+[ext_resource type="PackedScene" uid="uid://c0lskp80mle2m" path="res://Prefabs/Building Info Windows/Processing/Refinery Info Window.tscn" id="4_e7r0o"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="5_w8d75"]
+
+[resource]
+script = ExtResource("5_w8d75")
+image = ExtResource("3_qjctg")
+name = "Refinery"
+code = ExtResource("1_hcwk3")
+building_type = "1 Block Building"
+info_window = ExtResource("4_e7r0o")
+receives_items = true
+gives_items = true
+maxToConnection = 4
+cost_item = Array[ExtResource("2_v88br")]([ExtResource("2_2skse"), ExtResource("3_yuq3i")])
+cost_count = Array[int]([300, 230])
+description = "Refines Crude Oil to Kerosene"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 5
+has_to_align = false
+longDescription = "Refines Crude Oil to Kerosene"

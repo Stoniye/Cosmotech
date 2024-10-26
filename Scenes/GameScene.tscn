@@ -1,0 +1,2013 @@
+[gd_scene load_steps=33 format=3 uid="uid://bliu17ijtt7en"]
+
+[ext_resource type="TileSet" uid="uid://dpvx25jopqb3c" path="res://Textures/Tilesets/Azuria_Tileset.tres" id="1_ld1dl"]
+[ext_resource type="TileSet" uid="uid://dohjmiwc1x1g" path="res://Textures/Tilesets/Bukat_Tileset.tres" id="2_6kwdy"]
+[ext_resource type="Texture2D" uid="uid://rp6iyu7h5cv2" path="res://Textures/UI/Button/3Lines.png" id="2_ymoet"]
+[ext_resource type="Texture2D" uid="uid://c34bridj4k411" path="res://Textures/UI/Menus/MenuBackground.png" id="3_kcobs"]
+[ext_resource type="TileSet" uid="uid://c63k1dc28jmrf" path="res://Textures/Tilesets/Mable_Tileset.tres" id="3_lxu3x"]
+[ext_resource type="Texture2D" uid="uid://lte3qdtcvto2" path="res://Textures/UI/Button/RoundedButton.png" id="4_83nrm"]
+[ext_resource type="Texture2D" uid="uid://dxpjholhm6lt6" path="res://Textures/UI/Button/BuildingButton.png" id="4_cxyn2"]
+[ext_resource type="Texture2D" uid="uid://cctw4c2f3dnqu" path="res://Textures/Buildings/Base.png" id="4_guong"]
+[ext_resource type="Texture2D" uid="uid://bmccu1k4u1e6v" path="res://Textures/UI/Button/Close.png" id="5_6pk7n"]
+[ext_resource type="Texture2D" uid="uid://ltfabbba4gav" path="res://Textures/Buildings/Processing/Furnace.png" id="5_h7gob"]
+[ext_resource type="Texture2D" uid="uid://c6hgcvekqcebq" path="res://Textures/Buildings/Extraction/Drill.png" id="6_s2mvi"]
+[ext_resource type="Texture2D" uid="uid://dhb6guwr72n8n" path="res://Textures/Buildings/Transportation/Conveyor - Normal/Icon.png" id="7_bqf5m"]
+[ext_resource type="Texture2D" uid="uid://d3ihjqbjfr6hn" path="res://Textures/UI/Button/InfoButton.png" id="10_6uelx"]
+[ext_resource type="FontFile" uid="uid://drl6md4kk1i1a" path="res://Textures/Fonts/MilkyNice-Clean.ttf" id="11_o8ujp"]
+[ext_resource type="Texture2D" uid="uid://cdf7pn7eeslto" path="res://Textures/Buildings/Weapons/Gun.png" id="11_ok4iq"]
+[ext_resource type="Texture2D" uid="uid://bnvrmeykkv3a7" path="res://Textures/UI/Button/DestroyButton.png" id="11_uyfww"]
+[ext_resource type="Texture2D" uid="uid://boxyeaocyrc2m" path="res://Textures/UI/Planets/Bukat.png" id="12_gj7d2"]
+[ext_resource type="Texture2D" uid="uid://dq12c6f7dc2s2" path="res://Textures/UI/Planets/Azuria.png" id="13_jwwui"]
+[ext_resource type="Texture2D" uid="uid://gcw2wdi3u118" path="res://Textures/UI/Button/DestroyConveyorLineButton.png" id="14_l4qdj"]
+[ext_resource type="Texture2D" uid="uid://bnq68mrafss0" path="res://Textures/UI/Button/RoundedButton_Pressed.png" id="14_tqglg"]
+[ext_resource type="Texture2D" uid="uid://bfy0dy0y22oct" path="res://Textures/UI/Menus/Text_Background_Smal.png" id="15_8k8rb"]
+[ext_resource type="Texture2D" uid="uid://bir8hudhej2jk" path="res://Textures/Items/Iron_Ingot.png" id="16_0un5u"]
+[ext_resource type="Texture2D" uid="uid://cgdn5a0gsldgi" path="res://Textures/UI/Planets/Mable.png" id="16_8um8e"]
+[ext_resource type="Texture2D" uid="uid://w7rbwpqfbcaq" path="res://Textures/UI/Button/DictionaryButton.png" id="16_hp5fi"]
+[ext_resource type="Texture2D" uid="uid://djaofehm2dd6a" path="res://Textures/UI/Menus/HealthBar_Under.png" id="20_q40u2"]
+[ext_resource type="Texture2D" uid="uid://barsegsd4ojio" path="res://Textures/UI/Menus/HealthBar_Progress.png" id="21_ehx35"]
+[ext_resource type="AudioStream" uid="uid://da7t2n4xg7uf0" path="res://Sounds/SFX/Placing.mp3" id="21_j3nls"]
+[ext_resource type="Texture2D" uid="uid://bcplsm06y2sgp" path="res://Textures/UI/Menus/Text_Background_Big.png" id="22_8wogh"]
+
+[sub_resource type="GDScript" id="GDScript_v84nv"]
+script/source = "extends Node2D
+##GameScene##
+
+#Nodes from Scene
+@onready var Camera: Camera2D = $Camera
+@onready var activePlanet: Node2D = $Azuria
+@onready var MenuClick: AudioStreamPlayer = $\"../MenuClicks\"
+
+var dayStart: float = 4.7
+var dayTime: float = dayStart
+var ConveyorStreet: Array[Area2D]
+var enemySpawner: Node2D = null
+var builder: Node2D = null
+var destroyMode: bool = false
+var unlockedBuildings_Starter: Array[String] = [
+	\"Drill\",
+	\"Pump\",
+	\"Furnace\",
+	\"Researcher\",
+	\"Conveyor\",
+	\"Refinery\",
+	\"Gun\",
+	\"Copper_Wall\",
+	\"Iron_Wall\"
+]
+var unlockedBuildings: Array[String] = unlockedBuildings_Starter
+
+func _ready() -> void:
+	var WG: Node2D = load(\"res://Prefabs/OneTime Nodes/WorldGenerator.tscn\").instantiate()
+	add_child(WG)
+	
+	if !Singelton.Tutorial:
+		$WorldTimer.wait_time = Singelton.WorldSpeed
+		
+		var SL: Node2D = load(\"res://Prefabs/OneTime Nodes/SaverLoader.tscn\").instantiate()
+		add_child(SL)
+		
+		if Singelton.createGame:
+			place_starter_Azuria()
+			place_starter_Bukat()
+			place_starter_Mable()
+			SL.saveWorld(Singelton.GameName)
+		else:
+			SL.loadWorld(Singelton.GameName)
+			
+			for buildingName: String in unlockedBuildings_Starter:
+				if !unlockedBuildings.has(buildingName):
+					unlockedBuildings.append(buildingName)
+	else:
+		place_starter_Azuria()
+		place_starter_Bukat()
+		place_starter_Mable()
+		add_child(load(\"res://Prefabs/OneTime Nodes/Tutorial.tscn\").instantiate())
+	
+	load_settings()
+
+func load_settings() -> void:
+	var userData: UserData = UserData.new()
+	userData = ResourceLoader.load(\"user://gamedata/userdata.tres\")
+	Camera.zoom_speed = userData.ZoomSens
+	Camera.pan_speed = userData.PanSens
+
+func place_starter_Azuria() -> void:
+	var placedB: Area2D = place(load(\"res://Resources/Buildings/Processing/Hub.tres\"), Vector2(0, 0), \"Azuria\")
+	
+	placedB.name = \"Hub\"
+	
+	#Add Starter Inv
+	placedB.get_node(\"Script\").inventory_Item.append(load(\"res://Resources/Items/Stone_Raw.tres\"))
+	placedB.get_node(\"Script\").inventory_Count.append(800) #800
+	
+	placedB.get_node(\"Script\").inventory_Item.append(load(\"res://Resources/Items/Copper_Ingot.tres\"))
+	placedB.get_node(\"Script\").inventory_Count.append(800) #800
+
+func place_starter_Bukat() -> void:
+	var placedB: Area2D = place(load(\"res://Resources/Buildings/Processing/Hub.tres\"), Vector2(0, 0), \"Bukat\")
+	
+	placedB.name = \"Hub\"
+	
+	#Add Starter Inv
+	placedB.get_node(\"Script\").inventory_Item.append(load(\"res://Resources/Items/Stone_Raw.tres\"))
+	placedB.get_node(\"Script\").inventory_Count.append(200) #200
+	
+	placedB.get_node(\"Script\").inventory_Item.append(load(\"res://Resources/Items/Copper_Ingot.tres\"))
+	placedB.get_node(\"Script\").inventory_Count.append(200) #200
+
+func place_starter_Mable() -> void:
+	place(load(\"res://Resources/Buildings/Weapons/Gun.tres\"), Vector2(128, -96), \"Mable\")
+	
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(64, -96), \"Mable\"))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(96, -96), \"Mable\"))
+	allign_street()
+	
+	place(load(\"res://Resources/Buildings/Weapons/Gun.tres\"), Vector2(-96, -64), \"Mable\")
+	
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(-32, -64), \"Mable\"))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(-64, -64), \"Mable\"))
+	allign_street()
+	
+	var placedB: Area2D = place(load(\"res://Resources/Buildings/Processing/Hub.tres\"), Vector2(0, -96), \"Mable\")
+	
+	placedB.name = \"Hub\"
+	
+	#Add Starter Inv
+	placedB.get_node(\"Script\").inventory_Item.append(load(\"res://Resources/Items/Conbo_Raw.tres\"))
+	placedB.get_node(\"Script\").inventory_Count.append(300) #300
+	placedB.get_node(\"Script\").exporting_items.append(0)
+	
+	placedB.get_node(\"Script\").inventory_Item.append(load(\"res://Resources/Items/Stone_Raw.tres\"))
+	placedB.get_node(\"Script\").inventory_Count.append(200) #200
+	
+	placedB.get_node(\"Script\").inventory_Item.append(load(\"res://Resources/Items/Copper_Ingot.tres\"))
+	placedB.get_node(\"Script\").inventory_Count.append(200) #200
+
+func place(building: Building, pos: Vector2,planet: String) -> Area2D:
+	var placedB: Area2D = load(\"res://Prefabs/Buildings/\" + building.building_type + \".tscn\").instantiate()
+	placedB.position = pos
+	placedB.get_node(\"Image\").texture = building.image
+	placedB.get_node(\"Script\").set_script(building.code)
+	placedB.buildingRes = building
+	get_node(planet + \"/Buildings\").add_child(placedB)
+	return placedB
+
+func allign_street() -> void:
+	for i: int in ConveyorStreet.size():
+		ConveyorStreet[i].add_to_group(\"isConveyor\")
+		
+		if (i+1) < ConveyorStreet.size():
+			ConveyorStreet[i].get_node(\"Script\").to_building.append(ConveyorStreet[i+1])
+		if i >= 1:
+			ConveyorStreet[i].get_node(\"Script\").from_building = ConveyorStreet[i-1]
+		
+		ConveyorStreet[i].get_node(\"Script\").align()
+	
+	ConveyorStreet[ConveyorStreet.size()-1].get_node(\"Script\").fake_align()
+	ConveyorStreet[0].get_node(\"Script\").fake_align()
+	
+	ConveyorStreet.clear()
+
+func screen_to_world_pos(pos: Vector2) -> Vector2:
+	var view_to_world: Transform2D = get_canvas_transform().affine_inverse()
+	return view_to_world * pos
+
+func item_avalable(item: Item, amound: int) -> bool:
+	#return true
+	var hubs: Array = get_tree().get_nodes_in_group(\"Hub\")
+	var itemsAvalable: int = 0
+	for hub: Area2D in hubs:
+		if hub.get_node(\"../..\") == activePlanet:
+			for i: int in hub.get_node(\"Script\").inventory_Item.size():
+				if hub.get_node(\"Script\").inventory_Item[i] == item:
+					itemsAvalable += hub.get_node(\"Script\").inventory_Count[i]
+	
+	return itemsAvalable >= amound
+
+func use_item(item: Item, amound: int) -> void:
+	#return
+	var hubs: Array = get_tree().get_nodes_in_group(\"Hub\")
+	for hub: Area2D in hubs:
+		if hub.get_node(\"../..\") == activePlanet:
+			if amound >= 1:
+				for i: int in hub.get_node(\"Script\").inventory_Item.size():
+					if hub.get_node(\"Script\").inventory_Item[i] == item:
+						if hub.get_node(\"Script\").inventory_Count[i] < amound:
+							amound -= hub.get_node(\"Script\").inventory_Count[i]
+							hub.get_node(\"Script\").inventory_Count[i] = 0
+							hub.get_node(\"Script\").inventory_Item[i] = null
+						else:
+							hub.get_node(\"Script\").inventory_Count[i] -= amound
+							amound -= amound
+
+func alin_to_grid_pos(pos: Vector2) -> Vector2i:
+	var newPos: Vector2i
+	
+	newPos = Vector2(pos.x + 16, pos.y + 16)
+	
+	while newPos.x % 32 != 0:
+		newPos.x -= 1
+	while newPos.y % 32 != 0:
+		newPos.y -= 1
+	
+	return newPos
+
+func _on_building_pressed(buildingPath: String) -> void:
+	MenuClick.play()
+	var building: Building = load(buildingPath)
+	if builder != null:
+		if !builder.has_method(\"create_to_flag\") && !building.ConveyorPlacing:
+			builder.placingBuilding = load(buildingPath)
+			return
+		else:
+			builder.queue_free()
+	
+	if !building.ConveyorPlacing:
+		builder = load(\"res://Prefabs/OneTime Nodes/Builder.tscn\").instantiate()
+	else:
+		builder = load(\"res://Prefabs/OneTime Nodes/ConveyorBuilder.tscn\").instantiate()
+		builder.placingBuilding = load(buildingPath)
+	add_child(builder)
+	builder.placingBuilding = load(buildingPath)
+
+func _building_selected(building: Area2D) -> void:
+	if !destroyMode:
+		MenuClick.play()
+		var infoWindow: Control = building.buildingRes.info_window.instantiate()
+		infoWindow.buildingRef = building
+		for child: Control in $CanvasLayer/UI/InfoMenu/Content.get_children():
+			if !child.name.contains(\"_\"):
+				child.queue_free()
+		$CanvasLayer/UI/InfoMenu/Content.add_child(infoWindow)
+		
+		$CanvasLayer/UI/InfoMenu/Content/_HealthBar.max_value = building.buildingRes.buildingHealth
+		$CanvasLayer/UI/InfoMenu/Content/_HealthBar.value = building.buildingHealth
+		$CanvasLayer/UI/InfoMenu/Content/_HealthBar/Label.text = str(building.buildingHealth) + \"/\" + str(building.buildingRes.buildingHealth)
+		
+		if $CanvasLayer/UI/InfoMenu.size.x < 180 && builder == null:
+			_on_info_menu_button_pressed()
+	else:
+		if building.is_in_group(\"isConveyor\") && $CanvasLayer/UI/DestroyMenu/Content/DestroyConveyorLine.button_pressed:
+			destroy_conveyor_line(building)
+		else:
+			destroy_building(building)
+
+func destroy_conveyor_line(building: Area2D) -> void:
+	var inLine: bool = true
+	var conveyor: Area2D = building
+	var newConveyor: Area2D = null
+	while inLine:
+		destroy_building(conveyor)
+		if conveyor.get_node(\"Script\").from_building != null:
+			newConveyor = conveyor.get_node(\"Script\").from_building
+			if newConveyor.is_in_group(\"isConveyor\"):
+				conveyor = newConveyor
+			else:
+				inLine = false
+		else:
+			inLine = false
+			
+	inLine = true
+	while inLine:
+		destroy_building(conveyor)
+		if conveyor.get_node(\"Script\").to_building.size() >= 1:
+			newConveyor = conveyor.get_node(\"Script\").to_building[0]
+			if newConveyor.is_in_group(\"isConveyor\"):
+				conveyor = newConveyor
+			else:
+				inLine = false
+		else:
+			inLine = false
+
+func destroy_building(building: Area2D) -> void:
+	$Destroy.play()
+	
+	if building.buildingRes.name == \"Hub\":
+		var hubs_on_active_planet: int = 0
+		for hub: Area2D in get_tree().get_nodes_in_group(\"Hub\"):
+			if hub.get_node(\"../..\") == activePlanet:
+				hubs_on_active_planet += 1
+		
+		if hubs_on_active_planet <= 1:
+			return
+		
+	var items: Array[Item] = building.buildingRes.cost_item
+	var count: Array[int] = building.buildingRes.cost_count
+	var hub: Node2D = get_tree().get_nodes_in_group(\"Hub\").pick_random()
+		
+	for i:int in count.size():
+		count[i] = count[i]/2
+	
+	var itemNode: Sprite2D
+	for i in items.size():
+		for integer in count[i]:
+			itemNode = Sprite2D.new()
+			itemNode.set_script(load(\"res://Scripts/WorldItem.gd\"))
+			itemNode.item = items[i]
+			hub.get_node(\"Script\").receive_item(itemNode)
+		
+	if $CanvasLayer/UI/InfoMenu/Content.get_child_count() >= 3:
+		if $CanvasLayer/UI/InfoMenu/Content.get_child(2).buildingRef == building:
+			$CanvasLayer/UI/InfoMenu/Content.get_child(2).queue_free()
+		
+	building.play_destroy_animation()
+
+func _on_save_and_quit_pressed() -> void:
+	MenuClick.play()
+	var SL: Node2D = load(\"res://Prefabs/OneTime Nodes/SaverLoader.tscn\").instantiate()
+	var gameName: String = Singelton.GameName
+	add_child(SL)
+	SL.WorldSaved.connect(func() -> void: get_tree().change_scene_to_file(\"res://Scenes/Menu.tscn\"))
+	Singelton.GameName = \"\"
+	SL.saveWorld(gameName)
+
+func _on_save_pressed() -> void:
+	MenuClick.play()
+	var SL: Node2D = load(\"res://Prefabs/OneTime Nodes/SaverLoader.tscn\").instantiate()
+	add_child(SL)
+	SL.WorldSaved.connect(func() -> void: _toggle_menu())
+	SL.saveWorld(Singelton.GameName)
+
+func _on_settings_pressed() -> void:
+	MenuClick.play()
+	var settingsScene: Node2D = load(\"res://Scenes/Settings.tscn\").instantiate()
+	_toggle_menu()
+	Camera.can_pan = false
+	Camera.can_zoom = false
+	get_parent().add_child(settingsScene)
+
+func load_building_grid(typeName: String) -> void:
+	clear_building_grid()
+	
+	MenuClick.play()
+	
+	var buildings: PackedStringArray = DirAccess.get_files_at(\"res://Resources/Buildings/\" + typeName)
+	var grid: GridContainer = $CanvasLayer/UI/BuildingMenu/Content/ScrollContainer/GridContainer
+	var BuildingPrefab: TextureButton = $CanvasLayer/UI/BuildingMenu/Content/ScrollContainer/GridContainer/BuildingPrefab
+	var BuildingButton: TextureButton
+	var buildingRes: Building
+	
+	for building: String in buildings:
+		var buildingName: String = building.replace(\".remap\", \"\")
+		if unlockedBuildings.has(buildingName.replace(\".tres\", \"\")):
+			buildingRes = load(\"res://Resources/Buildings/\" + typeName + \"/\" + buildingName) as Building
+			BuildingButton = BuildingPrefab.duplicate()
+			BuildingButton.pressed.connect(_on_building_pressed.bind(buildingRes.resource_path))
+			BuildingButton.name = buildingRes.name
+			BuildingButton.get_node(\"Image\").texture = buildingRes.image
+			BuildingButton.get_node(\"Name\").text = buildingRes.name
+			BuildingButton.visible = true
+			grid.add_child(BuildingButton)
+
+func clear_building_grid() -> void:
+	for child: TextureButton in $CanvasLayer/UI/BuildingMenu/Content/ScrollContainer/GridContainer.get_children():
+		if !child.name.contains(\"Prefab\"):
+			child.queue_free()
+
+func _toggle_menu() -> void:
+	MenuClick.play()
+	var Menu: Control = $CanvasLayer/UI/Menu
+	
+	var tween: Tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	
+	if !Menu.visible:
+		Menu.visible = true
+		$CanvasLayer/UI/Menu/SaveAndQuit.position.y = -300
+		$CanvasLayer/UI/Menu/Save.position.y = -300
+		$CanvasLayer/UI/Menu/Settings.position.y = -300
+		
+		tween.tween_property(
+			$CanvasLayer/UI/Menu/Settings, \"position:y\", 1185, 0.2
+		).set_ease(Tween. EASE_OUT).set_delay(0.1)
+		
+		tween.tween_property(
+			$CanvasLayer/UI/Menu/Save, \"position:y\", 958, 0.2
+		).set_ease(Tween. EASE_OUT).set_delay(0.2)
+	
+		tween.tween_property(
+			$CanvasLayer/UI/Menu/SaveAndQuit, \"position:y\", 735, 0.2
+		).set_ease(Tween. EASE_OUT).set_delay(0.3)
+	else:
+		$CanvasLayer/UI/Menu/SaveAndQuit.position.y = 735
+		$CanvasLayer/UI/Menu/Save.position.y = 958
+		
+		tween.tween_property(
+			$CanvasLayer/UI/Menu/SaveAndQuit, \"position:y\", -300, 0.2
+		).set_ease(Tween. EASE_OUT).set_delay(0.1)
+		
+		tween.tween_property(
+			$CanvasLayer/UI/Menu/Save, \"position:y\", -300, 0.2
+		).set_ease(Tween. EASE_OUT).set_delay(0.2)
+		
+		tween.tween_property(
+			$CanvasLayer/UI/Menu/Settings, \"position:y\", -300, 0.2
+		).set_ease(Tween. EASE_OUT).set_delay(0.3)
+		
+		await tween.finished
+		
+		Menu.visible = false
+
+func close_all_menues() -> void:
+	var BuildingMenu: TextureRect = $CanvasLayer/UI/BuildingMenu
+	var InfoMenu: TextureRect = $CanvasLayer/UI/InfoMenu
+	var DestroyMenu: TextureRect = $CanvasLayer/UI/DestroyMenu
+	var DictionaryMenu: TextureRect = $CanvasLayer/UI/DictionaryMenu
+	
+	if BuildingMenu.size.x > 180:
+		toggle_building_menu()
+	
+	if InfoMenu.size.x > 180:
+		toggle_info_menu()
+	
+	if DestroyMenu.size.x > 180:
+		toggle_destroy_menu()
+	
+	if DictionaryMenu.size.x > 180:
+		toggle_dictionary_menu()
+
+func rezize_CameraZone() -> void:
+	var BuildingMenu: TextureRect = $CanvasLayer/UI/BuildingMenu
+	var InfoMenu: TextureRect = $CanvasLayer/UI/InfoMenu
+	var DestroyMenu: TextureRect = $CanvasLayer/UI/DestroyMenu
+	var DictionaryMenu: TextureRect = $CanvasLayer/UI/DictionaryMenu
+	
+	$CanvasLayer/UI/CameraZone.size.y = 1610
+	
+	if BuildingMenu.size.x < 180 && InfoMenu.size.x < 180 && DestroyMenu.size.x < 180 && DictionaryMenu.size.x < 180:
+		return
+	
+	$CanvasLayer/UI/CameraZone.size.y = 2145
+
+func _on_building_menu_button_pressed() -> void:
+	MenuClick.play()
+	close_all_menues()
+	toggle_building_menu()
+	rezize_CameraZone()
+
+func toggle_building_menu() -> void:
+	var menu: TextureRect = $CanvasLayer/UI/BuildingMenu
+	var tweenSize: Vector2 = Vector2(960, 670)
+	var tweenPos: Vector2 = Vector2(60, 1650)
+	
+	var tween: Tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	
+	if menu.size.x > 180:
+		tweenSize = Vector2(170, 170)
+		tweenPos = Vector2(850, 2150)
+	
+	tween.tween_property(
+		menu, \"size\", tweenSize, 0.15
+	).set_ease(Tween. EASE_OUT)
+		
+	tween.tween_property(
+		menu, \"position\", tweenPos, 0.15
+	).set_ease(Tween. EASE_OUT)
+	
+	await tween.finished
+	
+	if menu.size.x > 180:
+		$CanvasLayer/UI/BuildingMenu/Content.visible = true
+		$CanvasLayer/UI/BuildingMenu/BuildingMenuButton.visible = false
+	else:
+		$CanvasLayer/UI/BuildingMenu/Content.visible = false
+		$CanvasLayer/UI/BuildingMenu/BuildingMenuButton.visible = true
+		if builder != null:
+			builder.cancle()
+
+func _on_info_menu_button_pressed() -> void:
+	MenuClick.play()
+	close_all_menues()
+	toggle_info_menu()
+	rezize_CameraZone()
+
+func toggle_info_menu() -> void:
+	var menu: TextureRect = $CanvasLayer/UI/InfoMenu
+	var tweenSize: Vector2 = Vector2(960, 670)
+	var tweenPos: Vector2 = Vector2(60, 1650)
+	
+	var tween: Tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	
+	if menu.size.x > 180:
+		tweenSize = Vector2(170, 170)
+		tweenPos = Vector2(590, 2150)
+	
+	tween.tween_property(
+		menu, \"size\", tweenSize, 0.15
+	).set_ease(Tween. EASE_OUT)
+		
+	tween.tween_property(
+		menu, \"position\", tweenPos, 0.15
+	).set_ease(Tween. EASE_OUT)
+	
+	await tween.finished
+	
+	if menu.size.x > 180:
+		$CanvasLayer/UI/InfoMenu/Content.visible = true
+		$CanvasLayer/UI/InfoMenu/InfoMenuButton.visible = false
+	else:
+		$CanvasLayer/UI/InfoMenu/Content.visible = false
+		$CanvasLayer/UI/InfoMenu/InfoMenuButton.visible = true
+
+func _on_destroy_menu_button_pressed() -> void:
+	MenuClick.play()
+	close_all_menues()
+	toggle_destroy_menu()
+	rezize_CameraZone()
+
+func toggle_destroy_menu() -> void:
+	var menu: TextureRect = $CanvasLayer/UI/DestroyMenu
+	var tweenSize: Vector2 = Vector2(960, 670)
+	var tweenPos: Vector2 = Vector2(60, 1650)
+	
+	var tween: Tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	
+	if menu.size.x > 180:
+		tweenSize = Vector2(170, 170)
+		tweenPos = Vector2(325, 2150)
+	
+	tween.tween_property(
+		menu, \"size\", tweenSize, 0.15
+	).set_ease(Tween. EASE_OUT)
+		
+	tween.tween_property(
+		menu, \"position\", tweenPos, 0.15
+	).set_ease(Tween. EASE_OUT)
+	
+	await tween.finished
+	
+	if menu.size.x > 180:
+		$CanvasLayer/UI/DestroyMenu/Content.visible = true
+		$CanvasLayer/UI/DestroyMenu/DestroyMenuButton.visible = false
+	else:
+		$CanvasLayer/UI/DestroyMenu/Content.visible = false
+		$CanvasLayer/UI/DestroyMenu/DestroyMenuButton.visible = true
+	
+	destroyMode = $CanvasLayer/UI/DestroyMenu/Content.visible
+
+func _on_dictionary_menu_button_pressed() -> void:
+	MenuClick.play()
+	close_all_menues()
+	toggle_dictionary_menu()
+	rezize_CameraZone()
+
+func toggle_dictionary_menu() -> void:
+	var menu: TextureRect = $CanvasLayer/UI/DictionaryMenu
+	var tweenSize: Vector2 = Vector2(960, 670)
+	var tweenPos: Vector2 = Vector2(60, 1650)
+	
+	var tween: Tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	
+	if menu.size.x > 180:
+		tweenSize = Vector2(170, 170)
+		tweenPos = Vector2(60, 2150)
+	
+	tween.tween_property(
+		menu, \"size\", tweenSize, 0.15
+	).set_ease(Tween. EASE_OUT)
+		
+	tween.tween_property(
+		menu, \"position\", tweenPos, 0.15
+	).set_ease(Tween. EASE_OUT)
+	
+	await tween.finished
+	
+	if menu.size.x > 180:
+		$CanvasLayer/UI/DictionaryMenu/Content.visible = true
+		$CanvasLayer/UI/DictionaryMenu/DictionaryMenuButton.visible = false
+		load_item_dictionary()
+	else:
+		$CanvasLayer/UI/DictionaryMenu/Content.visible = false
+		$CanvasLayer/UI/DictionaryMenu/DictionaryMenuButton.visible = true
+
+func _on_switch_planet(planetName: String) -> void:
+	if planetName != activePlanet.name:
+		MenuClick.play()
+		$Azuria.visible = false
+		$Bukat.visible = false
+		$Mable.visible = false
+		
+		get_node(planetName).visible = true
+		activePlanet = get_node(planetName)
+		Camera.offset = Vector2(0, 0)
+
+func handl_day_night_Cycle() -> void:
+	dayTime += 0.008
+	var newModulate: float = (((sin(dayTime) + 1) / 2) * 590) / 1000
+	$CanvasLayer/UI/NightFilter.self_modulate = Color(0, 0, 1, newModulate)
+	
+	if newModulate > 0.4:
+		if enemySpawner == null:
+			enemySpawner = load(\"res://Prefabs/Nodes for Multiple Scenes/EnemySpawner.tscn\").instantiate()
+			add_child(enemySpawner)
+		enemySpawner.spawnEnemys()
+	elif enemySpawner != null:
+		enemySpawner.queue_free()
+	
+	$CanvasLayer/UI/EnemySpawning.visible = enemySpawner != null
+	
+	if dayTime >= 11:
+		dayTime = dayStart
+
+func clear_dictionary() -> void:
+	for child: TextureButton in $CanvasLayer/UI/DictionaryMenu/Content/ScrollContainer/GridContainer.get_children():
+		if !child.name.contains(\"Prefab\"):
+			child.queue_free()
+
+func _on_dictionary_icon_pressed(res: Resource) -> void:
+	if res is Building:
+		toggle_building_dictionary(res)
+	elif res is Item:
+		toggle_item_dictionary(res)
+
+func load_item_dictionary() -> void:
+	clear_dictionary()
+	
+	var hubs: Array = get_tree().get_nodes_in_group(\"Hub\")
+	var avalabeItems: Array[Item] = []
+	
+	for hub: Area2D in hubs:
+		for item: Item in hub.get_node(\"Script\").inventory_Item:
+			if !avalabeItems.has(item):
+				avalabeItems.append(item)
+	
+	var itemPrefab: TextureButton = $CanvasLayer/UI/DictionaryMenu/Content/ScrollContainer/GridContainer/IconPrefab
+	var newItem: TextureButton
+	
+	for item: Item in avalabeItems:
+		newItem = itemPrefab.duplicate()
+		newItem.visible = true
+		newItem.name = item.name
+		newItem.pressed.connect(_on_dictionary_icon_pressed.bind(item))
+		newItem.get_node(\"Image\").texture = item.image
+		newItem.get_node(\"Name\").text = item.name
+		$CanvasLayer/UI/DictionaryMenu/Content/ScrollContainer/GridContainer.add_child(newItem)
+
+func load_building_dictionary() -> void:
+	clear_dictionary()
+	
+	var types: Array[String] = [\"Extraction\", \"Processing\", \"Transportation\", \"Weapons\"]
+	
+	for type: String in types:
+		var buildings: PackedStringArray = DirAccess.get_files_at(\"res://Resources/Buildings/\" + type)
+		var BuildingPrefab: TextureButton = $CanvasLayer/UI/DictionaryMenu/Content/ScrollContainer/GridContainer/IconPrefab
+		var BuildingButton: TextureButton
+		var buildingRes: Building
+		
+		for building: String in buildings:
+			var buildingName: String = building.replace(\".remap\", \"\")
+			if unlockedBuildings.has(buildingName.replace(\".tres\", \"\")):
+				buildingRes = load(\"res://Resources/Buildings/\" + type + \"/\" + buildingName) as Building
+				BuildingButton = BuildingPrefab.duplicate()
+				BuildingButton.name = buildingRes.name
+				BuildingButton.pressed.connect(_on_dictionary_icon_pressed.bind(buildingRes))
+				BuildingButton.get_node(\"Image\").texture = buildingRes.image
+				BuildingButton.get_node(\"Name\").text = buildingRes.name
+				BuildingButton.visible = true
+				$CanvasLayer/UI/DictionaryMenu/Content/ScrollContainer/GridContainer.add_child(BuildingButton)
+
+func toggle_building_dictionary(res: Building = null) -> void:
+	var Icon: TextureRect = $CanvasLayer/UI/BuildingDictionary/Icon
+	var Name: TextureRect = $CanvasLayer/UI/BuildingDictionary/Name
+	var ShortDescription: TextureRect = $CanvasLayer/UI/BuildingDictionary/ShortDescription
+	var LongDescription: TextureRect = $CanvasLayer/UI/BuildingDictionary/LongDescription
+	
+	if res != null:
+		$CanvasLayer/UI/BuildingDictionary.visible = true
+		$CanvasLayer/UI/BuildingDictionary/Icon/Image.texture = res.image
+		$CanvasLayer/UI/BuildingDictionary/Name/Label.text = res.name
+		$CanvasLayer/UI/BuildingDictionary/ShortDescription/Label.text = res.description
+		$CanvasLayer/UI/BuildingDictionary/LongDescription/Label.text = res.longDescription
+		
+		Icon.position.y -= 800
+		Name.position.y -= 800
+		ShortDescription.position.y -= 800
+		LongDescription.position.y -= 800
+		
+		var tween: Tween = get_tree().create_tween()
+		tween.set_parallel(true)
+		
+		tween.tween_property(
+			Icon, \"position:y\", 280, 0.1
+		).set_ease(Tween. EASE_OUT)
+		
+		tween.tween_property(
+			Name, \"position:y\", 280, 0.1
+		).set_ease(Tween. EASE_OUT).set_delay(0.05)
+	
+		tween.tween_property(
+			ShortDescription, \"position:y\", 400, 0.1
+		).set_ease(Tween. EASE_OUT).set_delay(0.1)
+		
+		tween.tween_property(
+			LongDescription, \"position:y\", 715, 0.1
+		).set_ease(Tween. EASE_OUT).set_delay(0.15)
+	else:
+		
+		var tween: Tween = get_tree().create_tween()
+		tween.set_parallel(true)
+		
+		tween.tween_property(
+			Icon, \"position:y\", -520, 0.1
+		).set_ease(Tween. EASE_OUT)
+		
+		tween.tween_property(
+			Name, \"position:y\", -520, 0.1
+		).set_ease(Tween. EASE_OUT).set_delay(0.05)
+	
+		tween.tween_property(
+			ShortDescription, \"position:y\", -520, 0.1
+		).set_ease(Tween. EASE_OUT).set_delay(0.1)
+		
+		tween.tween_property(
+			LongDescription, \"position:y\", -520, 0.1
+		).set_ease(Tween. EASE_OUT).set_delay(0.15)
+		
+		await tween.finished
+		
+		$CanvasLayer/UI/BuildingDictionary.visible = false
+		
+
+func toggle_item_dictionary(res: Item = null) -> void:
+	var Icon: TextureRect = $CanvasLayer/UI/ItemDictionary/Icon
+	var Name: TextureRect = $CanvasLayer/UI/ItemDictionary/Name
+	var LongDescription: TextureRect = $CanvasLayer/UI/ItemDictionary/LongDescription
+	
+	if res != null:
+		$CanvasLayer/UI/ItemDictionary.visible = true
+		$CanvasLayer/UI/ItemDictionary/Icon/Image.texture = res.image
+		$CanvasLayer/UI/ItemDictionary/Name/Label.text = res.name
+		$CanvasLayer/UI/ItemDictionary/LongDescription/Label.text = res.longDescription
+		
+		Icon.position.y -= 800
+		Name.position.y -= 800
+		LongDescription.position.y -= 800
+		
+		var tween: Tween = get_tree().create_tween()
+		tween.set_parallel(true)
+		
+		tween.tween_property(
+			Icon, \"position:y\", 280, 0.1
+		).set_ease(Tween. EASE_OUT)
+		
+		tween.tween_property(
+			Name, \"position:y\", 280, 0.1
+		).set_ease(Tween. EASE_OUT).set_delay(0.05)
+	
+		tween.tween_property(
+			LongDescription, \"position:y\", 715, 0.1
+		).set_ease(Tween. EASE_OUT).set_delay(0.15)
+	else:
+		
+		var tween: Tween = get_tree().create_tween()
+		tween.set_parallel(true)
+		
+		tween.tween_property(
+			Icon, \"position:y\", -520, 0.1
+		).set_ease(Tween. EASE_OUT)
+		
+		tween.tween_property(
+			Name, \"position:y\", -520, 0.1
+		).set_ease(Tween. EASE_OUT).set_delay(0.05)
+	
+		tween.tween_property(
+			LongDescription, \"position:y\", -520, 0.1
+		).set_ease(Tween. EASE_OUT).set_delay(0.15)
+		
+		await tween.finished
+		
+		$CanvasLayer/UI/ItemDictionary.visible = false
+"
+
+[sub_resource type="GDScript" id="GDScript_63rwh"]
+script/source = "extends Camera2D
+
+var zoom_speed: float = 0.5
+var pan_speed: float = 1.0
+
+var can_pan: bool = true
+var can_zoom: bool = true
+
+var start_zoom: Vector2
+var start_dist: float
+var touch_points: Dictionary = {}
+var start_angle: float
+var current_angle: float
+
+const left_limit: int = -5880
+const right_limit: int = 5845
+const top_limit: int = -5218
+const bottom_limit: int = 5165
+
+@onready var CameraZone: Control = $\"../CanvasLayer/UI/CameraZone\"
+
+func _ready() -> void:
+	start_zoom = zoom
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		if event.position.x <= CameraZone.size.x && event.position.y <= CameraZone.size.y:
+			_handle_touch(event)
+	elif event is InputEventScreenDrag:
+		if event.position.x <= CameraZone.size.x && event.position.y <= CameraZone.size.y:
+			_handle_drag(event)
+
+func _handle_touch(event: InputEventScreenTouch) -> void:
+	if event.pressed:
+		touch_points[event.index] = event.position
+	else:
+		touch_points.erase(event.index)
+
+	if touch_points.size() == 2:
+		var touch_point_positions: Array = touch_points.values()
+		start_dist = touch_point_positions[0].distance_to(touch_point_positions[1])
+		start_angle = get_angle(touch_point_positions[0], touch_point_positions[1])
+		start_zoom = zoom
+	elif touch_points.size() < 2:
+		start_dist = 0
+
+func _handle_drag(event: InputEventScreenDrag) -> void:
+	touch_points[event.index] = event.position
+
+	if touch_points.size() == 1:
+		if can_pan:
+			offset -= (event.relative * pan_speed)/zoom
+			limit_offset(offset)
+	elif touch_points.size() == 2:
+		var touch_point_positions: Array = touch_points.values()
+		var current_dist: float = touch_point_positions[0].distance_to(touch_point_positions[1])
+		current_angle = get_angle(touch_point_positions[0], touch_point_positions[1])
+
+		var zoom_factor: float = start_dist / current_dist
+		if can_zoom:
+			zoom = (start_zoom / zoom_factor) ##TODO: implement zoom speed
+			limit_zoom(zoom)
+
+func limit_offset(new_offset: Vector2) -> void:
+	
+	var horizontal: float = (1-(1080/zoom.x))/2
+	var vertical: float = (1-(2400/zoom.y))/2
+	
+	var left: float = left_limit - horizontal
+	var right: float = right_limit + horizontal
+	var top: float = top_limit - vertical
+	var bottom: float = bottom_limit + vertical
+	
+	if new_offset.x < left:
+		offset.x = left
+	if new_offset.y < top:
+		offset.y = top
+	if new_offset.x > right:
+		offset.x = right
+	if new_offset.y > bottom:
+		offset.y = bottom
+
+func limit_zoom(new_zoom: Vector2) -> void:
+	if new_zoom.x < 0.7:
+		zoom.x = 0.7
+	if new_zoom.y < 0.7:
+		zoom.y = 0.7
+	if new_zoom.x > 20:
+		zoom.x = 20
+	if new_zoom.y > 20:
+		zoom.y = 20
+
+func get_angle(p1: Vector2, p2: Vector2) -> float:
+	var delta: Vector2 = p2 - p1
+	return fmod((atan2(delta.y, delta.x) + PI), (2 * PI))
+"
+
+[sub_resource type="GDScript" id="GDScript_fpqul"]
+script/source = "extends Area2D
+
+var buildingHealth: int = 300
+
+func play_damage_animation() -> void:
+	var tween: Tween = get_tree().create_tween()
+	var sprite: Sprite2D = get_node(\"Image\")
+	
+	sprite.scale = Vector2(1, 1)
+	
+	tween.tween_property(
+		sprite, \"scale\", Vector2(0.93, 0.93), 0.1
+	).set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(
+		sprite, \"scale\", Vector2(1, 1), 0.1
+	).set_ease(Tween.EASE_OUT).set_delay(0.1)
+	
+	await tween.finished
+
+func play_destroy_animation() -> void:
+	var tween: Tween = get_tree().create_tween()
+	var sprite: Sprite2D = get_node(\"Image\")
+	
+	sprite.scale = Vector2(1, 1)
+	
+	tween.tween_property(
+		sprite, \"scale\", Vector2(0, 0), 0.2
+	).set_ease(Tween.EASE_OUT)
+	
+	await tween.finished
+	game_over()
+
+func game_over() -> void:
+	get_node(\"../../../CanvasLayer/UI\").add_child(load(\"res://Prefabs/Nodes for Multiple Scenes/GameOverScreen.tscn\").instantiate())
+	var SL: Node2D = load(\"res://Prefabs/OneTime Nodes/SaverLoader.tscn\").instantiate()
+	get_node(\"../../..\").add_child(SL)
+	SL.deleteWorld(Singelton.GameName)
+	queue_free()
+
+func damage(amound: int) -> void:
+	##TODO: Show Warning, base is under attack
+	buildingHealth -= amound
+	play_damage_animation()
+	if buildingHealth <= 0:
+		play_destroy_animation()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yi7q6"]
+size = Vector2(96, 96)
+
+[node name="GameScene" type="Node2D"]
+script = SubResource("GDScript_v84nv")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+script = SubResource("GDScript_63rwh")
+
+[node name="Azuria" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMapLayer" parent="Azuria"]
+use_parent_material = true
+position = Vector2(-16, -16)
+tile_set = ExtResource("1_ld1dl")
+metadata/_edit_lock_ = true
+
+[node name="Buildings" type="Node2D" parent="Azuria"]
+
+[node name="Bukat" type="Node2D" parent="."]
+visible = false
+
+[node name="TileMap" type="TileMapLayer" parent="Bukat"]
+use_parent_material = true
+position = Vector2(-16, -16)
+tile_set = ExtResource("2_6kwdy")
+metadata/_edit_lock_ = true
+
+[node name="Buildings" type="Node2D" parent="Bukat"]
+
+[node name="Mable" type="Node2D" parent="."]
+visible = false
+
+[node name="TileMap" type="TileMapLayer" parent="Mable"]
+use_parent_material = true
+position = Vector2(-16, -16)
+tile_set = ExtResource("3_lxu3x")
+metadata/_edit_lock_ = true
+
+[node name="Buildings" type="Node2D" parent="Mable"]
+
+[node name="Base" type="Area2D" parent="Mable/Buildings"]
+script = SubResource("GDScript_fpqul")
+
+[node name="Image" type="Sprite2D" parent="Mable/Buildings/Base"]
+position = Vector2(32, 32)
+texture = ExtResource("4_guong")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mable/Buildings/Base"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_yi7q6")
+
+[node name="Enemys" type="Node2D" parent="Mable"]
+
+[node name="WorldTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="CanvasGroup" parent="CanvasLayer"]
+
+[node name="NightFilter" type="TextureRect" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1080.0
+offset_bottom = 2400.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_kcobs")
+
+[node name="BuildingMenu" type="TextureRect" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 850.0
+offset_top = 2150.0
+offset_right = 1020.0
+offset_bottom = 2320.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_83nrm")
+expand_mode = 1
+
+[node name="Content" type="Control" parent="CanvasLayer/UI/BuildingMenu"]
+visible = false
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 670.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/BuildingMenu/Content"]
+clip_contents = false
+layout_mode = 0
+offset_left = 63.0
+offset_top = 48.0
+offset_right = 738.0
+offset_bottom = 670.0
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/BuildingMenu/Content/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 65
+columns = 4
+
+[node name="BuildingPrefab" type="TextureButton" parent="CanvasLayer/UI/BuildingMenu/Content/ScrollContainer/GridContainer"]
+visible = false
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/BuildingMenu/Content/ScrollContainer/GridContainer/BuildingPrefab"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 130.0
+offset_bottom = 130.0
+texture = ExtResource("5_h7gob")
+
+[node name="Name" type="Label" parent="CanvasLayer/UI/BuildingMenu/Content/ScrollContainer/GridContainer/BuildingPrefab"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = 146.0
+offset_right = 165.0
+offset_bottom = 182.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 26
+text = "Furnace"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Extraction" type="TextureButton" parent="CanvasLayer/UI/BuildingMenu/Content"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 61.0
+offset_right = 930.0
+offset_bottom = 191.0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/BuildingMenu/Content/Extraction"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("6_s2mvi")
+
+[node name="Processing" type="TextureButton" parent="CanvasLayer/UI/BuildingMenu/Content"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 201.0
+offset_right = 930.0
+offset_bottom = 331.0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/BuildingMenu/Content/Processing"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("5_h7gob")
+
+[node name="Transportation" type="TextureButton" parent="CanvasLayer/UI/BuildingMenu/Content"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 341.0
+offset_right = 930.0
+offset_bottom = 471.0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/BuildingMenu/Content/Transportation"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("7_bqf5m")
+
+[node name="Weapons" type="TextureButton" parent="CanvasLayer/UI/BuildingMenu/Content"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 481.0
+offset_right = 930.0
+offset_bottom = 611.0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/BuildingMenu/Content/Weapons"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("11_ok4iq")
+
+[node name="Close" type="TextureButton" parent="CanvasLayer/UI/BuildingMenu/Content"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -814.0
+offset_right = -350.0
+offset_bottom = -684.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/BuildingMenu/Content/Close"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("5_6pk7n")
+
+[node name="BuildingMenuButton" type="TextureButton" parent="CanvasLayer/UI/BuildingMenu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = -149.0
+offset_right = -19.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("4_cxyn2")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="DestroyMenu" type="TextureRect" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 325.0
+offset_top = 2150.0
+offset_right = 495.0
+offset_bottom = 2320.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_83nrm")
+expand_mode = 1
+
+[node name="Content" type="Control" parent="CanvasLayer/UI/DestroyMenu"]
+visible = false
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 670.0
+
+[node name="Close" type="TextureButton" parent="CanvasLayer/UI/DestroyMenu/Content"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -814.0
+offset_right = -350.0
+offset_bottom = -684.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/DestroyMenu/Content/Close"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("5_6pk7n")
+
+[node name="DestroyConveyorLine" type="TextureButton" parent="CanvasLayer/UI/DestroyMenu/Content"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 297.0
+offset_top = -814.0
+offset_right = 427.0
+offset_bottom = -684.0
+grow_horizontal = 2
+grow_vertical = 0
+toggle_mode = true
+texture_normal = ExtResource("4_83nrm")
+texture_pressed = ExtResource("14_tqglg")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/DestroyMenu/Content/DestroyConveyorLine"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("14_l4qdj")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/DestroyMenu/Content"]
+layout_mode = 0
+offset_left = 39.0
+offset_right = 927.0
+offset_bottom = 670.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 60
+text = "Click on the building you want to destroy, you will get 50% of the cost back to an random Hub inventroy"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="DestroyMenuButton" type="TextureButton" parent="CanvasLayer/UI/DestroyMenu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = -149.0
+offset_right = -19.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("11_uyfww")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="DictionaryMenu" type="TextureRect" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 2150.0
+offset_right = 230.0
+offset_bottom = 2320.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_83nrm")
+expand_mode = 1
+
+[node name="Content" type="Control" parent="CanvasLayer/UI/DictionaryMenu"]
+visible = false
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 670.0
+
+[node name="Close" type="TextureButton" parent="CanvasLayer/UI/DictionaryMenu/Content"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -814.0
+offset_right = -350.0
+offset_bottom = -684.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/DictionaryMenu/Content/Close"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("5_6pk7n")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/DictionaryMenu/Content"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 48.0
+offset_right = 738.0
+offset_bottom = 670.0
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/DictionaryMenu/Content/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 55
+columns = 4
+
+[node name="IconPrefab" type="TextureButton" parent="CanvasLayer/UI/DictionaryMenu/Content/ScrollContainer/GridContainer"]
+visible = false
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/DictionaryMenu/Content/ScrollContainer/GridContainer/IconPrefab"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 130.0
+offset_bottom = 130.0
+texture = ExtResource("5_h7gob")
+
+[node name="Name" type="Label" parent="CanvasLayer/UI/DictionaryMenu/Content/ScrollContainer/GridContainer/IconPrefab"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 146.0
+offset_right = 158.0
+offset_bottom = 182.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 26
+text = "Furnace"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Items" type="TextureButton" parent="CanvasLayer/UI/DictionaryMenu/Content"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 61.0
+offset_right = 930.0
+offset_bottom = 191.0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/DictionaryMenu/Content/Items"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("16_0un5u")
+
+[node name="Buildings" type="TextureButton" parent="CanvasLayer/UI/DictionaryMenu/Content"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 201.0
+offset_right = 930.0
+offset_bottom = 331.0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/DictionaryMenu/Content/Buildings"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("6_s2mvi")
+
+[node name="DictionaryMenuButton" type="TextureButton" parent="CanvasLayer/UI/DictionaryMenu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = -149.0
+offset_right = -19.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("16_hp5fi")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="InfoMenu" type="TextureRect" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 590.0
+offset_top = 2150.0
+offset_right = 760.0
+offset_bottom = 2320.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_83nrm")
+expand_mode = 1
+
+[node name="Content" type="Control" parent="CanvasLayer/UI/InfoMenu"]
+visible = false
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 670.0
+
+[node name="_Close" type="TextureButton" parent="CanvasLayer/UI/InfoMenu/Content"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -814.0
+offset_right = -350.0
+offset_bottom = -684.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/InfoMenu/Content/_Close"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("5_6pk7n")
+
+[node name="_HealthBar" type="TextureProgressBar" parent="CanvasLayer/UI/InfoMenu/Content"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 585.0
+offset_right = 903.0
+offset_bottom = 630.0
+nine_patch_stretch = true
+texture_under = ExtResource("20_q40u2")
+texture_progress = ExtResource("21_ehx35")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/InfoMenu/Content/_HealthBar"]
+layout_mode = 0
+offset_right = 830.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 31
+text = "0/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoMenuButton" type="TextureButton" parent="CanvasLayer/UI/InfoMenu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = -149.0
+offset_right = -19.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("10_6uelx")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SwitchAzuria" type="TextureButton" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 155.0
+offset_bottom = 155.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/SwitchAzuria"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 122.0
+offset_bottom = 122.0
+texture = ExtResource("13_jwwui")
+
+[node name="Name" type="Label" parent="CanvasLayer/UI/SwitchAzuria"]
+layout_mode = 0
+offset_top = 130.0
+offset_right = 130.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 26
+text = "Azuria"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwitchBukat" type="TextureButton" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 175.0
+offset_top = 25.0
+offset_right = 305.0
+offset_bottom = 155.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/SwitchBukat"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 122.0
+offset_bottom = 122.0
+texture = ExtResource("12_gj7d2")
+
+[node name="Name" type="Label" parent="CanvasLayer/UI/SwitchBukat"]
+layout_mode = 0
+offset_top = 130.0
+offset_right = 130.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 26
+text = "Bukat"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwitchMable" type="TextureButton" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 325.0
+offset_top = 25.0
+offset_right = 455.0
+offset_bottom = 155.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/SwitchMable"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 122.0
+offset_bottom = 122.0
+texture = ExtResource("16_8um8e")
+
+[node name="Name" type="Label" parent="CanvasLayer/UI/SwitchMable"]
+layout_mode = 0
+offset_top = 130.0
+offset_right = 130.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 26
+text = "Mable"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="Control" parent="CanvasLayer/UI"]
+visible = false
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/UI/Menu"]
+self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1040.0
+offset_bottom = 2360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_kcobs")
+
+[node name="SaveAndQuit" type="TextureButton" parent="CanvasLayer/UI/Menu"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 737.0
+offset_right = 1040.0
+offset_bottom = 937.0
+texture_normal = ExtResource("15_8k8rb")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/Menu/SaveAndQuit"]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0.60183, 0.60183, 0.60183, 1)
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 101
+text = "Save & Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Save" type="TextureButton" parent="CanvasLayer/UI/Menu"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 958.0
+offset_right = 1040.0
+offset_bottom = 1158.0
+texture_normal = ExtResource("15_8k8rb")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/Menu/Save"]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0.60183, 0.60183, 0.60183, 1)
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 101
+text = "Save"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="TextureButton" parent="CanvasLayer/UI/Menu"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1185.0
+offset_right = 1040.0
+offset_bottom = 1385.0
+texture_normal = ExtResource("15_8k8rb")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/Menu/Settings"]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0.60183, 0.60183, 0.60183, 1)
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 101
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuildingDictionary" type="Control" parent="CanvasLayer/UI"]
+visible = false
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/UI/BuildingDictionary"]
+self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1040.0
+offset_bottom = 2360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_kcobs")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/UI/BuildingDictionary"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 280.0
+offset_right = 405.0
+offset_bottom = 600.0
+texture = ExtResource("4_83nrm")
+expand_mode = 1
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/BuildingDictionary/Icon"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 300.0
+texture = ExtResource("6_s2mvi")
+
+[node name="Name" type="TextureRect" parent="CanvasLayer/UI/BuildingDictionary"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 424.0
+offset_top = 280.0
+offset_right = 949.0
+offset_bottom = 385.0
+texture = ExtResource("15_8k8rb")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/BuildingDictionary/Name"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 581.0
+offset_bottom = 105.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 65
+text = "Drill"
+vertical_alignment = 1
+
+[node name="ShortDescription" type="TextureRect" parent="CanvasLayer/UI/BuildingDictionary"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 424.0
+offset_top = 400.0
+offset_right = 1024.0
+offset_bottom = 620.0
+texture = ExtResource("22_8wogh")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/BuildingDictionary/ShortDescription"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 22.0
+offset_right = 572.0
+offset_bottom = 220.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 35
+text = "<Short Description>"
+autowrap_mode = 3
+
+[node name="LongDescription" type="TextureRect" parent="CanvasLayer/UI/BuildingDictionary"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 85.0
+offset_top = 715.0
+offset_right = 1023.0
+offset_bottom = 1059.0
+texture = ExtResource("22_8wogh")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/BuildingDictionary/LongDescription"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 40.0
+offset_right = 900.0
+offset_bottom = 368.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 35
+text = "<Long Description>"
+autowrap_mode = 3
+
+[node name="Close" type="TextureButton" parent="CanvasLayer/UI/BuildingDictionary"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 860.0
+offset_top = 2180.0
+offset_right = 990.0
+offset_bottom = 2310.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/BuildingDictionary/Close"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("5_6pk7n")
+
+[node name="ItemDictionary" type="Control" parent="CanvasLayer/UI"]
+visible = false
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/UI/ItemDictionary"]
+self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1040.0
+offset_bottom = 2360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_kcobs")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/UI/ItemDictionary"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 280.0
+offset_right = 405.0
+offset_bottom = 600.0
+texture = ExtResource("4_83nrm")
+expand_mode = 1
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/ItemDictionary/Icon"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 300.0
+texture = ExtResource("16_0un5u")
+
+[node name="Name" type="TextureRect" parent="CanvasLayer/UI/ItemDictionary"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 424.0
+offset_top = 280.0
+offset_right = 949.0
+offset_bottom = 385.0
+texture = ExtResource("15_8k8rb")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/ItemDictionary/Name"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 581.0
+offset_bottom = 105.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 65
+text = "Iron"
+vertical_alignment = 1
+
+[node name="Close" type="TextureButton" parent="CanvasLayer/UI/ItemDictionary"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 860.0
+offset_top = 2180.0
+offset_right = 990.0
+offset_bottom = 2310.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/ItemDictionary/Close"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("5_6pk7n")
+
+[node name="LongDescription" type="TextureRect" parent="CanvasLayer/UI/ItemDictionary"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 85.0
+offset_top = 715.0
+offset_right = 1023.0
+offset_bottom = 1059.0
+texture = ExtResource("22_8wogh")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/ItemDictionary/LongDescription"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 40.0
+offset_right = 900.0
+offset_bottom = 368.0
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 35
+text = "<Long Description>"
+autowrap_mode = 3
+
+[node name="MenuButton" type="TextureButton" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 930.0
+offset_top = 25.0
+offset_right = 1060.0
+offset_bottom = 155.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_83nrm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/MenuButton"]
+self_modulate = Color(0.737255, 0.737255, 0.737255, 1)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("2_ymoet")
+expand_mode = 1
+
+[node name="CameraZone" type="Control" parent="CanvasLayer/UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1080.0
+offset_bottom = 2145.0
+mouse_filter = 2
+
+[node name="EnemySpawning" type="Label" parent="CanvasLayer/UI"]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 455.0
+offset_top = 25.0
+offset_right = 930.0
+offset_bottom = 155.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.819067, 0.188683, 0.188683, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("11_o8ujp")
+theme_override_font_sizes/font_size = 45
+text = "Enemys Attacking"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Destroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_j3nls")
+bus = &"SFX"
+
+[connection signal="timeout" from="WorldTimer" to="." method="handl_day_night_Cycle"]
+[connection signal="pressed" from="CanvasLayer/UI/BuildingMenu/Content/Extraction" to="." method="load_building_grid" binds= ["Extraction"]]
+[connection signal="pressed" from="CanvasLayer/UI/BuildingMenu/Content/Processing" to="." method="load_building_grid" binds= ["Processing"]]
+[connection signal="pressed" from="CanvasLayer/UI/BuildingMenu/Content/Transportation" to="." method="load_building_grid" binds= ["Transportation"]]
+[connection signal="pressed" from="CanvasLayer/UI/BuildingMenu/Content/Weapons" to="." method="load_building_grid" binds= ["Weapons"]]
+[connection signal="pressed" from="CanvasLayer/UI/BuildingMenu/Content/Close" to="." method="_on_building_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/BuildingMenu/BuildingMenuButton" to="." method="_on_building_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/DestroyMenu/Content/Close" to="." method="_on_destroy_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/DestroyMenu/DestroyMenuButton" to="." method="_on_destroy_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/DictionaryMenu/Content/Close" to="." method="_on_dictionary_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/DictionaryMenu/Content/Items" to="." method="load_item_dictionary"]
+[connection signal="pressed" from="CanvasLayer/UI/DictionaryMenu/Content/Buildings" to="." method="load_building_dictionary"]
+[connection signal="pressed" from="CanvasLayer/UI/DictionaryMenu/DictionaryMenuButton" to="." method="_on_dictionary_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoMenu/Content/_Close" to="." method="_on_info_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoMenu/InfoMenuButton" to="." method="_on_info_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/SwitchAzuria" to="." method="_on_switch_planet" binds= ["Azuria"]]
+[connection signal="pressed" from="CanvasLayer/UI/SwitchBukat" to="." method="_on_switch_planet" binds= ["Bukat"]]
+[connection signal="pressed" from="CanvasLayer/UI/SwitchMable" to="." method="_on_switch_planet" binds= ["Mable"]]
+[connection signal="pressed" from="CanvasLayer/UI/Menu/SaveAndQuit" to="." method="_on_save_and_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Menu/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Menu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/BuildingDictionary/Close" to="." method="toggle_building_dictionary"]
+[connection signal="pressed" from="CanvasLayer/UI/ItemDictionary/Close" to="." method="toggle_item_dictionary"]
+[connection signal="pressed" from="CanvasLayer/UI/MenuButton" to="." method="_toggle_menu"]

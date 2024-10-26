@@ -1,0 +1,162 @@
+[gd_scene load_steps=4 format=4 uid="uid://b5caxpysj3phx"]
+
+[ext_resource type="Texture2D" uid="uid://c34bridj4k411" path="res://Textures/UI/Menus/MenuBackground.png" id="2_7ofe3"]
+[ext_resource type="TileSet" uid="uid://dpvx25jopqb3c" path="res://Textures/Tilesets/Azuria_Tileset.tres" id="2_hrevc"]
+
+[sub_resource type="GDScript" id="GDScript_8t3c1"]
+script/source = "extends Node2D
+
+var ConveyorStreet: Array[Area2D]
+
+func _ready() -> void:
+	placeBuildings()
+
+func placeBuildings() -> void:
+	place(load(\"res://Resources/Buildings/Extraction/Drill.tres\"), Vector2(144, 208))
+	
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(144, 176)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(144, 144)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(144, 112)))
+	allign_street()
+	
+	place(load(\"res://Resources/Buildings/Extraction/Drill_Burning.tres\"), Vector2(144, 80))
+	var hub: Area2D = place(load(\"res://Resources/Buildings/Processing/Hub.tres\"), Vector2(272, 304))
+	hub.get_node(\"Script\").storage = 9999999
+	
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(176, 80)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 80)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(240, 80)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(272, 80)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 80)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 112)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 144)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 176)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 208)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 240)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 272)))
+	allign_street()
+	
+	place(load(\"res://Resources/Buildings/Extraction/Drill.tres\"), Vector2(272, 496))
+	
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 496)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 464)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 432)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 400)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 368)))
+	allign_street()
+	
+	place(load(\"res://Resources/Buildings/Extraction/Drill.tres\"), Vector2(112, 688))
+	
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(112, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(112, 624)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(112, 592)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(112, 560)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(112, 528)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(112, 496)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(112, 464)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(112, 432)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(112, 400)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(112, 368)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(112, 336)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(144, 336)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(176, 336)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 336)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(240, 336)))
+	allign_street()
+	
+	place(load(\"res://Resources/Buildings/Extraction/Pump.tres\"), Vector2(592, 688))
+	place(load(\"res://Resources/Buildings/Processing/Refinery.tres\"), Vector2(208, 656))
+	
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(592, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(560, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(528, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(496, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(464, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(432, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(400, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(368, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(336, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(304, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(272, 656)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(240, 656)))
+	allign_street()
+	
+	place(load(\"res://Resources/Buildings/Extraction/Drill.tres\"), Vector2(208, 944))
+	
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 912)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 880)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 848)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 816)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 784)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 752)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 720)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 688)))
+	allign_street()
+	
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 624)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 592)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 560)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 528)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 496)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 464)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 432)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(208, 400)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(240, 400)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(272, 400)))
+	ConveyorStreet.append(place(load(\"res://Resources/Buildings/Transportation/Conveyor.tres\"), Vector2(272, 368)))
+	allign_street()
+
+func allign_street() -> void:
+	for i: int in ConveyorStreet.size():
+		ConveyorStreet[i].add_to_group(\"isConveyor\")
+		
+		if (i+1) < ConveyorStreet.size():
+			ConveyorStreet[i].get_node(\"Script\").to_building.append(ConveyorStreet[i+1])
+		if i >= 1:
+			ConveyorStreet[i].get_node(\"Script\").from_building = ConveyorStreet[i-1]
+		
+		ConveyorStreet[i].get_node(\"Script\").align()
+	
+	ConveyorStreet[ConveyorStreet.size()-1].get_node(\"Script\").fake_align()
+	ConveyorStreet[0].get_node(\"Script\").fake_align()
+	
+	ConveyorStreet.clear()
+
+func place(building: Building, pos: Vector2) -> Area2D:
+	var placedB: Area2D = load(\"res://Prefabs/Buildings/\" + building.building_type + \".tscn\").instantiate()
+	placedB.position = pos
+	placedB.get_node(\"Image\").texture = building.image
+	placedB.get_node(\"Script\").set_script(building.code)
+	placedB.buildingRes = building
+	get_node(\"BackgroundWorld/Buildings\").add_child(placedB)
+	return placedB
+
+func _building_selected(_node: Area2D) -> void:
+	pass
+"
+
+[node name="MenuBackground" type="Node2D"]
+script = SubResource("GDScript_8t3c1")
+
+[node name="BackgroundWorld" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMapLayer" parent="BackgroundWorld"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAIAAAAAAAEAAAAFAAAAAAAAAAIAAAAAAAMAAAAAAAMAAAAAAAEAAAAAAAQAAAAAAAIAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAEAAAAAAAgAAAAAAAEAAAAAAAkAAAAAAAEAAAAAAAoAAAAAAAIAAAAAAAsAAAAAAAAAAAAAAAwAAAAAAAIAAAAAAA0AAAAAAAMAAAAAAA4AAAAAAAAAAAAAAA8AAAAAAAEAAAAAABAAAAAAAAIAAAAAABEAAAAAAAIAAAAAABIAAAAAAAIAAAAAABMAAAAAAAEAAAAAABQAAAAAAAEAAAAAABUAAAAAAAAAAAAAABYAAAAAAAEAAAAAABcAAAAAAAEAAAAAABgAAAAAAAIAAAAAABkAAAAAAAEAAAAAABoAAAAAAAEAAAAAABsAAAAAAAIAAAAAABwAAAAAAAIAAAAAAB0AAAAAAAEAAAAAAB4AAAAAAAAAAAAAAB8AAAAAAAAAAAABAAAAAAAIAAAAAAABAAEAAAAAAAEAAAABAAIAAAAAAAMAAAABAAMAAAAAAAMAAAABAAQAAAAAAAEAAAABAAUAAAAAAAMAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAEAAAABAAkAAAABAAAAAAABAAoAAAAAAAEAAAABAAsAAAAAAAIAAAABAAwAAAAAAAEAAAABAA0AAAAAAAMAAAABAA4AAAAAAAAAAAABAA8AAAAAAAEAAAABABAAAAAAAAMAAAABABEAAAAAAAAAAAABABIAAAAAAAMAAAABABMAAAAAAAMAAAABABQAAAAAAAAAAAABABUAAAAAAAMAAAABABYAAAAHAAAAAAABABcAAAAIAAAAAAABABgAAAAAAAEAAAABABkAAAAAAAEAAAABABoAAAAAAAIAAAABABsAAAAAAAEAAAABABwAAAAAAAEAAAABAB0AAAAAAAAAAAABAB4AAAAAAAIAAAABAB8AAAAAAAIAAAACAAAAAAAAAAAAAAACAAEAAAAAAAMAAAACAAIAAAAAAAAAAAACAAMAAAAAAAEAAAACAAQAAAAAAAAAAAACAAUAAAAAAAMAAAACAAYAAAAAAAMAAAACAAcAAAAEAAAAAAACAAgAAAADAAAAAAACAAkAAAACAAAAAAACAAoAAAAAAAMAAAACAAsAAAAAAAEAAAACAAwAAAAAAAEAAAACAA0AAAAAAAIAAAACAA4AAAAAAAMAAAACAA8AAAAAAAAAAAACABAAAAAAAAMAAAACABEAAAAAAAIAAAACABIAAAAAAAIAAAACABMAAAAAAAIAAAACABQAAAAAAAIAAAACABUAAAAIAAAAAAACABYAAAAIAAAAAAACABcAAAAGAAAAAAACABgAAAAAAAAAAAACABkAAAAGAAAAAAACABoAAAAAAAIAAAACABsAAAAAAAMAAAACABwAAAAAAAIAAAACAB0AAAAAAAMAAAACAB4AAAAAAAAAAAACAB8AAAAAAAEAAAADAAAAAAAAAAAAAAADAAEAAAAAAAIAAAADAAIAAAAAAAEAAAADAAMAAAAAAAIAAAADAAQAAAAAAAEAAAADAAUAAAAAAAEAAAADAAYAAAAAAAMAAAADAAcAAAACAAAAAAADAAgAAAAAAAEAAAADAAkAAAACAAAAAAADAAoAAAAAAAAAAAADAAsAAAAAAAEAAAADAAwAAAAAAAIAAAADAA0AAAAAAAIAAAADAA4AAAAAAAMAAAADAA8AAAAAAAIAAAADABAAAAAAAAMAAAADABEAAAAAAAEAAAADABIAAAAAAAMAAAADABMAAAAAAAEAAAADABQAAAAAAAMAAAADABUAAAAHAAAAAAADABYAAAAGAAAAAAADABcAAAAGAAAAAAADABgAAAAIAAAAAAADABkAAAAAAAMAAAADABoAAAAAAAEAAAADABsAAAAAAAIAAAADABwAAAAAAAMAAAADAB0AAAAAAAEAAAADAB4AAAAAAAMAAAADAB8AAAAAAAEAAAAEAAAAAAAAAAEAAAAEAAEAAAAAAAMAAAAEAAIAAAAIAAEAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAIAAAAEAAUAAAAAAAMAAAAEAAYAAAACAAAAAAAEAAcAAAACAAAAAAAEAAgAAAACAAAAAAAEAAkAAAABAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAEAAwAAAAAAAEAAAAEAA0AAAAAAAMAAAAEAA4AAAAAAAIAAAAEAA8AAAAAAAAAAAAEABAAAAAAAAIAAAAEABEAAAAAAAMAAAAEABIAAAAAAAAAAAAEABMAAAAAAAIAAAAEABQAAAAAAAEAAAAEABUAAAAAAAEAAAAEABYAAAAFAAAAAAAEABcAAAAGAAAAAAAEABgAAAAHAAAAAAAEABkAAAAAAAMAAAAEABoAAAAAAAIAAAAEABsAAAAAAAMAAAAEABwAAAAAAAEAAAAEAB0AAAAAAAEAAAAEAB4AAAAAAAMAAAAEAB8AAAAAAAMAAAAFAAAAAAAAAAEAAAAFAAEAAAAAAAIAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAMAAAAFAAQAAAAAAAIAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAEAAAAFAAcAAAAAAAEAAAAFAAgAAAAAAAIAAAAFAAkAAAAAAAIAAAAFAAoAAAAAAAEAAAAFAAsAAAAAAAMAAAAFAAwAAAAAAAIAAAAFAA0AAAAAAAAAAAAFAA4AAAAAAAAAAAAFAA8AAAAAAAEAAAAFABAAAAAAAAEAAAAFABEAAAAAAAMAAAAFABIAAAAAAAEAAAAFABMAAAAAAAMAAAAFABQAAAAAAAIAAAAFABUAAAAFAAAAAAAFABYAAAAAAAMAAAAFABcAAAAAAAEAAAAFABgAAAAAAAEAAAAFABkAAAAAAAMAAAAFABoAAAAAAAMAAAAFABsAAAAAAAAAAAAFABwAAAAAAAIAAAAFAB0AAAAAAAIAAAAFAB4AAAAAAAMAAAAFAB8AAAAAAAAAAAAGAAAAAAAAAAEAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAEAAAAGAAQAAAAAAAIAAAAGAAUAAAAAAAIAAAAGAAYAAAAAAAEAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAMAAAAGAAkAAAAAAAEAAAAGAAoAAAAAAAIAAAAGAAsAAAAAAAEAAAAGAAwAAAAAAAMAAAAGAA0AAAAAAAAAAAAGAA4AAAAAAAMAAAAGAA8AAAAAAAMAAAAGABAAAAAAAAMAAAAGABEAAAAAAAMAAAAGABIAAAAAAAEAAAAGABMAAAAAAAEAAAAGABQAAAAAAAMAAAAGABUAAAAAAAIAAAAGABYAAAAAAAIAAAAGABcAAAAAAAEAAAAGABgAAAAAAAMAAAAGABkAAAAAAAMAAAAGABoAAAAAAAEAAAAGABsAAAAAAAMAAAAGABwAAAAAAAIAAAAGAB0AAAADAAAAAAAGAB4AAAAAAAEAAAAGAB8AAAAAAAEAAAAHAAAAAAAAAAMAAAAHAAEAAAAAAAEAAAAHAAIAAAAAAAIAAAAHAAMAAAAAAAIAAAAHAAQAAAAAAAEAAAAHAAUAAAAAAAMAAAAHAAYAAAAAAAMAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAMAAAAHAAkAAAAAAAEAAAAHAAoAAAAAAAAAAAAHAAsAAAAAAAMAAAAHAAwAAAAAAAMAAAAHAA0AAAAAAAAAAAAHAA4AAAAAAAIAAAAHAA8AAAAAAAMAAAAHABAAAAAAAAIAAAAHABEAAAAAAAIAAAAHABIAAAAAAAIAAAAHABMAAAAAAAMAAAAHABQAAAAAAAEAAAAHABUAAAAAAAIAAAAHABYAAAAAAAEAAAAHABcAAAAAAAEAAAAHABgAAAAFAAEAAAAHABkAAAAAAAIAAAAHABoAAAAAAAMAAAAHABsAAAAAAAEAAAAHABwAAAAAAAEAAAAHAB0AAAAAAAEAAAAHAB4AAAAAAAEAAAAHAB8AAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAEAAAAIAAIAAAAAAAIAAAAIAAMAAAAAAAEAAAAIAAQAAAAAAAEAAAAIAAUAAAAAAAAAAAAIAAYAAAAEAAAAAAAIAAcAAAAAAAMAAAAIAAgAAAAIAAEAAAAIAAkAAAAIAAEAAAAIAAoAAAAAAAEAAAAIAAsAAAAAAAAAAAAIAAwAAAAAAAEAAAAIAA0AAAAAAAMAAAAIAA4AAAAAAAIAAAAIAA8AAAAAAAAAAAAIABAAAAAAAAEAAAAIABEAAAAAAAIAAAAIABIAAAAAAAMAAAAIABMAAAAAAAMAAAAIABQAAAAAAAIAAAAIABUAAAAFAAEAAAAIABYAAAAIAAEAAAAIABcAAAAIAAEAAAAIABgAAAAAAAMAAAAIABkAAAAAAAAAAAAIABoAAAAAAAAAAAAIABsAAAADAAAAAAAIABwAAAACAAAAAAAIAB0AAAAAAAEAAAAIAB4AAAAEAAAAAAAIAB8AAAAAAAIAAAAJAAAAAAAAAAMAAAAJAAEAAAAEAAAAAAAJAAIAAAACAAAAAAAJAAMAAAACAAAAAAAJAAQAAAAEAAAAAAAJAAUAAAAAAAEAAAAJAAYAAAAAAAMAAAAJAAcAAAAAAAEAAAAJAAgAAAAAAAIAAAAJAAkAAAAAAAEAAAAJAAoAAAAFAAEAAAAJAAsAAAAAAAIAAAAJAAwAAAAAAAIAAAAJAA0AAAAAAAEAAAAJAA4AAAAAAAAAAAAJAA8AAAAAAAIAAAAJABAAAAAAAAMAAAAJABEAAAAAAAIAAAAJABIAAAAAAAEAAAAJABMAAAAAAAIAAAAJABQAAAAAAAMAAAAJABUAAAAAAAIAAAAJABYAAAAIAAEAAAAJABcAAAAIAAEAAAAJABgAAAAAAAIAAAAJABkAAAAAAAIAAAAJABoAAAAAAAIAAAAJABsAAAAEAAAAAAAJABwAAAAAAAAAAAAJAB0AAAABAAAAAAAJAB4AAAACAAAAAAAJAB8AAAADAAAAAAAKAAAAAAACAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAADAAAAAAAKAAMAAAACAAAAAAAKAAQAAAACAAAAAAAKAAUAAAADAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAEAAAAKAAgAAAAAAAIAAAAKAAkAAAAAAAAAAAAKAAoAAAAAAAIAAAAKAAsAAAAAAAMAAAAKAAwAAAAAAAMAAAAKAA0AAAAAAAMAAAAKAA4AAAAAAAAAAAAKAA8AAAAAAAIAAAAKABAAAAAAAAIAAAAKABEAAAAAAAMAAAAKABIAAAAAAAIAAAAKABMAAAAAAAEAAAAKABQAAAAAAAIAAAAKABUAAAAAAAIAAAAKABYAAAAAAAAAAAAKABcAAAAAAAEAAAAKABgAAAAAAAAAAAAKABkAAAAAAAIAAAAKABoAAAAAAAMAAAAKABsAAAAAAAIAAAAKABwAAAACAAAAAAAKAB0AAAACAAAAAAAKAB4AAAAAAAAAAAAKAB8AAAAAAAMAAAALAAAAAAAAAAMAAAALAAEAAAABAAAAAAALAAIAAAAEAAAAAAALAAMAAAAAAAIAAAALAAQAAAADAAAAAAALAAUAAAAEAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAEAAAALAAgAAAAAAAEAAAALAAkAAAAAAAIAAAALAAoAAAAAAAMAAAALAAsAAAAAAAAAAAALAAwAAAAAAAEAAAALAA0AAAAAAAIAAAALAA4AAAAAAAAAAAALAA8AAAAGAAAAAAALABAAAAAHAAAAAAALABEAAAAGAAAAAAALABIAAAAGAAAAAAALABMAAAAAAAAAAAALABQAAAAAAAEAAAALABUAAAAAAAMAAAALABYAAAAAAAAAAAALABcAAAAAAAIAAAALABgAAAAAAAEAAAALABkAAAAAAAEAAAALABoAAAAAAAIAAAALABsAAAABAAAAAAALABwAAAADAAAAAAALAB0AAAACAAAAAAALAB4AAAAEAAAAAAALAB8AAAAAAAAAAAAMAAAAAAAAAAEAAAAMAAEAAAADAAAAAAAMAAIAAAAEAAAAAAAMAAMAAAAEAAAAAAAMAAQAAAABAAAAAAAMAAUAAAAEAAAAAAAMAAYAAAADAAAAAAAMAAcAAAAAAAMAAAAMAAgAAAAAAAEAAAAMAAkAAAAAAAMAAAAMAAoAAAAAAAAAAAAMAAsAAAAAAAEAAAAMAAwAAAAAAAAAAAAMAA0AAAAAAAEAAAAMAA4AAAAAAAAAAAAMAA8AAAAAAAMAAAAMABAAAAAFAAAAAAAMABEAAAAHAAAAAAAMABIAAAAAAAAAAAAMABMAAAAAAAMAAAAMABQAAAAAAAIAAAAMABUAAAAAAAIAAAAMABYAAAAAAAMAAAAMABcAAAAAAAEAAAAMABgAAAAAAAMAAAAMABkAAAAAAAIAAAAMABoAAAACAAAAAAAMABsAAAAAAAIAAAAMABwAAAAAAAMAAAAMAB0AAAAAAAAAAAAMAB4AAAAAAAAAAAAMAB8AAAAAAAEAAAANAAAAAAAAAAIAAAANAAEAAAAAAAEAAAANAAIAAAADAAAAAAANAAMAAAADAAAAAAANAAQAAAAAAAEAAAANAAUAAAAAAAMAAAANAAYAAAAAAAIAAAANAAcAAAAAAAAAAAANAAgAAAAAAAIAAAANAAkAAAAAAAMAAAANAAoAAAAAAAMAAAANAAsAAAAIAAAAAAANAAwAAAAAAAEAAAANAA0AAAAAAAEAAAANAA4AAAAAAAIAAAANAA8AAAAAAAAAAAANABAAAAAAAAAAAAANABEAAAAAAAMAAAANABIAAAAAAAMAAAANABMAAAAFAAAAAAANABQAAAAAAAMAAAANABUAAAAAAAIAAAANABYAAAAAAAMAAAANABcAAAAAAAEAAAANABgAAAAAAAMAAAANABkAAAAAAAIAAAANABoAAAAAAAMAAAANABsAAAAAAAIAAAANABwAAAAAAAIAAAANAB0AAAAAAAMAAAANAB4AAAAAAAAAAAANAB8AAAAAAAAAAAAOAAAAAAAAAAIAAAAOAAEAAAAAAAIAAAAOAAIAAAAAAAMAAAAOAAMAAAAAAAIAAAAOAAQAAAAAAAMAAAAOAAUAAAAEAAAAAAAOAAYAAAAAAAEAAAAOAAcAAAAAAAMAAAAOAAgAAAAGAAAAAAAOAAkAAAAFAAAAAAAOAAoAAAAGAAAAAAAOAAsAAAAAAAEAAAAOAAwAAAAAAAAAAAAOAA0AAAAAAAAAAAAOAA4AAAAAAAMAAAAOAA8AAAAAAAIAAAAOABAAAAAAAAEAAAAOABEAAAAAAAIAAAAOABIAAAAAAAEAAAAOABMAAAAAAAMAAAAOABQAAAAAAAAAAAAOABUAAAAAAAMAAAAOABYAAAAAAAMAAAAOABcAAAAAAAMAAAAOABgAAAAAAAEAAAAOABkAAAAAAAMAAAAOABoAAAAAAAIAAAAOABsAAAAAAAMAAAAOABwAAAAAAAEAAAAOAB0AAAAAAAEAAAAOAB4AAAAAAAMAAAAOAB8AAAAAAAIAAAAPAAAAAAAAAAAAAAAPAAEAAAAAAAEAAAAPAAIAAAAAAAEAAAAPAAMAAAAAAAMAAAAPAAQAAAAAAAEAAAAPAAUAAAAAAAMAAAAPAAYAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAIAAAAPAAkAAAAFAAAAAAAPAAoAAAAFAAAAAAAPAAsAAAAAAAIAAAAPAAwAAAAAAAEAAAAPAA0AAAAAAAMAAAAPAA4AAAAAAAMAAAAPAA8AAAAAAAIAAAAPABAAAAAAAAEAAAAPABEAAAAAAAIAAAAPABIAAAAAAAIAAAAPABMAAAAAAAEAAAAPABQAAAAAAAIAAAAPABUAAAAAAAMAAAAPABYAAAAAAAAAAAAPABcAAAAAAAEAAAAPABgAAAAAAAMAAAAPABkAAAAAAAAAAAAPABoAAAAAAAMAAAAPABsAAAAAAAIAAAAPABwAAAAAAAIAAAAPAB0AAAAAAAEAAAAPAB4AAAAAAAMAAAAPAB8AAAAAAAMAAAASABUAAAABAAIAAAA=")
+tile_set = ExtResource("2_hrevc")
+
+[node name="Buildings" type="Node2D" parent="BackgroundWorld"]
+
+[node name="WorldTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Dark" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.196078)
+z_index = 2
+offset_right = 1380.0
+offset_bottom = 2770.0
+texture = ExtResource("2_7ofe3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(208, 462)
+zoom = Vector2(2.6, 2.6)

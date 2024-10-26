@@ -1,0 +1,366 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwg1rqlcdfj8t"]
+
+[ext_resource type="Texture2D" uid="uid://cf5vp7vjgdujl" path="res://Textures/Buildings/Placing_Flag.png" id="1_6a582"]
+[ext_resource type="Texture2D" uid="uid://1223kprbokb7" path="res://Textures/UI/Button/Accept.png" id="3_2ewj0"]
+[ext_resource type="Texture2D" uid="uid://lte3qdtcvto2" path="res://Textures/UI/Button/RoundedButton.png" id="3_2ng0t"]
+[ext_resource type="Texture2D" uid="uid://dprr51ktju31j" path="res://Textures/Items/Coal.png" id="4_c23b4"]
+[ext_resource type="AudioStream" uid="uid://da7t2n4xg7uf0" path="res://Sounds/SFX/Placing.mp3" id="5_ybrcy"]
+
+[sub_resource type="GDScript" id="GDScript_7xu3m"]
+script/source = "extends Node2D
+##ConveyorBuilder##
+
+var to_flag: Area2D
+@onready var from_flag: Area2D = $FromFlag
+
+var placingBuilding: Building
+
+var preBuilds: Array[Sprite2D] = []
+var placedBuilds: Array[Area2D] = []
+
+func _ready() -> void:
+	from_flag.position = get_node(\"..\").alin_to_grid_pos(get_node(\"../Camera\").offset)
+	create_to_flag()
+	flag_moving()
+
+#Creates to flag as an copy of from flag
+func create_to_flag() -> void:
+	to_flag = from_flag.duplicate()
+	to_flag.name = \"ToFlag\"
+	to_flag.position.y -= 96
+	to_flag.get_node(\"Sprite2D\").self_modulate = Color(\"600a0c\")
+	add_child(to_flag)
+
+func cancle() -> void:
+	for sprite in preBuilds:
+		sprite.queue_free()
+	
+	queue_free()
+
+func place() -> void:
+	if !pay_building(placingBuilding):
+		return
+	
+	#Cycles trough all prePlaced buildings and places a real one
+	for builds in preBuilds:
+		placedBuilds.append(placeBuilding(placingBuilding, builds.position))
+	
+	#Clear the preBuilds
+	for sprite in preBuilds:
+		sprite.queue_free()
+	
+	#Cycles trough all Conveyors and sets there to and from buildings
+	for i: int in placedBuilds.size():
+		placedBuilds[i].add_to_group(\"isConveyor\")
+		
+		if (i+1) < placedBuilds.size():
+			placedBuilds[i].get_node(\"Script\").to_building.append(placedBuilds[i+1])
+		if i >= 1:
+			placedBuilds[i].get_node(\"Script\").from_building = placedBuilds[i-1]
+		
+		placedBuilds[i].get_node(\"Script\").align()
+	
+	placedBuilds[placedBuilds.size() - 1].get_node(\"Script\").fake_align()
+	placedBuilds[0].get_node(\"Script\").fake_align()
+	
+	##TODO: Orient Last and first Conveyor to the flags not to the opposit (rework fake_align)
+	
+	var sound: AudioStreamPlayer2D = get_node(\"Placed\")
+	sound.play()
+	await sound.finished
+	
+	queue_free() #Destroy self
+
+func flag_moving() -> void:
+	var path: Array[Vector2] = calculate_path()
+	
+	##TODO: Don't clear all preBuilds, just delete the one which are not needed and add new one
+	
+	#Clear the preBuilds
+	for sprite in preBuilds:
+		sprite.queue_free()
+	preBuilds.clear()
+	
+	#Create new preBuilds on path from from_flag to to_flag
+	var sprite: Sprite2D = Sprite2D.new()
+	var area: Area2D = Area2D.new()
+	var shape: RectangleShape2D = RectangleShape2D.new()
+	var coll: CollisionShape2D = CollisionShape2D.new()
+	var newArea: Area2D
+	shape.size = Vector2(30, 30)
+	coll.shape = shape
+	area.add_child(coll)
+	area.monitorable = false
+	for i: int in path.size():
+		if i != (path.size() - 1):
+			sprite  = Sprite2D.new()
+			sprite.texture = null
+			sprite.position = path[i]
+			preBuilds.append(sprite)
+			add_child(sprite)
+			newArea = area.duplicate()
+			newArea.name = \"Area2D\"
+			sprite.add_child(newArea)
+	
+	var to_dir: Vector2
+	var from_dir: Vector2
+	var image: Sprite2D
+	for i: int in preBuilds.size():
+		to_dir = Vector2(0, 0)
+		from_dir = Vector2(0, 0)
+		
+		if i != 0:
+			from_dir = (preBuilds[i-1].position - preBuilds[i].position).normalized()
+		if i != (preBuilds.size()-1):
+			to_dir = (preBuilds[i+1].position - preBuilds[i].position).normalized()
+		
+		image = preBuilds[i]
+		
+		if from_dir == Vector2(0, 0):
+			from_dir = -to_dir
+		elif to_dir == Vector2(0, 0):
+			to_dir = -from_dir
+		
+		match from_dir:
+			Vector2(1 ,0):
+				match to_dir:
+					Vector2(-1, 0):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Right2Left.png\")
+					Vector2(0, 1):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Right2Down.png\")
+					Vector2(0, -1):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Right2Up.png\")
+			Vector2(-1 ,0):
+				match to_dir:
+					Vector2(1, 0):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Left2Right.png\")
+					Vector2(0, 1):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Left2Down.png\")
+					Vector2(0, -1):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Left2Up.png\")
+			Vector2(0 ,1):
+				match to_dir:
+					Vector2(-1, 0):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Down2Left.png\")
+					Vector2(1, 0):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Down2Right.png\")
+					Vector2(0, -1):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Down2Up.png\")
+			Vector2(0 ,-1):
+				match to_dir:
+					Vector2(-1, 0):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Up2Left.png\")
+					Vector2(1, 0):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Up2Right.png\")
+					Vector2(0, 1):
+						image.texture = load(\"res://Textures/Buildings/Transportation/Conveyor - Normal/Up2Down.png\")
+		
+		image.hframes = 8
+	
+	update_info()
+
+func verify_placing() -> bool:
+	var colliding: Array[Area2D]
+	for building: Sprite2D in preBuilds:
+		colliding = building.get_node(\"Area2D\").get_overlapping_areas()
+		if !colliding.is_empty():
+			for area: Area2D in colliding:
+				if area.get_parent() == get_node(\"..\").activePlanet.get_node(\"Buildings\") && !area.is_in_group(\"isConveyor\"):
+					return false
+	
+	return true
+
+func update_info() -> void:
+	var itemPrefab: TextureRect = $CanvasLayer/UI/Cost/GridContainer/ItemPrefab
+	var newItem: TextureRect
+	
+	for child: TextureRect in $CanvasLayer/UI/Cost/GridContainer.get_children():
+		if !child.name.contains(\"Prefab\"):
+			child.queue_free()
+	
+	for i: int in placingBuilding.cost_item.size():
+		newItem = itemPrefab.duplicate()
+		newItem.visible = true
+		newItem.get_node(\"Image\").texture = placingBuilding.cost_item[i].image
+		newItem.get_node(\"Name\").text = placingBuilding.cost_item[i].name + \": \" + str(placingBuilding.cost_count[i] * preBuilds.size())
+		$CanvasLayer/UI/Cost/GridContainer.add_child(newItem)
+		if !get_parent().item_avalable(placingBuilding.cost_item[i], placingBuilding.cost_count[i] * preBuilds.size()):
+			newItem.get_node(\"Name\").self_modulate = Color(\"b2171c\")
+
+#Returns all positions on an 32x32 grid on the path
+func calculate_path() -> Array[Vector2]:
+	var positions: Array[Vector2] = []
+	var start: Vector2 = from_flag.position
+	var end: Vector2 = to_flag.position
+	
+	var virPos: Vector2 = start
+	
+	while virPos.y != end.y:
+		if virPos.y < end.y:
+			virPos.y += 32
+		else:
+			virPos.y -= 32
+		positions.append(virPos)
+	
+	while virPos.x != end.x:
+		if virPos.x < end.x:
+			virPos.x += 32
+		else:
+			virPos.x -= 32
+		positions.append(virPos)
+	
+	return positions
+
+func placeBuilding(building: Building, pos: Vector2) -> Area2D:
+	var placedB: Area2D = load(\"res://Prefabs/Buildings/1 Block Building.tscn\").instantiate()
+	placedB.position = pos
+	placedB.get_node(\"Image\").texture = building.image
+	placedB.get_node(\"Script\").set_script(building.code)
+	placedB.buildingRes = building
+	get_node(\"..\").activePlanet.get_node(\"Buildings\").add_child(placedB)
+	return placedB
+
+func pay_building(building: Building) -> bool:
+	
+	for i: int in building.cost_item.size():
+		if !get_node(\"..\").item_avalable(building.cost_item[i], building.cost_count[i] * preBuilds.size()):
+			return false
+	
+	for i: int in building.cost_item.size():
+		get_node(\"..\").use_item(building.cost_item[i], building.cost_count[i] * preBuilds.size())
+	
+	return true
+
+func _on_accept_pressed() -> void:
+	if preBuilds.size() >= 1:
+		if verify_placing():
+			place()
+"
+
+[sub_resource type="GDScript" id="GDScript_c7uqn"]
+script/source = "extends Area2D
+
+@onready var Camera: Camera2D = get_node(\"../../Camera\")
+
+func _ready()-> void:
+	set_process(false)
+
+func _process(_delta: float) -> void:
+	
+	var mouse_position: Vector2i = get_global_mouse_position()
+	mouse_position = Vector2(mouse_position.x + 16, mouse_position.y + 16)
+		
+	#orientate on Grid
+	while mouse_position.x % 32 != 0:
+		mouse_position.x -= 1
+	while mouse_position.y % 32 != 0:
+		mouse_position.y -= 1
+	
+	position = mouse_position
+	
+	get_parent().flag_moving()
+
+func _on_input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void: #Mace Placer draggable
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			set_process(true)
+			Camera.can_pan = false
+		else:
+			set_process(false)
+			Camera.can_pan = true
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecw2j"]
+size = Vector2(70, 70)
+
+[node name="ConveyorBuilder" type="Node2D"]
+z_index = 1
+script = SubResource("GDScript_7xu3m")
+
+[node name="FromFlag" type="Area2D" parent="."]
+script = SubResource("GDScript_c7uqn")
+
+[node name="Sprite2D" type="Sprite2D" parent="FromFlag"]
+self_modulate = Color(0.0778145, 0.377804, 0.039824, 1)
+z_index = 3
+texture = ExtResource("1_6a582")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FromFlag"]
+shape = SubResource("RectangleShape2D_ecw2j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="UI" type="CanvasGroup" parent="CanvasLayer"]
+
+[node name="Accept" type="TextureButton" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 830.0
+offset_top = 1420.0
+offset_right = 1020.0
+offset_bottom = 1610.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("3_2ng0t")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/Accept"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 180.0
+offset_bottom = 180.0
+texture = ExtResource("3_2ewj0")
+expand_mode = 1
+
+[node name="Cost" type="TextureRect" parent="CanvasLayer/UI"]
+self_modulate = Color(1, 1, 1, 0.54902)
+offset_left = 600.0
+offset_top = 1420.0
+offset_right = 830.0
+offset_bottom = 1610.0
+texture = ExtResource("3_2ng0t")
+expand_mode = 1
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/Cost"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 143.0
+offset_bottom = 180.0
+theme_override_constants/v_separation = 3
+
+[node name="ItemPrefab" type="TextureRect" parent="CanvasLayer/UI/Cost/GridContainer"]
+visible = false
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("3_2ng0t")
+expand_mode = 1
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/UI/Cost/GridContainer/ItemPrefab"]
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 30.0
+texture = ExtResource("4_c23b4")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="CanvasLayer/UI/Cost/GridContainer/ItemPrefab"]
+layout_mode = 0
+offset_left = 33.0
+offset_right = 211.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 21
+text = "Coal: 5"
+
+[node name="Placed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ybrcy")
+bus = &"SFX"
+
+[connection signal="input_event" from="FromFlag" to="FromFlag" method="_on_input_event"]
+[connection signal="pressed" from="CanvasLayer/UI/Accept" to="." method="_on_accept_pressed"]

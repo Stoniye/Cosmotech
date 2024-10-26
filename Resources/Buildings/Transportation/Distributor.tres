@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Building" load_steps=10 format=3 uid="uid://4oy7ubws7k3h"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Transportation/Distributor.gd" id="1_0ogke"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_reype"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_cll6g"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="4_0pgh3"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="5_igeui"]
+[ext_resource type="Resource" uid="uid://dlc1b6amq78lv" path="res://Resources/Items/Keppler.tres" id="6_gv7w8"]
+[ext_resource type="Texture2D" uid="uid://b7uedkv4g7ljr" path="res://Textures/Buildings/Transportation/Distributor.png" id="6_w254p"]
+[ext_resource type="PackedScene" uid="uid://b1soralkflri8" path="res://Prefabs/Building Info Windows/Transportation/Distributor Info Window.tscn" id="7_07xrp"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="8_8ijkr"]
+
+[resource]
+script = ExtResource("8_8ijkr")
+image = ExtResource("6_w254p")
+name = "Distributor"
+code = ExtResource("1_0ogke")
+building_type = "1 Block Building"
+info_window = ExtResource("7_07xrp")
+receives_items = true
+gives_items = true
+maxToConnection = 2
+cost_item = Array[ExtResource("2_reype")]([ExtResource("3_cll6g"), ExtResource("4_0pgh3"), ExtResource("5_igeui"), ExtResource("6_gv7w8")])
+cost_count = Array[int]([200, 180, 220, 15])
+description = "Spend every 2 items to the side"
+ConveyorPlacing = false
+replacesBuildings = true
+buildingHealth = 3
+has_to_align = true
+longDescription = "The Distributor will spend every secons item to the building connected to the side, not mathering which item"

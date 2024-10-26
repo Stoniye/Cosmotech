@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Building" load_steps=9 format=3 uid="uid://didys62befv0o"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Processing/Ammo Facility.gd" id="1_6vmec"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_8cl8h"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="2_pr4pa"]
+[ext_resource type="Texture2D" uid="uid://csrrtid0joyhb" path="res://Textures/Buildings/Processing/Ammo Facility.png" id="3_1feds"]
+[ext_resource type="Resource" uid="uid://dlc1b6amq78lv" path="res://Resources/Items/Keppler.tres" id="3_v4lds"]
+[ext_resource type="Resource" uid="uid://b57qxp2eqch2t" path="res://Resources/Items/Iron_Plates.tres" id="4_jvdr0"]
+[ext_resource type="PackedScene" uid="uid://cqftsk8wklfw7" path="res://Prefabs/Building Info Windows/Processing/Ammo Facility Info Window.tscn" id="4_vpae7"]
+[ext_resource type="Resource" uid="uid://cp7okeo7khiw" path="res://Resources/Items/Copper_Plates.tres" id="5_1ias3"]
+
+[resource]
+script = ExtResource("2_pr4pa")
+image = ExtResource("3_1feds")
+name = "Ammo Facility"
+code = ExtResource("1_6vmec")
+building_type = "1 Block Building"
+info_window = ExtResource("4_vpae7")
+receives_items = true
+gives_items = true
+maxToConnection = 4
+cost_item = Array[ExtResource("1_8cl8h")]([ExtResource("3_v4lds"), ExtResource("4_jvdr0"), ExtResource("5_1ias3")])
+cost_count = Array[int]([130, 230, 230])
+description = "Produces Ammonation"
+ConveyorPlacing = false
+buildingHealth = 20
+has_to_align = false
+longDescription = "Produces ammonation with different ores, has a production time of 3"

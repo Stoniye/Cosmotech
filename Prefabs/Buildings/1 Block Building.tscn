@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvjdkyucwo6ks"]
+
+[ext_resource type="Texture2D" uid="uid://c6hgcvekqcebq" path="res://Textures/Buildings/Extraction/Drill.png" id="1_mgl3k"]
+
+[sub_resource type="GDScript" id="GDScript_nxkkg"]
+script/source = "extends BlockBuildingClass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yi7q6"]
+size = Vector2(32, 32)
+
+[node name="1 Block Building" type="Area2D"]
+script = SubResource("GDScript_nxkkg")
+
+[node name="Image" type="Sprite2D" parent="."]
+texture = ExtResource("1_mgl3k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yi7q6")
+
+[node name="Script" type="Node2D" parent="." groups=["gameEvent"]]
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bqq685ndxl1eg"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_53csl"]
+[ext_resource type="Texture2D" uid="uid://cvf4kb5auw1ce" path="res://Textures/Items/Kerosene.png" id="1_68x3o"]
+
+[resource]
+script = ExtResource("1_53csl")
+image = ExtResource("1_68x3o")
+name = "Kerosene"
+energy = 5
+extraction_type = "Drill"
+extraction_time = 0
+bullet_Color = Color(0, 0, 0, 1)
+bullet_damage = 0
+longDescription = "Can be used as Fuel for Rockets"

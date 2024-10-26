@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c3q8qviaqhssc"]
+
+[ext_resource type="Texture2D" uid="uid://bwuyurww5pwl5" path="res://Textures/Items/Stone_Raw.png" id="1_woquf"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_c7qji"]
+
+[resource]
+script = ExtResource("2_c7qji")
+image = ExtResource("1_woquf")
+name = "Raw Stone"
+energy = 0
+extraction_type = "Drill"
+extraction_time = 1
+bullet_Color = Color(0.45098, 0.45098, 0.45098, 1)
+bullet_damage = 1
+longDescription = "Can be used as Ammo with a damage of 1, has an extraction time of 1"

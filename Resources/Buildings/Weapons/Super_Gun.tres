@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Building" load_steps=8 format=3 uid="uid://byqo5lf15ojfs"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Weapons/Super_Gun.gd" id="1_8is1u"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_muxys"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="3_y1iwi"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="4_5tcje"]
+[ext_resource type="Texture2D" uid="uid://b1wbt2rkujeeh" path="res://Textures/Buildings/Weapons/Super_Gun.png" id="5_t8mxj"]
+[ext_resource type="PackedScene" uid="uid://d3xmegw4d6uk2" path="res://Prefabs/Building Info Windows/Weapons/Gun Info Window.tscn" id="6_o4jrk"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="7_4tvtf"]
+
+[resource]
+script = ExtResource("7_4tvtf")
+image = ExtResource("5_t8mxj")
+name = "Super Gun"
+code = ExtResource("1_8is1u")
+building_type = "1 Block Building"
+info_window = ExtResource("6_o4jrk")
+receives_items = true
+gives_items = false
+maxToConnection = 0
+cost_item = Array[ExtResource("2_muxys")]([ExtResource("3_y1iwi"), ExtResource("4_5tcje")])
+cost_count = Array[int]([250, 140])
+description = "Is a slow gun with x1.5 damage multiplyer"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 15
+has_to_align = false
+longDescription = "Targets enemys in an radius of 360. It has an 1.5 Damage Multiplyer, low rotation speed and shoots one Bullet per 0.7 Second"

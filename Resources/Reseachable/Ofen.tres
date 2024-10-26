@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Reseachable" load_steps=7 format=3 uid="uid://dpt1ilomge8ms"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_gx6f0"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="2_y27j6"]
+[ext_resource type="Resource" uid="uid://cp7okeo7khiw" path="res://Resources/Items/Copper_Plates.tres" id="3_j38ph"]
+[ext_resource type="Resource" uid="uid://b57qxp2eqch2t" path="res://Resources/Items/Iron_Plates.tres" id="4_wgkke"]
+[ext_resource type="Resource" uid="uid://d2d7tdhpmffgp" path="res://Resources/Buildings/Processing/Ofen.tres" id="5_rr1u1"]
+[ext_resource type="Script" path="res://Resources/Scripts/Reseachable.gd" id="6_4tyyv"]
+
+[resource]
+script = ExtResource("6_4tyyv")
+name = "Heating Up"
+Cost_Item = Array[ExtResource("1_gx6f0")]([ExtResource("2_y27j6"), ExtResource("3_j38ph"), ExtResource("4_wgkke")])
+Cost_Count = Array[int]([240, 180, 180])
+reseachBuilding = ExtResource("5_rr1u1")

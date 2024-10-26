@@ -1,0 +1,17 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c63k1dc28jmrf"]
+
+[ext_resource type="Texture2D" uid="uid://bnr3ax4l74ygc" path="res://Textures/Tilemaps/Mable_Tilemap.png" id="1_hjhyu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wp45u"]
+texture = ExtResource("1_hjhyu")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+0:3/0 = 0
+
+[resource]
+tile_size = Vector2i(32, 32)
+custom_data_layer_0/name = "ItemPath"
+custom_data_layer_0/type = 4
+sources/2 = SubResource("TileSetAtlasSource_wp45u")

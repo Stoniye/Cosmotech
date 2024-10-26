@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Building" load_steps=9 format=3 uid="uid://c5itqx8qxdycn"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Weapons/Copper_Wall.gd" id="1_uhobg"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_c18jn"]
+[ext_resource type="Resource" uid="uid://b1753tjmn4w01" path="res://Resources/Items/Gold_Ingot.tres" id="3_10k16"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="3_jee23"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="4_ldkxl"]
+[ext_resource type="Texture2D" uid="uid://dyhkk7jmwpoub" path="res://Textures/Buildings/Weapons/Gold_Wall.png" id="5_p5d2u"]
+[ext_resource type="PackedScene" uid="uid://d33x67axj6oqo" path="res://Prefabs/Building Info Windows/Weapons/Copper Wall Info Window.tscn" id="6_3t8ww"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="7_v1l8p"]
+
+[resource]
+script = ExtResource("7_v1l8p")
+image = ExtResource("5_p5d2u")
+name = "Gold Wall"
+code = ExtResource("1_uhobg")
+building_type = "1 Block Building"
+info_window = ExtResource("6_3t8ww")
+receives_items = false
+gives_items = false
+maxToConnection = 0
+cost_item = Array[ExtResource("2_c18jn")]([ExtResource("3_10k16"), ExtResource("3_jee23"), ExtResource("4_ldkxl")])
+cost_count = Array[int]([300, 30, 30])
+description = "Can't do anything than protecting your buildings"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 60
+has_to_align = false
+longDescription = "The Ailiens will target this wall to get trough to the base, the wall has 60 health points and keeps the Ailiens busy for some time"

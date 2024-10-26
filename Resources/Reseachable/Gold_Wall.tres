@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Reseachable" load_steps=7 format=3 uid="uid://bpt77ep1bmpwk"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_c8jat"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="2_2itmm"]
+[ext_resource type="Resource" uid="uid://b1753tjmn4w01" path="res://Resources/Items/Gold_Ingot.tres" id="2_5n4ji"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_ojtbe"]
+[ext_resource type="Resource" uid="uid://c5itqx8qxdycn" path="res://Resources/Buildings/Weapons/Gold_Wall.tres" id="5_i74d2"]
+[ext_resource type="Script" path="res://Resources/Scripts/Reseachable.gd" id="7_isn00"]
+
+[resource]
+script = ExtResource("7_isn00")
+name = "Strong Defense"
+Cost_Item = Array[ExtResource("1_c8jat")]([ExtResource("2_5n4ji"), ExtResource("2_2itmm"), ExtResource("3_ojtbe")])
+Cost_Count = Array[int]([400, 150, 150])
+reseachBuilding = ExtResource("5_i74d2")

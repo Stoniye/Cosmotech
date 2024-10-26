@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Reseachable" load_steps=7 format=3 uid="uid://bbnd6qyvmsvos"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_rpx0l"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="2_q5r0x"]
+[ext_resource type="Resource" uid="uid://cp7okeo7khiw" path="res://Resources/Items/Copper_Plates.tres" id="3_io130"]
+[ext_resource type="Resource" uid="uid://b57qxp2eqch2t" path="res://Resources/Items/Iron_Plates.tres" id="4_ik4ks"]
+[ext_resource type="Resource" uid="uid://cqco5rpuvx2vu" path="res://Resources/Buildings/Processing/Legier.tres" id="5_18arx"]
+[ext_resource type="Script" path="res://Resources/Scripts/Reseachable.gd" id="6_is8jo"]
+
+[resource]
+script = ExtResource("6_is8jo")
+name = "Reinforce"
+Cost_Item = Array[ExtResource("1_rpx0l")]([ExtResource("2_q5r0x"), ExtResource("3_io130"), ExtResource("4_ik4ks")])
+Cost_Count = Array[int]([240, 180, 180])
+reseachBuilding = ExtResource("5_18arx")

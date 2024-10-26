@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dwsytgbduj15t"]
+
+[ext_resource type="Texture2D" uid="uid://bir8hudhej2jk" path="res://Textures/Items/Iron_Ingot.png" id="1_bnwbd"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_fl7l1"]
+[ext_resource type="Resource" uid="uid://b57qxp2eqch2t" path="res://Resources/Items/Iron_Plates.tres" id="3_khe2w"]
+
+[resource]
+script = ExtResource("1_fl7l1")
+image = ExtResource("1_bnwbd")
+name = "Iron Ingot"
+energy = 0
+stamped = ExtResource("3_khe2w")
+extraction_type = "Drill"
+extraction_time = 0
+bullet_Color = Color(1, 1, 1, 1)
+bullet_damage = 1
+longDescription = "Can be used as Ammo with a damage of 1, can be stamped to Iron Plates"

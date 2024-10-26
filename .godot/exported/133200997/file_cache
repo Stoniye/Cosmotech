@@ -1,0 +1,102 @@
+res://Prefabs/OneTime Nodes/Builder.tscn::8a1951caf50fee48211f2b7eae96c355::1725372717::res://.godot/exported/133200997/export-b185100448b1941956770caeded36145-Builder.scn
+res://Prefabs/OneTime Nodes/ConveyorBuilder.tscn::e9c87beb994396303b42ada2a383e056::1724277586::res://.godot/exported/133200997/export-4751e22367f55ef828a24be80d2eea52-ConveyorBuilder.scn
+res://Prefabs/OneTime Nodes/SaverLoader.tscn::f0e193b4b7dc127a791b61cd5d141f50::1725368945::res://.godot/exported/133200997/export-1d18ecf246ce0f8a487609d6db31a1b3-SaverLoader.scn
+res://Prefabs/OneTime Nodes/WorldGenerator.tscn::fb13f104b61ae096416efee25117310f::1723881109::res://.godot/exported/133200997/export-d76ce19f4a56818289d456e84c24148f-WorldGenerator.scn
+res://Resources/Buildings/Extraction/Drill.tres::c9212effbc61196a6bf13f440e3f27bc::1724060750::res://.godot/exported/133200997/export-49757658ee91d0a203cd0c46246ddad0-Drill.res
+res://Resources/Buildings/Processing/Furnace.tres::2c2f4f04eef9d6c17a3ba0f5c64520ea::1724249813::res://.godot/exported/133200997/export-3cf40c38ddbfc6efd1111e79cbe5d7a4-Furnace.res
+res://Resources/Buildings/Transportation/Conveyor.tres::4019ba9962892895a4a8f919828d7472::1724276953::res://.godot/exported/133200997/export-957dc8a41fbef86580ffeea9495be6e5-Conveyor.res
+res://Resources/Items/Coal.tres::e6990a9b1c0e96b3e050aa27ba693b7b::1724525019::res://.godot/exported/133200997/export-086f997df926df78d31fedfa71fabdf2-Coal.res
+res://Resources/Items/Copper_Ingot.tres::461dbb934ed0953ff8dfc41953e89a16::1725385950::res://.godot/exported/133200997/export-331260e0a810fc06e968835344abd9f8-Copper_Ingot.res
+res://Resources/Items/Copper_Raw.tres::4668dce6acd3a08b45e72c8ad66bcb85::1724061764::res://.godot/exported/133200997/export-43e4ecec8d1296cb68043418582ba206-Copper_Raw.res
+res://Resources/Items/Iron_Ingot.tres::4ce9f27a4fbcd711f34727de6a83251b::1724505664::res://.godot/exported/133200997/export-d732a997b360a3a7293d5fe14f2fefb6-Iron_Ingot.res
+res://Resources/Items/Iron_Raw.tres::912799da9b8fd574ccc3888476c8521e::1724061941::res://.godot/exported/133200997/export-a6748c0f94b2d6f9f449b24432c8b57c-Iron_Raw.res
+res://Resources/Items/Stone_Raw.tres::4caa9028c4d03587d0ebc72244a625d1::1724062044::res://.godot/exported/133200997/export-869e3bfa56b04ce2f722d867084b103b-Stone_Raw.res
+res://Scenes/GameScene.tscn::6f2e75a5af2e19eca532eef4a9de7a84::1725388842::res://.godot/exported/133200997/export-485cf4938b4165e8e54abfe8aef897c7-GameScene.scn
+res://Scenes/Menu.tscn::a597ae6540cda81704dfe67ac1e01c04::1725277714::res://.godot/exported/133200997/export-c66ca9adccb575bddabad42984d7fed5-Menu.scn
+res://Scenes/Settings.tscn::c5e96019cf391f3d7a940c549f946a85::1725033525::res://.godot/exported/133200997/export-6cb79092696b70b71fb229c64f5a67c5-Settings.scn
+res://Textures/Tilesets/Azuria_Tileset.tres::25877ddcb93b60e7cf06af6c4ea17fa4::1725385727::res://.godot/exported/133200997/export-1f896d926f78337a93b520debc964eec-Azuria_Tileset.res
+res://Prefabs/Building Info Windows/Extraction/Drill Info Window.tscn::3ff2e5edb640643c4399890a745eeefc::1723275747::res://.godot/exported/133200997/export-3bf9e619c48f7aafb0eb7b02f6242b3f-Drill Info Window.scn
+res://Prefabs/Building Info Windows/Processing/Furnace Info Window.tscn::f7aaf1c44ed96664230d9d90ecbd8c99::1725277865::res://.godot/exported/133200997/export-f425ddcb2a0f34417f7209ae8fef6e06-Furnace Info Window.scn
+res://Prefabs/Building Info Windows/Processing/Hub Info Window.tscn::eca1d5ee0ea389be4a7b048aee4a493f::1725371505::res://.godot/exported/133200997/export-c977d7cc94012e8f77cbd15e48ca4ae8-Hub Info Window.scn
+res://Prefabs/Building Info Windows/Transportation/Conveyor Info Window.tscn::15ae10c6375c7b4cd41a74c45d27c97a::1723910921::res://.godot/exported/133200997/export-d2c4d05887d3f8043e78220039e61d85-Conveyor Info Window.scn
+res://Prefabs/Buildings/1 Block Building.tscn::25cc523d320bf9f12cbdd5ab381e3a5d::1724504247::res://.godot/exported/133200997/export-ee81a1ec76865a58819f085dc0ba4b98-1 Block Building.scn
+res://Prefabs/Buildings/4 Block Building.tscn::231d919f2bdaf9770443a4e3039dfea5::1724504252::res://.godot/exported/133200997/export-f9b813cde0891bd02688f98d55633cf6-4 Block Building.scn
+res://Resources/Buildings/Processing/Hub.tres::f8324a621058d8b1588e424911c36613::1724060970::res://.godot/exported/133200997/export-b448417e1e219cdfd232d479fa80e121-Hub.res
+res://default_bus_layout.tres::e9576ecc20f1e86d9777b2b830f1fce2::1723209111::res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
+res://Prefabs/Building Info Windows/Extraction/Pump Info Window.tscn::cc22be1dd071ec62f4dc3430104854c7::1723275747::res://.godot/exported/133200997/export-1d3a5e0b7cb1fb54bdf9dd7701d3c5b2-Pump Info Window.scn
+res://Prefabs/Building Info Windows/Processing/Refinery Info Window.tscn::9cea4d964b591641c99d07f142690090::1723275748::res://.godot/exported/133200997/export-82588a249e07cafa15f8ae147dc6da0c-Refinery Info Window.scn
+res://Resources/Buildings/Extraction/Pump.tres::2d6759d3f490f9bc0750048fb7d7146d::1724060894::res://.godot/exported/133200997/export-9b6bfd893cd479b827439ddf63fc5b06-Pump.res
+res://Resources/Buildings/Processing/Refinery.tres::465b80d05d11bc34e51b4a871885ad76::1724061011::res://.godot/exported/133200997/export-9177b3830ac18d5474044d97cf9879cb-Refinery.res
+res://Resources/Items/Crude_Oil.tres::2028eb7283f835c7e0abfdc7de30d8af::1724061819::res://.godot/exported/133200997/export-a3543d7d2f435dd3cdc072b02e092d06-Crude_Oil.res
+res://Resources/Items/Kerosene.tres::235410b85b16f9af0c86774ebc8cbab1::1724061980::res://.godot/exported/133200997/export-26c9f3ee6250e21fef9daf62aa73c8fd-Kerosene.res
+res://Scenes/Donation.tscn::8725ecee6e8b50868bf5c71d644a6dfb::1723808775::res://.godot/exported/133200997/export-a9fd73e858af38adf35805e56ffb84fa-Donation.scn
+res://Prefabs/Building Info Windows/Processing/Rocket Info Window.tscn::2ea76287695492ed9da49d12e466b613::1724059336::res://.godot/exported/133200997/export-7c092ff10c1da9457a91d0fdd8a8b7cc-Rocket Info Window.scn
+res://Resources/Buildings/Processing/Rocket.tres::488c2cc753de36d95e9f74db155249c1::1724061127::res://.godot/exported/133200997/export-6b4611ca221cd3598406d6a9deafc3f8-Rocket.res
+res://Resources/Items/Conbo_Raw.tres::8c90143f4d686599706507edb1f87ca4::1724061905::res://.godot/exported/133200997/export-a6d241ead73da5c683642c8f50e87c18-Conbo_Raw.res
+res://Textures/Tilesets/Bukat_Tileset.tres::9525429a2368fb9eee34b9d7e78db9f3::1725385727::res://.godot/exported/133200997/export-a041bd8c41c118b2a347a0c6b367e184-Bukat_Tileset.res
+res://Prefabs/Building Info Windows/Extraction/Drill Burning Info Window.tscn::412ff83c84a2479f7f29374685186bfe::1723275747::res://.godot/exported/133200997/export-d9dd42f3cb1d2f9bf7b224281a61af7f-Drill Burning Info Window.scn
+res://Resources/Buildings/Extraction/Drill_Burning.tres::96ead212674fea9cedc3642044536ff2::1724060854::res://.godot/exported/133200997/export-6c093fe99055adf916f01657dc9a7e43-Drill_Burning.res
+res://Resources/Items/Must.tres::e2b2213811bb8fbd9d4f0a3baba1bd70::1724525218::res://.godot/exported/133200997/export-4bf7072f9dca7d94e43eb786d99d88cb-Must.res
+res://Prefabs/Nodes for Multiple Scenes/BackgroundMusic.tscn::f9dd8355d7be372854e3931d07397f18::1723792305::res://.godot/exported/133200997/export-400b72c76c78b34112b8552a3bc653f1-BackgroundMusic.scn
+res://Scenes/Credits.tscn::db6e15545b790d8db7d15aa2d05d42f6::1723882785::res://.godot/exported/133200997/export-ba10b6bf9b68ff95e16c5bbd546b3ea2-Credits.scn
+res://Prefabs/Building Info Windows/Transportation/Item Filter Info Window.tscn::e8bdc7e9a1df78b74fabe4c2f13df08f::1723648036::res://.godot/exported/133200997/export-5f225394394940953f79c08b2364de01-Item Filter Info Window.scn
+res://Prefabs/Nodes for Multiple Scenes/MenuBackground.tscn::422f3a03e4b8e15cca305d38db3d0d66::1725272797::res://.godot/exported/133200997/export-ba3f62563ea04d51f824bba683e24662-MenuBackground.scn
+res://Resources/Buildings/Transportation/Item_Filter.tres::076775195577863265a6fe017e0a2c72::1724061295::res://.godot/exported/133200997/export-276fb6108f9577a67c3624162261d68c-Item_Filter.res
+res://Scenes/AllconadeInto.tscn::072a41c2b48b4af91f3659ea70f5d9f2::1724591023::res://.godot/exported/133200997/export-98ab91857824b0b0c4ec102bc21f0f0f-AllconadeInto.scn
+res://Prefabs/Animators/ConveyorAnimator.tscn::ce5be0c354a4bcc01720bd32d39cc104::1723381753::res://.godot/exported/133200997/export-f4888371d5d8b60015e6fedab9f48499-ConveyorAnimator.scn
+res://Prefabs/Building Info Windows/Processing/Reseacher Info Window.tscn::c9e467adbdc7a6c0d935d79b7f047756::1725371544::res://.godot/exported/133200997/export-1626b983dfe773b5162fb4bd18ef7890-Reseacher Info Window.scn
+res://Prefabs/OneTime Nodes/Tutorial.tscn::a45a7be791693760a5bc39eca78b2440::1723741371::res://.godot/exported/133200997/export-8dec265faae213633e44b95f1fae0664-Tutorial.scn
+res://Resources/Buildings/Processing/Researcher.tres::b3891ac0d25a3f12bdef26d4640b020e::1724061061::res://.godot/exported/133200997/export-a9849c8e77f16a8b0ed15def164ada11-Researcher.res
+res://Resources/Reseachable/Drill_Burning.tres::78359a09290ace0752c2c8b853fcaed7::1724056715::res://.godot/exported/133200997/export-94a41aecb8d4d0c39486cdee63de1d2d-Drill_Burning.res
+res://Resources/Reseachable/Hub.tres::e5c038e15517ddd281a056fe41343226::1723469166::res://.godot/exported/133200997/export-99d0899c227207503d2a7d414c375dc9-Hub.res
+res://Resources/Reseachable/Item_Filter.tres::8e57257c6f30df4cddac672aac17a0f9::1724057092::res://.godot/exported/133200997/export-c821fa4534dd0444406468138a63f9e4-Item_Filter.res
+res://Resources/Reseachable/Rocket.tres::a7401006ec7aae55d76cf0dbc21ab24f::1723469714::res://.godot/exported/133200997/export-a1fa7938ec10d91bb6372670f5a06fde-Rocket.res
+res://Prefabs/Building Info Windows/Weapons/Gun Info Window.tscn::b9ea307796976a54b143c087e8dcefa9::1725211276::res://.godot/exported/133200997/export-72662012117ceb73bfb9d8e2bfb6d3cb-Gun Info Window.scn
+res://Prefabs/Enemys/Bob.tscn::03e8be2389124edf1498230fb898d49c::1723885562::res://.godot/exported/133200997/export-c5cad2375ed5ab4939b96c14798bcd71-Bob.scn
+res://Prefabs/Nodes for Multiple Scenes/Bullet.tscn::7edf8c1c42d5cb3447a6d56c9bbe039c::1723884607::res://.godot/exported/133200997/export-29a62c24ee5fbcf5b668a78e059f264c-Bullet.scn
+res://Prefabs/Nodes for Multiple Scenes/EnemySpawner.tscn::d3d843b250e8c0641f094ad4ab1e28c0::1723885497::res://.godot/exported/133200997/export-37594baf8669aa4ca80c0e860fbcf75f-EnemySpawner.scn
+res://Prefabs/Nodes for Multiple Scenes/GameOverScreen.tscn::de4b0384f13c6682c408cc18b6a9f38d::1723636526::res://.godot/exported/133200997/export-b36a0b26b67b1d89b9069a10f24e2ba3-GameOverScreen.scn
+res://Resources/Buildings/Weapons/Gun.tres::578448b8ca347426e3a86747eba0674b::1724061609::res://.godot/exported/133200997/export-419590e213783509db278d767c1e6d94-Gun.res
+res://Resources/Items/Gold_Raw.tres::b0835c37a4f94c4db5ca71ebd0306319::1724244390::res://.godot/exported/133200997/export-074ec1fb80856f935cb0a6a5ec963a7e-Gold_Raw.res
+res://Resources/Items/Lapislazuli.tres::d5790752f59b20a99324a73c0a67ffec::1724061993::res://.godot/exported/133200997/export-5f6aa4189160ce51362159c68bf659fb-Lapislazuli.res
+res://Resources/Items/Keppler.tres::a2971006ed43a926b53e0e7ebbea485b::1724061968::res://.godot/exported/133200997/export-e009196ac3e7bca497c7df31efdfb87a-Keppler.res
+res://Textures/Tilesets/Mable_Tileset.tres::49df94f6dae8fb05004f74c6114f0bb0::1725385727::res://.godot/exported/133200997/export-22eeefe401bb5b30bcc115cf1d817e88-Mable_Tileset.res
+res://Prefabs/Building Info Windows/Transportation/Distributor Info Window.tscn::722669ae7b9e864d22e8070dd81164d6::1723796769::res://.godot/exported/133200997/export-435bd5fd9d7128409052210fd63294f1-Distributor Info Window.scn
+res://Prefabs/Building Info Windows/Weapons/Copper Wall Info Window.tscn::49dd4b9a6a6c3c77cc6ec32dbd77080e::1723814574::res://.godot/exported/133200997/export-4f8a0d55224d17a13bef8e102a83949d-Copper Wall Info Window.scn
+res://Prefabs/Enemys/Kevin.tscn::f67d5a489e81f419fefa5b9b09bdeaf9::1723885558::res://.godot/exported/133200997/export-7559e67d7d62d53c088c7f01a38da8bf-Kevin.scn
+res://Prefabs/Nodes for Multiple Scenes/MenuClicks.tscn::3fa0b4093b703207a40c34b015d6f7d0::1723808243::res://.godot/exported/133200997/export-71ab885ddba15c2ea3122d52fb81d54a-MenuClicks.scn
+res://Prefabs/Particles/SmokeParticles.tscn::88e0e5289e6f448836189f75a09919a2::1723813160::res://.godot/exported/133200997/export-89e6b9b255e27f7167397d6c947c8c97-SmokeParticles.scn
+res://Resources/Buildings/Transportation/Distributor.tres::31122d6def9508b349e8449e2f97dde8::1724061295::res://.godot/exported/133200997/export-6ff5b3c730012b8e8ce5031e21e298f4-Distributor.res
+res://Resources/Buildings/Weapons/Copper_Wall.tres::2d9c068f53eb4e6127367c9a249a7fb7::1724592247::res://.godot/exported/133200997/export-e9f0fde16d029209712aa4e42977c403-Copper_Wall.res
+res://Resources/Buildings/Weapons/Super_Gun.tres::e17d16c1c605364bc9fae804fffb672f::1724061609::res://.godot/exported/133200997/export-7784601b37e67cd7ebe6b1c58109fb39-Super_Gun.res
+res://Resources/Reseachable/Distributor.tres::5013a4c393e1a011c69bd3f744edb7cb::1725368280::res://.godot/exported/133200997/export-f118eb6244f571d8c728ba24b956ae48-Distributor.res
+res://Resources/Reseachable/Super_Gun.tres::ef5674922bd098e1cc90bf1f69c0e7a9::1723796516::res://.godot/exported/133200997/export-96a7b2664db2a2446df2202f38f58bae-Super_Gun.res
+res://Prefabs/Nodes for Multiple Scenes/LoadingScreen.tscn::e0403c2f7a2c7dc4a6d3ee61adb75a8a::1723890914::res://.godot/exported/133200997/export-92f5c5e6757adcae2dac7443485eae15-LoadingScreen.scn
+res://Prefabs/Building Info Windows/Processing/Upgrader Info Window.tscn::f71e05ed64fc46bc76577dbf6429b52a::1723975351::res://.godot/exported/133200997/export-c19e00b9acf9ae8b77ef1d55810de4f5-Upgrader Info Window.scn
+res://Resources/Buildings/Processing/Upgrader.tres::7472421120403cc2f17da5f5f6b3506d::1723975444::res://.godot/exported/133200997/export-99c357421af9d6d745b3abb64053bb75-Upgrader.res
+res://Resources/Items/Gold_Ingot.tres::d352c6f1f838425738fd75bc83dd52b4::1724507022::res://.godot/exported/133200997/export-dc7220b3f49ad390caf439e2c7343f44-Gold_Ingot.res
+res://Prefabs/Building Info Windows/Processing/Stamper Info Window.tscn::de98105d7ae2d553a39499818161123e::1724506137::res://.godot/exported/133200997/export-6e013e84c78e2b9fa2840a0aa3d4b955-Stamper Info Window.scn
+res://Resources/Buildings/Processing/Stamper.tres::7adcd60bcc769ecaad35df5c7e0fb40e::1724506617::res://.godot/exported/133200997/export-9433e3f188836fa8b5e58984ea7e8c9f-Stamper.res
+res://Resources/Items/Coal_Dust.tres::e3aeb5f306fbc7ed706010af4c7fd3b6::1724525185::res://.godot/exported/133200997/export-7ea4388d7abaf57038d6769065a5ccae-Coal_Dust.res
+res://Resources/Items/Copper_Plates.tres::129acba0cec1a4bfe4dd873320c9c274::1725385907::res://.godot/exported/133200997/export-9796ce4107770dc38e3197a19e03fe80-Copper_Plates.res
+res://Resources/Items/Gold_Plates.tres::cabd3799028adcf3a06d0e10e7e51e8f::1725385907::res://.godot/exported/133200997/export-b89ea06280740e14b482df371d0793ce-Gold_Plates.res
+res://Resources/Items/Hard_Ammo.tres::c6463cb2fc25c451711edf03ec9294ed::1725387226::res://.godot/exported/133200997/export-cb5883bc6e0d6e70d3bfab7b74ada566-Hard_Ammo.res
+res://Resources/Items/Iron_Plates.tres::22870e4d8ae460dbc672520dda281159::1725385907::res://.godot/exported/133200997/export-a35e6eac607d789c9d33e9b140a1f284-Iron_Plates.res
+res://Resources/Reseachable/Stamper.tres::f55ea863b1e30fda0e94c1d13f8d0804::1724505744::res://.godot/exported/133200997/export-8ec2f6d8846d21ad0b0feacfb42e9363-Stamper.res
+res://Resources/Buildings/Weapons/Gold_Wall.tres::fdff38f218a1f1b1d7ae40b8596a2614::1724592435::res://.godot/exported/133200997/export-94d662b873bd380f07f43fe223c7b7a7-Gold_Wall.res
+res://Resources/Buildings/Weapons/Iron_Wall.tres::9c00199236aa03d9dede74ee4eb548f6::1724592362::res://.godot/exported/133200997/export-0778ffb91ee926d3a16d073d345f27aa-Iron_Wall.res
+res://Resources/Reseachable/Gold_Wall.tres::84304bf787b0eb992c59bea7e1c6e3fa::1724592720::res://.godot/exported/133200997/export-43337da0c781630f7ad50d3dec7a8da5-Gold_Wall.res
+res://Prefabs/Building Info Windows/Processing/Ammo Facility Info Window.tscn::e366bad7c08c35650f305ceb440bc909::1725371530::res://.godot/exported/133200997/export-78b6059905f14992ef1baa43b055eaa1-Ammo Facility Info Window.scn
+res://Prefabs/Building Info Windows/Processing/Legier Info Window.tscn::7bccb907c093aadb313a2f5e611e0e7f::1725373663::res://.godot/exported/133200997/export-6d77912a9335920e48151ce34d99521b-Legier Info Window.scn
+res://Prefabs/Building Info Windows/Processing/Ofen Info Window.tscn::db006a9ce2788d16be009532e3fca822::1725277851::res://.godot/exported/133200997/export-425ed59cf7ddbaa4388f6d6b619ad7c8-Ofen Info Window.scn
+res://Resources/Ammo/Hard Ammo.tres::8189243173ca3e24499a42151bc12743::1725277345::res://.godot/exported/133200997/export-0d34ee728e9f77aa7150f85cb95aba83-Hard Ammo.res
+res://Resources/Buildings/Processing/Ammo Facility.tres::439945df555dd28767522d1f8bca754d::1725385837::res://.godot/exported/133200997/export-02ed75c1ec7db787841ca3061ec959d2-Ammo Facility.res
+res://Resources/Buildings/Processing/Legier.tres::eddf073916f83f93163329d8271725f1::1725385837::res://.godot/exported/133200997/export-eb70d7a9b215ac68d877b5d2dc149546-Legier.res
+res://Resources/Buildings/Processing/Ofen.tres::94f2f55a98286bb48a1d5127f2cf2fea::1725385837::res://.godot/exported/133200997/export-f88f7b7f56475b1195d57308554f0bef-Ofen.res
+res://Resources/Reseachable/Ammo Facility.tres::3eb38af6749be3c0fe94acfbdfcc5e0b::1725368280::res://.godot/exported/133200997/export-64f65b95c4d6413c55a1d366a255ea0e-Ammo Facility.res
+res://Resources/Reseachable/Legier.tres::c555cd1ec3bf1dce1390c592c86b8e54::1725366490::res://.godot/exported/133200997/export-43087c6983096446ee055d32b2c050b5-Legier.res
+res://Resources/Reseachable/Ofen.tres::deb10b5342889237e80c0045992403c6::1725366458::res://.godot/exported/133200997/export-97b833cceb5ac9f70e4b3b1aa5878b6c-Ofen.res
+res://Resources/Ammo/K29.tres::eaad4444693056ac02e62413eb260037::1725387443::res://.godot/exported/133200997/export-4981e3134b2f4535750da9c0558d0318-K29.res
+res://Resources/Ammo/Super Ammo.tres::47972deab2afda0319765d8b90f2c8df::1725387389::res://.godot/exported/133200997/export-81c9f4aa51c8e7a9604d320f1dc9111e-Super Ammo.res
+res://Resources/Items/K29.tres::6f3db29bb8f30c5de3bc7ee0d8248be2::1725388307::res://.godot/exported/133200997/export-d4da006eb86a72dc70bde0c2cd6e69a5-K29.res
+res://Resources/Items/Super_Ammo.tres::78a5de938a41969fa39e04e96763d9d8::1725387238::res://.godot/exported/133200997/export-ab358132faf62e0d7a80981534ed290f-Super_Ammo.res

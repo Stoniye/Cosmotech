@@ -1,0 +1,135 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhphfdv2hw1hs"]
+
+[ext_resource type="Texture2D" uid="uid://c34bridj4k411" path="res://Textures/UI/Menus/MenuBackground.png" id="1_x5hjl"]
+[ext_resource type="FontFile" uid="uid://drl6md4kk1i1a" path="res://Textures/Fonts/MilkyNice-Clean.ttf" id="2_r0rhk"]
+[ext_resource type="Texture2D" uid="uid://bfy0dy0y22oct" path="res://Textures/UI/Menus/Text_Background_Smal.png" id="3_wxc5x"]
+[ext_resource type="Texture2D" uid="uid://bcplsm06y2sgp" path="res://Textures/UI/Menus/Text_Background_Big.png" id="4_m1feg"]
+
+[sub_resource type="GDScript" id="GDScript_62ts5"]
+script/source = "extends Control
+
+func _ready() -> void:
+	play_animation()
+
+func play_animation() -> void:
+	var GameOverTitle: TextureRect = $TitleBackground
+	var Text: TextureRect = $TextBackground
+	var Quit: TextureButton = $Quit
+	
+	var tween: Tween = get_tree().create_tween()
+	
+	GameOverTitle.scale = Vector2(0, 0)
+	Text.scale = Vector2(0, 0)
+	Quit.scale = Vector2(0, 0)
+	
+	tween.set_parallel(true)
+	
+	tween.tween_property(
+		GameOverTitle, \"scale\", Vector2(1, 1), 0.5
+	).set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(
+		Text, \"scale\", Vector2(1, 1), 0.5
+	).set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(
+		Quit, \"scale\", Vector2(1, 1), 0.5
+	).set_ease(Tween.EASE_OUT)
+
+func _on_quit_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Scenes/Menu.tscn\")
+"
+
+[node name="GameOverScreen" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+script = SubResource("GDScript_62ts5")
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.509804)
+layout_mode = 0
+offset_right = 1080.0
+offset_bottom = 2400.0
+texture = ExtResource("1_x5hjl")
+
+[node name="TitleBackground" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 331.0
+offset_right = 1050.0
+offset_bottom = 531.0
+pivot_offset = Vector2(510, 100)
+texture = ExtResource("3_wxc5x")
+expand_mode = 1
+
+[node name="GameOver Title" type="Label" parent="TitleBackground"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -15.0
+offset_right = 1021.0
+offset_bottom = 185.0
+theme_override_colors/font_color = Color(0.717237, 0.132206, 0.132206, 1)
+theme_override_colors/font_shadow_color = Color(0.262397, 0.027659, 0.027659, 1)
+theme_override_colors/font_outline_color = Color(0.540732, 0.0641104, 0.0641104, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 50
+theme_override_fonts/font = ExtResource("2_r0rhk")
+theme_override_font_sizes/font_size = 141
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextBackground" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 578.0
+offset_right = 1050.0
+offset_bottom = 952.0
+pivot_offset = Vector2(510, 187)
+texture = ExtResource("4_m1feg")
+expand_mode = 1
+
+[node name="Text" type="Label" parent="TextBackground"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 26.0
+offset_right = 982.0
+offset_bottom = 349.0
+theme_override_fonts/font = ExtResource("2_r0rhk")
+theme_override_font_sizes/font_size = 46
+text = "Your base got destroyed by the Ailiens and all civilians were killed.
+Your mission failed.
+You got fired by the hedquater"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Quit" type="TextureButton" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1681.0
+offset_right = 1040.0
+offset_bottom = 1881.0
+pivot_offset = Vector2(500, 100)
+texture_normal = ExtResource("3_wxc5x")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Quit"]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0.60183, 0.60183, 0.60183, 1)
+theme_override_fonts/font = ExtResource("2_r0rhk")
+theme_override_font_sizes/font_size = 101
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

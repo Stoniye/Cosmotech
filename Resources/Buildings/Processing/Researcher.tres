@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Building" load_steps=9 format=3 uid="uid://pb4vkpl2povx"]
+
+[ext_resource type="Texture2D" uid="uid://b20ypw7vwojnt" path="res://Textures/Buildings/Processing/Researcher.png" id="1_80eg0"]
+[ext_resource type="Script" path="res://Scripts/Buildings/Processing/Researcher.gd" id="1_830pt"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="1_rgjmg"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="2_jumpv"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_txoca"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="3_aovtx"]
+[ext_resource type="PackedScene" uid="uid://cj016bfqdjvce" path="res://Prefabs/Building Info Windows/Processing/Reseacher Info Window.tscn" id="3_imcoi"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="4_nek1i"]
+
+[resource]
+script = ExtResource("1_rgjmg")
+image = ExtResource("1_80eg0")
+name = "Researcher"
+code = ExtResource("1_830pt")
+building_type = "1 Block Building"
+info_window = ExtResource("3_imcoi")
+receives_items = true
+gives_items = false
+maxToConnection = 0
+cost_item = Array[ExtResource("2_txoca")]([ExtResource("2_jumpv"), ExtResource("3_aovtx"), ExtResource("4_nek1i")])
+cost_count = Array[int]([70, 50, 80])
+description = "Research new technologies using resources"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 5
+has_to_align = false
+longDescription = "Here you can Research new Buildings for your industry, but the Researcher needs some ressources for every Researching"

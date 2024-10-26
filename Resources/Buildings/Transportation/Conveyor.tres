@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Building" load_steps=8 format=3 uid="uid://ya77vvgnosci"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Transportation/Conveyor.gd" id="1_dyeuc"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="1_hqt47"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_lenl4"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="2_li5gn"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="3_alltu"]
+[ext_resource type="Texture2D" uid="uid://dhb6guwr72n8n" path="res://Textures/Buildings/Transportation/Conveyor - Normal/Icon.png" id="4_y4rx0"]
+[ext_resource type="PackedScene" uid="uid://do3upkv35ts5m" path="res://Prefabs/Building Info Windows/Transportation/Conveyor Info Window.tscn" id="5_s6on2"]
+
+[resource]
+script = ExtResource("1_hqt47")
+image = ExtResource("4_y4rx0")
+name = "Conveyor"
+code = ExtResource("1_dyeuc")
+building_type = "1 Block Building"
+info_window = ExtResource("5_s6on2")
+receives_items = false
+gives_items = false
+maxToConnection = 1
+cost_item = Array[ExtResource("2_lenl4")]([ExtResource("2_li5gn"), ExtResource("3_alltu")])
+cost_count = Array[int]([8, 8])
+description = ""
+ConveyorPlacing = true
+replacesBuildings = false
+buildingHealth = 2
+has_to_align = true
+longDescription = ""

@@ -1,0 +1,14 @@
+Sprite2D
+Label
+TextureProgressBar
+Camera2D
+VisibleOnScreenEnabler2D
+VisibleOnScreenNotifier2D
+VideoStreamPlayer
+TextureRect
+Control
+CanvasGroup
+GPUParticles2D
+AudioStreamPlayer
+Node2D
+CollisionShape2D

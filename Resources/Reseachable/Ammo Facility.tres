@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Reseachable" load_steps=7 format=3 uid="uid://1nupeyjibtc5"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_ffdhy"]
+[ext_resource type="Resource" uid="uid://cp7okeo7khiw" path="res://Resources/Items/Copper_Plates.tres" id="3_p5d3i"]
+[ext_resource type="Resource" uid="uid://b57qxp2eqch2t" path="res://Resources/Items/Iron_Plates.tres" id="4_6gagx"]
+[ext_resource type="Resource" uid="uid://dlc1b6amq78lv" path="res://Resources/Items/Keppler.tres" id="4_w3ma0"]
+[ext_resource type="Resource" uid="uid://didys62befv0o" path="res://Resources/Buildings/Processing/Ammo Facility.tres" id="5_7cbyq"]
+[ext_resource type="Script" path="res://Resources/Scripts/Reseachable.gd" id="6_5p36f"]
+
+[resource]
+script = ExtResource("6_5p36f")
+name = "Kaboom"
+Cost_Item = Array[ExtResource("1_ffdhy")]([ExtResource("4_w3ma0"), ExtResource("3_p5d3i"), ExtResource("4_6gagx")])
+Cost_Count = Array[int]([40, 300, 220])
+reseachBuilding = ExtResource("5_7cbyq")

@@ -1,0 +1,45 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dohjmiwc1x1g"]
+
+[ext_resource type="Texture2D" uid="uid://dojjukwgk7lx5" path="res://Textures/Tilemaps/Bukat_Tilemap.png" id="1_y05t0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fx3qh"]
+texture = ExtResource("1_y05t0")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = "Conbo_Raw"
+0:1/0 = 0
+0:1/0/custom_data_0 = "Conbo_Raw"
+0:2/0 = 0
+0:2/0/custom_data_0 = "Conbo_Raw"
+0:3/0 = 0
+0:3/0/custom_data_0 = "Conbo_Raw"
+1:0/0 = 0
+1:0/0/custom_data_0 = "Crude_Oil"
+2:0/0 = 0
+2:0/0/custom_data_0 = "Crude_Oil"
+3:0/0 = 0
+3:0/0/custom_data_0 = "Crude_Oil"
+4:0/0 = 0
+4:0/0/custom_data_0 = "Crude_Oil"
+1:1/0 = 0
+1:1/0/custom_data_0 = "Must"
+2:1/0 = 0
+2:1/0/custom_data_0 = "Must"
+3:1/0 = 0
+3:1/0/custom_data_0 = "Must"
+4:1/0 = 0
+4:1/0/custom_data_0 = "Must"
+5:0/0 = 0
+5:0/0/custom_data_0 = "Keppler"
+6:0/0 = 0
+6:0/0/custom_data_0 = "Keppler"
+7:0/0 = 0
+7:0/0/custom_data_0 = "Keppler"
+8:0/0 = 0
+8:0/0/custom_data_0 = "Keppler"
+
+[resource]
+tile_size = Vector2i(32, 32)
+custom_data_layer_0/name = "ItemPath"
+custom_data_layer_0/type = 4
+sources/1 = SubResource("TileSetAtlasSource_fx3qh")

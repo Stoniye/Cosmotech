@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c3uplj4cvk72w"]
+
+[ext_resource type="Texture2D" uid="uid://micj1v0v7o7k" path="res://Textures/Items/K29.png" id="1_ohvkg"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_jr8sh"]
+
+[resource]
+script = ExtResource("2_jr8sh")
+image = ExtResource("1_ohvkg")
+name = "K29"
+energy = 0
+extraction_type = "Drill"
+extraction_time = 0
+bullet_Color = Color(0.705882, 0.0117647, 0.0117647, 1)
+bullet_damage = 17
+longDescription = "Can be used as Ammo with an damage of 17"
+alloyMultiplicator = 0.0

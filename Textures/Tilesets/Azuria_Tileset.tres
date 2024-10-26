@@ -1,0 +1,73 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dpvx25jopqb3c"]
+
+[ext_resource type="Texture2D" uid="uid://dmlsoutshplw5" path="res://Textures/Tilemaps/Azuria_Tilemap.png" id="1_xj6nm"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8wf58"]
+texture = ExtResource("1_xj6nm")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = "Stone_Raw"
+2:0/0 = 0
+2:0/0/custom_data_0 = "Coal"
+3:0/0 = 0
+3:0/0/custom_data_0 = "Coal"
+4:0/0 = 0
+4:0/0/custom_data_0 = "Coal"
+5:0/0 = 0
+5:0/0/custom_data_0 = "Iron_Raw"
+6:0/0 = 0
+6:0/0/custom_data_0 = "Iron_Raw"
+7:0/0 = 0
+7:0/0/custom_data_0 = "Iron_Raw"
+8:0/0 = 0
+8:0/0/custom_data_0 = "Iron_Raw"
+0:1/0 = 0
+0:1/0/custom_data_0 = "Stone_Raw"
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+5:1/0/custom_data_0 = "Copper_Raw"
+6:1/0 = 0
+6:1/0/custom_data_0 = "Copper_Raw"
+7:1/0 = 0
+7:1/0/custom_data_0 = "Copper_Raw"
+8:1/0 = 0
+8:1/0/custom_data_0 = "Copper_Raw"
+0:2/0 = 0
+0:2/0/custom_data_0 = "Stone_Raw"
+0:3/0 = 0
+0:3/0/custom_data_0 = "Stone_Raw"
+1:0/0 = 0
+1:0/0/custom_data_0 = "Coal"
+1:2/0 = 0
+1:2/0/custom_data_0 = "Crude_Oil"
+2:2/0 = 0
+2:2/0/custom_data_0 = "Crude_Oil"
+3:2/0 = 0
+3:2/0/custom_data_0 = "Crude_Oil"
+4:2/0 = 0
+4:2/0/custom_data_0 = "Crude_Oil"
+5:2/0 = 0
+5:2/0/custom_data_0 = "Gold_Raw"
+6:2/0 = 0
+6:2/0/custom_data_0 = "Gold_Raw"
+7:2/0 = 0
+7:2/0/custom_data_0 = "Gold_Raw"
+8:2/0 = 0
+8:2/0/custom_data_0 = "Gold_Raw"
+1:3/0 = 0
+1:3/0/custom_data_0 = "Lapislazuli"
+2:3/0 = 0
+2:3/0/custom_data_0 = "Lapislazuli"
+3:3/0 = 0
+3:3/0/custom_data_0 = "Lapislazuli"
+4:3/0 = 0
+4:3/0/custom_data_0 = "Lapislazuli"
+
+[resource]
+tile_size = Vector2i(32, 32)
+custom_data_layer_0/name = "ItemPath"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_8wf58")

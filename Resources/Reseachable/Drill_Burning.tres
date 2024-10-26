@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Reseachable" load_steps=8 format=3 uid="uid://duvlxn0y6n610"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_mhd80"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="1_vg2a6"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="2_r3th4"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="3_57apb"]
+[ext_resource type="Resource" uid="uid://ll2aby2ypjcw" path="res://Resources/Buildings/Extraction/Drill_Burning.tres" id="4_jg773"]
+[ext_resource type="Resource" uid="uid://dlc1b6amq78lv" path="res://Resources/Items/Keppler.tres" id="5_2dgi7"]
+[ext_resource type="Script" path="res://Resources/Scripts/Reseachable.gd" id="5_h5mqf"]
+
+[resource]
+script = ExtResource("5_h5mqf")
+name = "Drills on Fire"
+Cost_Item = Array[ExtResource("1_mhd80")]([ExtResource("1_vg2a6"), ExtResource("2_r3th4"), ExtResource("3_57apb"), ExtResource("5_2dgi7")])
+Cost_Count = Array[int]([170, 120, 300, 15])
+reseachBuilding = ExtResource("4_jg773")

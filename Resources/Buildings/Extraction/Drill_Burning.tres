@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Building" load_steps=10 format=3 uid="uid://ll2aby2ypjcw"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Extraction/Drill_Burning.gd" id="1_x13g6"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="2_1hvv2"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_mm486"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_gtqs1"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="4_ftfbs"]
+[ext_resource type="Texture2D" uid="uid://07epw6skh772" path="res://Textures/Buildings/Extraction/Drill_Burning.png" id="5_2u7bx"]
+[ext_resource type="Resource" uid="uid://dlc1b6amq78lv" path="res://Resources/Items/Keppler.tres" id="6_8fq01"]
+[ext_resource type="PackedScene" uid="uid://c8ig4jfn28b0c" path="res://Prefabs/Building Info Windows/Extraction/Drill Burning Info Window.tscn" id="6_l0m1v"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="6_y5tyd"]
+
+[resource]
+script = ExtResource("6_y5tyd")
+image = ExtResource("5_2u7bx")
+name = "Burning Drill"
+code = ExtResource("1_x13g6")
+building_type = "1 Block Building"
+info_window = ExtResource("6_l0m1v")
+receives_items = true
+gives_items = true
+maxToConnection = 4
+cost_item = Array[ExtResource("2_mm486")]([ExtResource("2_1hvv2"), ExtResource("3_gtqs1"), ExtResource("4_ftfbs"), ExtResource("6_8fq01")])
+cost_count = Array[int]([150, 130, 200, 25])
+description = "Extracts ores out of the Ground 3 times faster, but needs fuel"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 5
+has_to_align = false
+longDescription = "Extracts ores (Iron, Copper,..) out of the ground with the speed of 3 but needs fuel (Coal, Must,..)"

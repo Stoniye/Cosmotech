@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Building" load_steps=9 format=3 uid="uid://cffw104yc2xdd"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Extraction/Pump.gd" id="1_cdmen"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="2_k076p"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_mvt67"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_jv35w"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="4_urimh"]
+[ext_resource type="Texture2D" uid="uid://b6x2w1nawkct" path="res://Textures/Buildings/Extraction/Pump.png" id="5_1kgy6"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="6_2kevc"]
+[ext_resource type="PackedScene" uid="uid://dhov7won0vx7j" path="res://Prefabs/Building Info Windows/Extraction/Pump Info Window.tscn" id="6_wnq24"]
+
+[resource]
+script = ExtResource("6_2kevc")
+image = ExtResource("5_1kgy6")
+name = "Pump"
+code = ExtResource("1_cdmen")
+building_type = "1 Block Building"
+info_window = ExtResource("6_wnq24")
+receives_items = false
+gives_items = true
+maxToConnection = 4
+cost_item = Array[ExtResource("2_mvt67")]([ExtResource("2_k076p"), ExtResource("3_jv35w"), ExtResource("4_urimh")])
+cost_count = Array[int]([200, 180, 200])
+description = "Extracts fluids out of the Ground"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 5
+has_to_align = false
+longDescription = "Extracts fluids (Crude Oil,...) out of the Ground with a speed of 1"

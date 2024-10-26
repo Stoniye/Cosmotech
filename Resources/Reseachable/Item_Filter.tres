@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Reseachable" load_steps=8 format=3 uid="uid://bvgmy6x7l0yi4"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_06mr8"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="1_3568i"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="2_fkyml"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="3_ar1go"]
+[ext_resource type="Resource" uid="uid://bl74kt2178quj" path="res://Resources/Buildings/Transportation/Item_Filter.tres" id="4_p3t2i"]
+[ext_resource type="Script" path="res://Resources/Scripts/Reseachable.gd" id="5_d8qe0"]
+[ext_resource type="Resource" uid="uid://dlc1b6amq78lv" path="res://Resources/Items/Keppler.tres" id="5_g4vog"]
+
+[resource]
+script = ExtResource("5_d8qe0")
+name = "What? Where?"
+Cost_Item = Array[ExtResource("1_06mr8")]([ExtResource("1_3568i"), ExtResource("2_fkyml"), ExtResource("3_ar1go"), ExtResource("5_g4vog")])
+Cost_Count = Array[int]([150, 100, 220, 5])
+reseachBuilding = ExtResource("4_p3t2i")

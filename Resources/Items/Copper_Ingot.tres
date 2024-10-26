@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://7g0kkk8ygcw2"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_5yklp"]
+[ext_resource type="Texture2D" uid="uid://dv3giq018ni2f" path="res://Textures/Items/Copper_Ingot.png" id="1_l3eap"]
+[ext_resource type="Resource" uid="uid://cp7okeo7khiw" path="res://Resources/Items/Copper_Plates.tres" id="3_ttvsa"]
+
+[resource]
+script = ExtResource("1_5yklp")
+image = ExtResource("1_l3eap")
+name = "Copper Ingot"
+energy = 0
+stamped = ExtResource("3_ttvsa")
+extraction_type = "Drill"
+extraction_time = 0
+bullet_Color = Color(0.780392, 0.356863, 0.282353, 1)
+bullet_damage = 1
+longDescription = "Can be used as Ammo with a damage of 1, can be stamped to Copper Plates"
+alloyMultiplicator = 0.0

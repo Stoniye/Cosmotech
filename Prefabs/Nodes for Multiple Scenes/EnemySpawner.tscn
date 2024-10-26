@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5vau00qcnv1a"]
+
+[sub_resource type="GDScript" id="GDScript_bx5dx"]
+script/source = "extends Node2D
+
+var buildingCount: int = 0
+
+var spawnTime: int = 10
+var spawnTimer: int = 0
+
+const spawnPoints: Array[Vector2] = [
+	Vector2(1000, 1000),
+	Vector2(0, 1000),
+	Vector2(-1000, -1000),
+	Vector2(1000, 0),
+	Vector2(-1000, 0),
+	Vector2(0, -1000),
+	Vector2(1000, -1000),
+	Vector2(-1000, 1000),
+]
+
+func count_buildings() -> void:
+	for child: Node2D in $\"../Azuria/Buildings\".get_children():
+		if child is Area2D:
+			buildingCount += 1
+		
+	for child: Node2D in $\"../Azuria/Buildings\".get_children():
+		if child is Area2D:
+			buildingCount += 1
+		
+	for child: Node2D in $\"../Azuria/Buildings\".get_children():
+		if child is Area2D:
+			buildingCount += 1
+
+func _ready() -> void:
+	count_buildings()
+	spawnTime = 15/max((buildingCount/400), 1)
+
+func spawnEnemys() -> void:
+	spawnTimer += 1
+	
+	if spawnTimer >= spawnTime:
+	
+		var spawnRate: int = max(buildingCount / 55, 1)
+		var newEnemy: Area2D
+		var rand: int = randi_range(0, buildingCount)
+		
+		for i: int in spawnRate:
+			newEnemy = load(\"res://Prefabs/Enemys/Bob.tscn\").instantiate()
+			if rand >= 350:
+				newEnemy = load(\"res://Prefabs/Enemys/Kevin.tscn\").instantiate()
+			newEnemy.position = spawnPoints.pick_random() + Vector2(randi_range(-70, 70), randi_range(-70, 70))
+			$\"../Mable/Enemys\".add_child(newEnemy)
+		
+		spawnTimer = 0
+"
+
+[node name="EnemySpawner" type="Node2D"]
+script = SubResource("GDScript_bx5dx")

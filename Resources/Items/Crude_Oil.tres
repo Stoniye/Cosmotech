@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://qeickicucqks"]
+
+[ext_resource type="Texture2D" uid="uid://6875usjhl6ff" path="res://Textures/Items/Crude_Oil.png" id="1_3wxld"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_kes28"]
+[ext_resource type="Resource" uid="uid://bqq685ndxl1eg" path="res://Resources/Items/Kerosene.tres" id="2_ut0xr"]
+
+[resource]
+script = ExtResource("1_kes28")
+image = ExtResource("1_3wxld")
+name = "Crude Oil"
+energy = 0
+refined = ExtResource("2_ut0xr")
+extraction_type = "Pump"
+extraction_time = 8
+bullet_Color = Color(0, 0, 0, 1)
+bullet_damage = 0
+longDescription = "Can be refined to Kerosene, needs a Pump to be extracted and has an extraction time of 8"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bif3eiqy51804"]
+
+[ext_resource type="Texture2D" uid="uid://dlfl2glphniq2" path="res://Textures/Items/Conbo_Raw.png" id="1_cjkjo"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_bymky"]
+
+[resource]
+script = ExtResource("2_bymky")
+image = ExtResource("1_cjkjo")
+name = "Raw Conbo"
+energy = 0
+extraction_type = "Drill"
+extraction_time = 3
+bullet_Color = Color(0.690196, 0.392157, 0.0705882, 1)
+bullet_damage = 2
+longDescription = "Can be used as Ammo with a damage of 2, has an extraction time of 3"

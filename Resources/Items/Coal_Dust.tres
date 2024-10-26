@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://yi15oq1o8o5"]
+
+[ext_resource type="Texture2D" uid="uid://bwxdjpji04d8" path="res://Textures/Items/Coal_Dust.png" id="1_hfe45"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_uci6j"]
+
+[resource]
+script = ExtResource("2_uci6j")
+image = ExtResource("1_hfe45")
+name = "Coal Dust"
+energy = 2
+extraction_type = "Drill"
+extraction_time = 0
+bullet_Color = Color(0, 0, 0, 1)
+bullet_damage = 0
+longDescription = "Can be used as Fuel with an burning energy of 2"

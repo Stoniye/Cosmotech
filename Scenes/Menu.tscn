@@ -1,0 +1,835 @@
+[gd_scene load_steps=16 format=3 uid="uid://dcq66ackbk85s"]
+
+[ext_resource type="Texture2D" uid="uid://bfy0dy0y22oct" path="res://Textures/UI/Menus/Text_Background_Smal.png" id="1_in27x"]
+[ext_resource type="Texture2D" uid="uid://dynwi4cw5ijv5" path="res://Textures/UI/Ilustration/Title.png" id="1_rpp7a"]
+[ext_resource type="Texture2D" uid="uid://cihyp2rpf8l1j" path="res://Textures/UI/Button/SaveSlot.png" id="1_x3nkt"]
+[ext_resource type="Texture2D" uid="uid://dhcgwdovtpuxh" path="res://Textures/UI/Ilustration/Allconade_Logo_Round_White.png" id="2_dbtxb"]
+[ext_resource type="Texture2D" uid="uid://devgpfc61ch78" path="res://Textures/UI/Button/SaveSlot_X.png" id="2_y4cf8"]
+[ext_resource type="Texture2D" uid="uid://cfs6o31ntfdyu" path="res://Textures/UI/Button/Delete.png" id="3_116ff"]
+[ext_resource type="FontFile" uid="uid://drl6md4kk1i1a" path="res://Textures/Fonts/MilkyNice-Clean.ttf" id="3_bqduq"]
+[ext_resource type="Texture2D" uid="uid://b6i3pk1wel3c6" path="res://Textures/UI/Button/SettingsButton.png" id="4_delgq"]
+[ext_resource type="Texture2D" uid="uid://lte3qdtcvto2" path="res://Textures/UI/Button/RoundedButton.png" id="6_81qpl"]
+[ext_resource type="Texture2D" uid="uid://cxigji7grc48e" path="res://Textures/UI/Button/DonationBurtton.png" id="6_mookg"]
+[ext_resource type="Texture2D" uid="uid://bb0upyjd836kw" path="res://Textures/UI/Button/Arrow_Back.png" id="11_7l62c"]
+[ext_resource type="Texture2D" uid="uid://c34bridj4k411" path="res://Textures/UI/Menus/MenuBackground.png" id="11_icicj"]
+[ext_resource type="Texture2D" uid="uid://bcplsm06y2sgp" path="res://Textures/UI/Menus/Text_Background_Big.png" id="12_4s1yh"]
+[ext_resource type="PackedScene" uid="uid://26jcr5jxtr" path="res://Prefabs/Nodes for Multiple Scenes/LoadingScreen.tscn" id="14_fwhiy"]
+
+[sub_resource type="GDScript" id="GDScript_5v4vy"]
+script/source = "extends Node2D
+##Menu##
+
+const path = \"user://gamedata/Worlds/\"
+const userPath = \"user://gamedata/userdata.tres\"
+var files: Array
+@onready var MenuClick: AudioStreamPlayer = $\"../MenuClicks\"
+
+var sceanLoadStatus: float = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	set_process(false)
+	load_worlds()
+	load_data()
+	if Singelton.gameStartedUp:
+		slide_in()
+		Singelton.gameStartedUp = false
+	add_background()
+
+func load_data() -> void:
+	var userData: UserData = ResourceLoader.load(userPath) as UserData
+	
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(\"Music\"), linear_to_db(userData.MusicVolume))
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(\"Music\"), userData.MusicVolume < 0.05)
+	
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(\"SFX\"), linear_to_db(userData.SFXVolume))
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(\"SFX\"), userData.SFXVolume < 0.05)
+	
+	if !userData.playedTutorial:
+		$CanvasLayer/Start/PlayTutorialWindow.visible = true
+
+func add_background() -> void:
+	if !get_parent().get_node(\"Background\"):
+		var background: Node2D = load(\"res://Prefabs/Nodes for Multiple Scenes/MenuBackground.tscn\").instantiate()
+		background.name = \"Background\"
+		get_parent().add_child.call_deferred(background)
+
+func slide_in() -> void:
+	var AllconadeLogo: TextureButton = $CanvasLayer/Start/AllconadeLogo
+	var title : TextureRect = $CanvasLayer/Start/Title
+	var SaveSlot0: TextureButton = $CanvasLayer/Start/SaveSlot0
+	var SaveSlot1: TextureButton = $CanvasLayer/Start/SaveSlot1
+	var SaveSlot2: TextureButton = $CanvasLayer/Start/SaveSlot2
+	var Tutorial: TextureButton = $CanvasLayer/Start/Tutorial
+	var Credits: TextureButton = $CanvasLayer/Start/CreditsButton
+	var Settings: TextureButton = $CanvasLayer/Start/SettingsButton
+	
+	var tween: Tween = get_tree().create_tween()
+	
+	AllconadeLogo.position.y -= 50
+	title.position.y -= 330
+	SaveSlot0.position.x -= 1100
+	SaveSlot1.position.x -= 1100
+	SaveSlot2.position.x -= 1100
+	Tutorial.position.y += 600
+	Credits.position.y += 400
+	Settings.position.x += 250
+	
+	tween.set_parallel(true)
+	
+	tween.tween_property(
+		AllconadeLogo, \"position:y\", AllconadeLogo.position.y + 50, 0.3
+	).set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(
+		title, \"position:y\", title.position.y + 330, 0.3
+	).set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(
+		SaveSlot0, \"position:x\", SaveSlot0.position.x + 1100, 0.3
+	).set_ease(Tween.EASE_OUT).set_delay(0.2)
+	
+	tween.tween_property(
+		SaveSlot1, \"position:x\", SaveSlot1.position.x + 1100, 0.3
+	).set_ease(Tween.EASE_OUT).set_delay(0.4)
+	
+	tween.tween_property(
+		SaveSlot2, \"position:x\", SaveSlot2.position.x + 1100, 0.3
+	).set_ease(Tween.EASE_OUT).set_delay(0.6)
+	
+	tween.tween_property(
+		Tutorial, \"position:y\", Tutorial.position.y - 600, 0.3
+	).set_ease(Tween.EASE_OUT).set_delay(0.8)
+	
+	tween.tween_property(
+		Credits, \"position:y\", Credits.position.y - 400, 0.3
+	).set_ease(Tween.EASE_OUT).set_delay(1)
+	
+	tween.tween_property(
+		Settings, \"position:x\", Settings.position.x - 250, 0.2
+	).set_ease(Tween.EASE_OUT).set_delay(1.2)
+
+func load_worlds() -> void:
+	files = DirAccess.get_files_at(path)
+	
+	for i in 3:
+		get_node(\"CanvasLayer/Start/SaveSlot\" + str(i) +\"/Create\").visible = true
+		get_node(\"CanvasLayer/Start/SaveSlot\" + str(i) +\"/Load\").visible = false
+	
+	for i: int in files.size():
+		var fileName: String = files[i].replace(\".tres\", \"\")
+		var slot: TextureButton = get_node(\"CanvasLayer/Start/SaveSlot\" + str(i))
+		slot.get_node(\"Create\").visible = false
+		slot.get_node(\"Load\").visible = true
+		slot.get_node(\"Load/SaveName\").text = fileName
+
+func _on_save_slot_pressed(num: int) -> void:
+	MenuClick.play()
+	if get_node(\"CanvasLayer/Start/SaveSlot\" + str(num) + \"/Load\").visible:
+		Singelton.GameName = files[num].replace(\".tres\", \"\")
+		Singelton.createGame = false
+		load_game_scene()
+	else:
+		toggle_create_World()
+
+func load_game_scene() -> void:
+	$CanvasLayer/LoadingScreen.visible = true
+	ResourceLoader.load_threaded_request(\"res://Scenes/GameScene.tscn\")
+	set_process(true)
+
+func _process(_delta: float) -> void:
+	var load_status: ResourceLoader.ThreadLoadStatus = ResourceLoader.load_threaded_get_status(\"res://Scenes/GameScene.tscn\")
+	if load_status == ResourceLoader.THREAD_LOAD_LOADED:
+		var newScene: PackedScene = ResourceLoader.load_threaded_get(\"res://Scenes/GameScene.tscn\")
+		get_parent().get_node(\"Background\").queue_free()
+		get_tree().change_scene_to_packed(newScene)
+
+func toggle_create_World() -> void:
+	MenuClick.play()
+	$CanvasLayer/CreateWorld.visible = !$CanvasLayer/CreateWorld.visible
+	$CanvasLayer/Start.visible = !$CanvasLayer/Start.visible
+	$CanvasLayer/CreateWorld/WorldSpeed/WorldSpeedSlider.value = 1
+	$CanvasLayer/CreateWorld/WorldSpeed/WorldSpeedLabel.text = \"World Speed: \" + str((11-$CanvasLayer/CreateWorld/WorldSpeed/WorldSpeedSlider.value)/10) + \" (Default)\"
+	$CanvasLayer/CreateWorld/WorldSeed/SeedLabel.text = \"World Seed (Random)\"
+	$CanvasLayer/CreateWorld/WorldSeed/Seed.text = str(randi_range(1, 99999999999))
+
+func _on_create_pressed() -> void:
+	MenuClick.play()
+	_on_line_edit_text_submitted($CanvasLayer/CreateWorld/WorldName/WorldName.text)
+
+func verify_world_name(worldName: String) -> bool:
+	if worldName == \"\":
+		return false
+	
+	var denied_char: Array[String] = [
+		\"/\", \".\", \">\", \"<\", \":\", \"\\\"\", \"\\\\\", \"|\", \"?\", \"*\"
+	]
+	
+	for c: String in denied_char:
+		if worldName.contains(c):
+			return false
+	
+	return !FileAccess.file_exists(path + worldName + \".tres\")
+
+func _on_delete_pressed(num: int) -> void:
+	MenuClick.play()
+	DirAccess.remove_absolute(path + files[num])
+	load_worlds()
+
+func _on_settings_button_pressed() -> void:
+	MenuClick.play()
+	get_tree().change_scene_to_file(\"res://Scenes/Settings.tscn\")
+
+func _on_donation_button_pressed() -> void:
+	MenuClick.play()
+	get_tree().change_scene_to_file(\"res://Scenes/Donation.tscn\")
+
+func toggle_credits() -> void:
+	MenuClick.play()
+	get_tree().change_scene_to_file(\"res://Scenes/Credits.tscn\")
+
+func _on_line_edit_text_submitted(new_text: String) -> void:
+	MenuClick.play()
+	if verify_world_name(new_text):
+		Singelton.GameName = new_text
+		Singelton.createGame = true
+		Singelton.GameSeed = int($CanvasLayer/CreateWorld/WorldSeed/Seed.text)
+		Singelton.WorldSpeed = $CanvasLayer/CreateWorld/WorldSpeed/WorldSpeedSlider.value
+		load_game_scene()
+
+func _on_world_speed_slider_value_changed(value: float) -> void:
+	$CanvasLayer/CreateWorld/WorldSpeed/WorldSpeedLabel.text = \"World Speed: \" + str((11-value)/10)
+	if value == 1:
+		$CanvasLayer/CreateWorld/WorldSpeed/WorldSpeedLabel.text = \"World Speed: \" + str((11-value)/10) + \" (Default)\"
+
+func _on_seed_text_changed(_new_text: String) -> void:
+	$CanvasLayer/CreateWorld/WorldSeed/SeedLabel.text = \"World Seed (Custom)\"
+
+func _on_allconade_logo_pressed() -> void:
+	MenuClick.play()
+	OS.shell_open(\"https://allconade.carrd.co\")
+
+func _on_tutorial_pressed() -> void:
+	MenuClick.play()
+	Singelton.GameName = \"Tutorial\"
+	Singelton.createGame = false
+	Singelton.Tutorial = true
+	load_game_scene()
+
+func _on_no_pressed() -> void:
+	MenuClick.play()
+	var userData: UserData = ResourceLoader.load(userPath) as UserData
+	userData.playedTutorial = true
+	ResourceSaver.save(userData, userPath)
+	$CanvasLayer/Start/PlayTutorialWindow.visible = false
+"
+
+[node name="Menu" type="Node2D"]
+script = SubResource("GDScript_5v4vy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Start" type="CanvasGroup" parent="CanvasLayer"]
+
+[node name="AllconadeLogo" type="TextureButton" parent="CanvasLayer/Start"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 460.0
+offset_top = 30.0
+offset_right = 620.0
+offset_bottom = 190.0
+grow_horizontal = 2
+texture_normal = ExtResource("6_81qpl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Start/AllconadeLogo"]
+self_modulate = Color(0.737603, 0.737603, 0.737603, 1)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 145.0
+offset_bottom = 145.0
+texture = ExtResource("2_dbtxb")
+expand_mode = 1
+
+[node name="Title" type="TextureRect" parent="CanvasLayer/Start"]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 40.0
+offset_top = 215.0
+offset_right = 1040.0
+offset_bottom = 415.0
+grow_horizontal = 2
+texture = ExtResource("1_in27x")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Start/Title"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 44.0
+offset_right = 930.0
+offset_bottom = 156.0
+texture = ExtResource("1_rpp7a")
+expand_mode = 1
+
+[node name="SaveSlot0" type="TextureButton" parent="CanvasLayer/Start"]
+self_modulate = Color(0.0655258, 0.0655258, 0.0655258, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 140.0
+offset_top = 620.0
+offset_right = 940.0
+offset_bottom = 1000.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_x3nkt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Create" type="TextureRect" parent="CanvasLayer/Start/SaveSlot0"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+layout_mode = 0
+offset_left = 80.0
+offset_top = 73.0
+offset_right = 296.0
+offset_bottom = 291.0
+texture = ExtResource("2_y4cf8")
+
+[node name="Label" type="Label" parent="CanvasLayer/Start/SaveSlot0/Create"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = -73.0
+offset_right = 594.0
+offset_bottom = 307.0
+theme_override_colors/font_color = Color(0.478431, 0.478431, 0.478431, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 86
+text = "Create"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Load" type="Control" parent="CanvasLayer/Start/SaveSlot0"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaveName" type="Label" parent="CanvasLayer/Start/SaveSlot0/Load"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 771.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0.478431, 0.478431, 0.478431, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 81
+text = "<Name>"
+vertical_alignment = 1
+
+[node name="Delete" type="TextureButton" parent="CanvasLayer/Start/SaveSlot0/Load"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+layout_mode = 0
+offset_left = 668.0
+offset_top = 241.0
+offset_right = 768.0
+offset_bottom = 341.0
+texture_normal = ExtResource("3_116ff")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SaveSlot1" type="TextureButton" parent="CanvasLayer/Start"]
+self_modulate = Color(0.0655258, 0.0655258, 0.0655258, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 140.0
+offset_top = 1050.0
+offset_right = 940.0
+offset_bottom = 1430.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_x3nkt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Create" type="TextureRect" parent="CanvasLayer/Start/SaveSlot1"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+layout_mode = 0
+offset_left = 80.0
+offset_top = 73.0
+offset_right = 296.0
+offset_bottom = 291.0
+texture = ExtResource("2_y4cf8")
+
+[node name="Label" type="Label" parent="CanvasLayer/Start/SaveSlot1/Create"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = -73.0
+offset_right = 594.0
+offset_bottom = 307.0
+theme_override_colors/font_color = Color(0.478431, 0.478431, 0.478431, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 86
+text = "Create"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Load" type="Control" parent="CanvasLayer/Start/SaveSlot1"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaveName" type="Label" parent="CanvasLayer/Start/SaveSlot1/Load"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 771.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0.478431, 0.478431, 0.478431, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 81
+text = "<Name>"
+vertical_alignment = 1
+
+[node name="Delete" type="TextureButton" parent="CanvasLayer/Start/SaveSlot1/Load"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+layout_mode = 0
+offset_left = 668.0
+offset_top = 241.0
+offset_right = 768.0
+offset_bottom = 341.0
+texture_normal = ExtResource("3_116ff")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SaveSlot2" type="TextureButton" parent="CanvasLayer/Start"]
+self_modulate = Color(0.0655258, 0.0655258, 0.0655258, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 140.0
+offset_top = 1480.0
+offset_right = 940.0
+offset_bottom = 1860.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_x3nkt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Create" type="TextureRect" parent="CanvasLayer/Start/SaveSlot2"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+layout_mode = 0
+offset_left = 80.0
+offset_top = 73.0
+offset_right = 296.0
+offset_bottom = 291.0
+texture = ExtResource("2_y4cf8")
+
+[node name="Label" type="Label" parent="CanvasLayer/Start/SaveSlot2/Create"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = -73.0
+offset_right = 594.0
+offset_bottom = 307.0
+theme_override_colors/font_color = Color(0.478431, 0.478431, 0.478431, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 86
+text = "Create"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Load" type="Control" parent="CanvasLayer/Start/SaveSlot2"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaveName" type="Label" parent="CanvasLayer/Start/SaveSlot2/Load"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 771.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0.478431, 0.478431, 0.478431, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 81
+text = "<Name>"
+vertical_alignment = 1
+
+[node name="Delete" type="TextureButton" parent="CanvasLayer/Start/SaveSlot2/Load"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+layout_mode = 0
+offset_left = 668.0
+offset_top = 241.0
+offset_right = 768.0
+offset_bottom = 341.0
+texture_normal = ExtResource("3_116ff")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SettingsButton" type="TextureButton" parent="CanvasLayer/Start"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 870.0
+offset_top = 2200.0
+offset_right = 1020.0
+offset_bottom = 2350.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("6_81qpl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Start/SettingsButton"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 17.0
+offset_right = 132.0
+offset_bottom = 132.0
+texture = ExtResource("4_delgq")
+
+[node name="DonationButton" type="TextureButton" parent="CanvasLayer/Start"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 65.0
+offset_top = 2200.0
+offset_right = 215.0
+offset_bottom = 2350.0
+grow_vertical = 0
+texture_normal = ExtResource("6_81qpl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Start/DonationButton"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 137.0
+offset_bottom = 137.0
+texture = ExtResource("6_mookg")
+expand_mode = 1
+
+[node name="Tutorial" type="TextureButton" parent="CanvasLayer/Start"]
+self_modulate = Color(1, 1, 1, 0.54902)
+offset_left = 414.0
+offset_top = 1922.0
+offset_right = 688.0
+offset_bottom = 2062.0
+texture_normal = ExtResource("6_81qpl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Start/Tutorial"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0.478431, 0.478431, 0.478431, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 56
+text = "Tutorial"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsButton" type="TextureButton" parent="CanvasLayer/Start"]
+self_modulate = Color(1, 1, 1, 0.54902)
+offset_left = 414.0
+offset_top = 2130.0
+offset_right = 688.0
+offset_bottom = 2266.0
+texture_normal = ExtResource("6_81qpl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Start/CreditsButton"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0.478431, 0.478431, 0.478431, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 56
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayTutorialWindow" type="TextureRect" parent="CanvasLayer/Start"]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 26.0
+offset_top = 1000.0
+offset_right = 1054.0
+offset_bottom = 1377.0
+texture = ExtResource("12_4s1yh")
+
+[node name="Label" type="Label" parent="CanvasLayer/Start/PlayTutorialWindow"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 1028.0
+offset_bottom = 187.0
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 66
+text = "Want to play the tutorial?
+(3 Minutes)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Yes" type="TextureButton" parent="CanvasLayer/Start/PlayTutorialWindow"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 200.0
+offset_right = 374.0
+offset_bottom = 340.0
+texture_normal = ExtResource("6_81qpl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Start/PlayTutorialWindow/Yes"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0.478431, 0.478431, 0.478431, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 56
+text = "Yes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="No" type="TextureButton" parent="CanvasLayer/Start/PlayTutorialWindow"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 0
+offset_left = 655.0
+offset_top = 200.0
+offset_right = 929.0
+offset_bottom = 340.0
+texture_normal = ExtResource("6_81qpl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Start/PlayTutorialWindow/No"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0.478431, 0.478431, 0.478431, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 56
+text = "No"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreateWorld" type="CanvasGroup" parent="CanvasLayer"]
+visible = false
+
+[node name="Dark" type="TextureRect" parent="CanvasLayer/CreateWorld"]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_right = 1380.0
+offset_bottom = 2770.0
+texture = ExtResource("11_icicj")
+
+[node name="WorldName" type="TextureRect" parent="CanvasLayer/CreateWorld"]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 40.0
+offset_top = 150.0
+offset_right = 1040.0
+offset_bottom = 350.0
+texture = ExtResource("1_in27x")
+expand_mode = 1
+
+[node name="WorldName" type="LineEdit" parent="CanvasLayer/CreateWorld/WorldName"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -436.0
+offset_top = 26.0
+offset_right = 436.0
+offset_bottom = 175.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 81
+placeholder_text = "World Name"
+alignment = 1
+max_length = 10
+
+[node name="WorldSpeed" type="TextureRect" parent="CanvasLayer/CreateWorld"]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 40.0
+offset_top = 510.0
+offset_right = 1040.0
+offset_bottom = 710.0
+texture = ExtResource("1_in27x")
+expand_mode = 1
+
+[node name="WorldSpeedSlider" type="HSlider" parent="CanvasLayer/CreateWorld/WorldSpeed"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -444.0
+offset_top = 79.0
+offset_right = -266.0
+offset_bottom = 102.0
+grow_horizontal = 2
+scale = Vector2(5, 5)
+min_value = 1.0
+max_value = 10.0
+step = 0.25
+value = 1.0
+
+[node name="WorldSpeedLabel" type="Label" parent="CanvasLayer/CreateWorld/WorldSpeed"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 21.0
+offset_right = 500.0
+offset_bottom = 101.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737603, 0.737603, 0.737603, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 66
+text = "World Speed: 1 (Default)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldSeed" type="TextureRect" parent="CanvasLayer/CreateWorld"]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 40.0
+offset_top = 767.0
+offset_right = 1040.0
+offset_bottom = 1133.68
+texture = ExtResource("12_4s1yh")
+expand_mode = 1
+
+[node name="SeedLabel" type="Label" parent="CanvasLayer/CreateWorld/WorldSeed"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 36.0
+offset_right = 500.0
+offset_bottom = 116.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737603, 0.737603, 0.737603, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 66
+text = "World Seed (Random)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Seed" type="LineEdit" parent="CanvasLayer/CreateWorld/WorldSeed"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -452.0
+offset_top = 136.0
+offset_right = 447.0
+offset_bottom = 296.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 81
+placeholder_text = "World Seed"
+alignment = 1
+max_length = 11
+virtual_keyboard_type = 2
+
+[node name="Create" type="TextureButton" parent="CanvasLayer/CreateWorld"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = 1922.0
+offset_right = 840.0
+offset_bottom = 2172.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("6_81qpl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/CreateWorld/Create"]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0.737603, 0.737603, 0.737603, 1)
+theme_override_fonts/font = ExtResource("3_bqduq")
+theme_override_font_sizes/font_size = 111
+text = "Create"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="CanvasLayer/CreateWorld"]
+self_modulate = Color(1, 1, 1, 0.54902)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 870.0
+offset_top = 2200.0
+offset_right = 1020.0
+offset_bottom = 2350.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("6_81qpl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CreateWorld/BackButton"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 140.0
+offset_bottom = 140.0
+texture = ExtResource("11_7l62c")
+expand_mode = 1
+
+[node name="LoadingScreen" parent="CanvasLayer" instance=ExtResource("14_fwhiy")]
+
+[connection signal="pressed" from="CanvasLayer/Start/AllconadeLogo" to="." method="_on_allconade_logo_pressed"]
+[connection signal="pressed" from="CanvasLayer/Start/SaveSlot0" to="." method="_on_save_slot_pressed" binds= [0]]
+[connection signal="pressed" from="CanvasLayer/Start/SaveSlot0/Load/Delete" to="." method="_on_delete_pressed" binds= [0]]
+[connection signal="pressed" from="CanvasLayer/Start/SaveSlot1" to="." method="_on_save_slot_pressed" binds= [1]]
+[connection signal="pressed" from="CanvasLayer/Start/SaveSlot1/Load/Delete" to="." method="_on_delete_pressed" binds= [0]]
+[connection signal="pressed" from="CanvasLayer/Start/SaveSlot2" to="." method="_on_save_slot_pressed" binds= [2]]
+[connection signal="pressed" from="CanvasLayer/Start/SaveSlot2/Load/Delete" to="." method="_on_delete_pressed" binds= [0]]
+[connection signal="pressed" from="CanvasLayer/Start/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Start/DonationButton" to="." method="_on_donation_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Start/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="CanvasLayer/Start/CreditsButton" to="." method="toggle_credits"]
+[connection signal="pressed" from="CanvasLayer/Start/PlayTutorialWindow/Yes" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="CanvasLayer/Start/PlayTutorialWindow/No" to="." method="_on_no_pressed"]
+[connection signal="text_submitted" from="CanvasLayer/CreateWorld/WorldName/WorldName" to="." method="_on_line_edit_text_submitted"]
+[connection signal="value_changed" from="CanvasLayer/CreateWorld/WorldSpeed/WorldSpeedSlider" to="." method="_on_world_speed_slider_value_changed"]
+[connection signal="text_changed" from="CanvasLayer/CreateWorld/WorldSeed/Seed" to="." method="_on_seed_text_changed"]
+[connection signal="pressed" from="CanvasLayer/CreateWorld/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="CanvasLayer/CreateWorld/BackButton" to="." method="toggle_create_World"]

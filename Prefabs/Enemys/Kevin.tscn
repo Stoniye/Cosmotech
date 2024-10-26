@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://biccfr7w7ufru"]
+
+[ext_resource type="Texture2D" uid="uid://o158kt2r75k" path="res://Textures/Enemys/Kevin.png" id="1_q2ccj"]
+
+[sub_resource type="GDScript" id="GDScript_t2olr"]
+script/source = "extends EnemyClass
+
+func _ready() -> void:
+	buildingDamage = 5
+	health = 6
+	walkSpeed = 8
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6di50"]
+radius = 27.0185
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0purd"]
+radius = 400.0
+
+[node name="Bob" type="Area2D" groups=["Enemy", "gameEvent"]]
+script = SubResource("GDScript_t2olr")
+
+[node name="Image" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("1_q2ccj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6di50")
+
+[node name="SeeRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeeRange"]
+shape = SubResource("CircleShape2D_0purd")
+
+[node name="DamageRate" type="Timer" parent="."]
+wait_time = 1.7
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="SeeRange" to="." method="_on_see_range_area_entered"]
+[connection signal="timeout" from="DamageRate" to="." method="damageBuilding"]

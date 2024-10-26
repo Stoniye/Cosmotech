@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Ammo" load_steps=7 format=3 uid="uid://c087oh0aheer0"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_1qntb"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="2_kn0rs"]
+[ext_resource type="Resource" uid="uid://b5sjc55vfrhhg" path="res://Resources/Items/Lapislazuli.tres" id="3_g7tpb"]
+[ext_resource type="Resource" uid="uid://yi15oq1o8o5" path="res://Resources/Items/Coal_Dust.tres" id="4_0yuku"]
+[ext_resource type="Resource" uid="uid://b3uqafg32qgqj" path="res://Resources/Items/Super_Ammo.tres" id="5_ksuwl"]
+[ext_resource type="Script" path="res://Resources/Scripts/Ammo.gd" id="6_t1bnt"]
+
+[resource]
+script = ExtResource("6_t1bnt")
+cost_items = Array[ExtResource("1_1qntb")]([ExtResource("2_kn0rs"), ExtResource("3_g7tpb"), ExtResource("4_0yuku")])
+cost_count = Array[int]([5, 3, 2])
+output = ExtResource("5_ksuwl")

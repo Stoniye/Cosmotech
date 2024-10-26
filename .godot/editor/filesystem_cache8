@@ -1,0 +1,335 @@
+fc8a56933c4b1c8d796fdb8f7a9f9475
+::res://::1729797668
+default_bus_layout.tres::AudioBusLayout::3355066726057842317::1723209111::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1725388860::0::1::::<><>::
+icon.svg::CompressedTexture2D::6775154350822324990::1722012884::1722012889::1::::<><>::
+::res://android/::1724396256
+::res://Prefabs/::1724393485
+::res://Prefabs/Animators/::1724396305
+ConveyorAnimator.tscn::PackedScene::220077407018119264::1723381753::0::1::::<><>::
+::res://Prefabs/Building Info Windows/::1724393478
+::res://Prefabs/Building Info Windows/Extraction/::1724396322
+Drill Burning Info Window.tscn::PackedScene::7106004800515803760::1723275747::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+Drill Info Window.tscn::PackedScene::803633066087819739::1723275747::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+Pump Info Window.tscn::PackedScene::7680818625121306109::1723275747::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+::res://Prefabs/Building Info Windows/Processing/::1725373663
+Ammo Facility Info Window.tscn::PackedScene::5907371098743298840::1725371530::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://b8ys7xrbg7r32::::res://Textures/Items/Hard_Ammo.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+Furnace Info Window.tscn::PackedScene::4249931153571990475::1725277865::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+Hub Info Window.tscn::PackedScene::3093992280183241601::1725371505::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+Legier Info Window.tscn::PackedScene::6066823216696547596::1725373663::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+Ofen Info Window.tscn::PackedScene::7872652907534447155::1725277851::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+Refinery Info Window.tscn::PackedScene::6551382217421671978::1723275748::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+Reseacher Info Window.tscn::PackedScene::5457784466381693908::1725371544::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://becp2itcq0gmg::::res://Textures/Buildings/Processing/Rocket_Ground.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png
+Rocket Info Window.tscn::PackedScene::4123809850907227860::1724059336::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf<>uid://dq12c6f7dc2s2::::res://Textures/UI/Planets/Azuria.png<>uid://boxyeaocyrc2m::::res://Textures/UI/Planets/Bukat.png<>uid://cgdn5a0gsldgi::::res://Textures/UI/Planets/Mable.png
+Stamper Info Window.tscn::PackedScene::2718469054475012828::1724506137::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+Upgrader Info Window.tscn::PackedScene::7521333980837899908::1723975351::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://becp2itcq0gmg::::res://Textures/Buildings/Processing/Rocket_Ground.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png
+::res://Prefabs/Building Info Windows/Transportation/::1724396322
+Conveyor Info Window.tscn::PackedScene::8200950124876777736::1723910921::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png
+Distributor Info Window.tscn::PackedScene::4249369831704469533::1723796769::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png
+Item Filter Info Window.tscn::PackedScene::4748024327758947689::1723648036::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+::res://Prefabs/Building Info Windows/Weapons/::1725211276
+Copper Wall Info Window.tscn::PackedScene::9183805782308045646::1723814574::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png
+Gun Info Window.tscn::PackedScene::9172766458825078151::1725211276::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf
+::res://Prefabs/Buildings/::1724504252
+1 Block Building.tscn::PackedScene::3879167100373015922::1724504247::0::1::::<><>::uid://c6hgcvekqcebq::::res://Textures/Buildings/Extraction/Drill.png
+4 Block Building.tscn::PackedScene::895067620183502101::1724504252::0::1::::<><>::uid://ck8je4ods1aa3::::res://Textures/Buildings/Processing/Hub.png
+BlockBuildingClass.gd::GDScript::-1::1723972020::0::1::::BlockBuildingClass<>Area2D<>::
+::res://Prefabs/Enemys/::1724396306
+Bob.tscn::PackedScene::9073378308272940581::1723885562::0::1::::<><>::uid://ce5o8pkt2b58w::::res://Textures/Enemys/Bob.png
+Kevin.tscn::PackedScene::2952191494634365386::1723885558::0::1::::<><>::uid://o158kt2r75k::::res://Textures/Enemys/Kevin.png
+::res://Prefabs/Nodes for Multiple Scenes/::1725272797
+BackgroundMusic.tscn::PackedScene::1392424753536817540::1723792305::0::1::::<><>::uid://yshebm2ra35y::::res://Sounds/Music/Cosmotech - Track 1.mp3<>uid://7io68grt8oej::::res://Sounds/Music/Mabye Tomorrow.mp3<>uid://ddeuxqfhxs87v::::res://Sounds/Music/Nebula.mp3<>uid://bt518lsppsbqb::::res://Sounds/Music/Nightfall Future.mp3
+Bullet.tscn::PackedScene::4285595528815389738::1723884607::0::1::::<><>::uid://brqymseqyeqtv::::res://Textures/Entitys/Bullet.png
+EnemySpawner.tscn::PackedScene::6921895677674566416::1723885497::0::1::::<><>::
+GameOverScreen.tscn::PackedScene::2909142394637063080::1723636526::0::1::::<><>::uid://c34bridj4k411::::res://Textures/UI/Menus/MenuBackground.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf<>uid://bfy0dy0y22oct::::res://Textures/UI/Menus/Text_Background_Smal.png<>uid://bcplsm06y2sgp::::res://Textures/UI/Menus/Text_Background_Big.png
+LoadingScreen.tscn::PackedScene::1695195028379707::1723890914::0::1::::<><>::uid://c34bridj4k411::::res://Textures/UI/Menus/MenuBackground.png<>uid://boxyeaocyrc2m::::res://Textures/UI/Planets/Bukat.png
+MenuBackground.tscn::PackedScene::4496256647358545649::1725272797::0::1::::<><>::uid://c34bridj4k411::::res://Textures/UI/Menus/MenuBackground.png<>uid://dpvx25jopqb3c::::res://Textures/Tilesets/Azuria_Tileset.tres
+MenuClicks.tscn::PackedScene::231846217667245210::1723808243::0::1::::<><>::uid://babbpwu3j8rxe::::res://Sounds/SFX/Menu Click - 1.mp3<>uid://cmimtx4rwtr2a::::res://Sounds/SFX/Menu Click - 2.mp3
+::res://Prefabs/OneTime Nodes/::1725372717
+Builder.tscn::PackedScene::477581730171881954::1725372717::0::1::::<><>::uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://c6hgcvekqcebq::::res://Textures/Buildings/Extraction/Drill.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf<>uid://da7t2n4xg7uf0::::res://Sounds/SFX/Placing.mp3
+ConveyorBuilder.tscn::PackedScene::3944571368024022257::1724277586::0::1::::<><>::uid://cf5vp7vjgdujl::::res://Textures/Buildings/Placing_Flag.png<>uid://1223kprbokb7::::res://Textures/UI/Button/Accept.png<>uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>uid://da7t2n4xg7uf0::::res://Sounds/SFX/Placing.mp3
+SaverLoader.tscn::PackedScene::848349881324334596::1725368945::0::1::::<><>::
+Tutorial.tscn::PackedScene::2509476179408303139::1723741371::0::1::::<><>::uid://bcplsm06y2sgp::::res://Textures/UI/Menus/Text_Background_Big.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf<>uid://bouccsk8ouyv1::::res://Sounds/SFX/BonusSound.mp3
+WorldGenerator.tscn::PackedScene::5417713618841096768::1723881109::0::1::::<><>::
+::res://Prefabs/Particles/::1724396307
+SmokeParticles.tscn::PackedScene::8164069643571564087::1723813160::0::1::::<><>::uid://bweeyca3sdm6g::::res://Textures/Particles/Smoke.png
+::res://Resources/::1725215119
+::res://Resources/Ammo/::1725387443
+Hard Ammo.tres::Resource/Ammo::7988315276185202363::1725277345::0::1::::<><>::res://Resources/Scripts/Item.gd<>res://Resources/Scripts/Ammo.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://yi15oq1o8o5::::res://Resources/Items/Coal_Dust.tres<>uid://d26eqoquxxg8f::::res://Resources/Items/Hard_Ammo.tres
+K29.tres::Resource/Ammo::7985905008632321690::1725387443::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://b1753tjmn4w01::::res://Resources/Items/Gold_Ingot.tres<>uid://b5sjc55vfrhhg::::res://Resources/Items/Lapislazuli.tres<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres<>uid://yi15oq1o8o5::::res://Resources/Items/Coal_Dust.tres<>res://Resources/Scripts/Ammo.gd<>uid://c3uplj4cvk72w::::res://Resources/Items/K29.tres
+Super Ammo.tres::Resource/Ammo::6597655275397257915::1725387389::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://b5sjc55vfrhhg::::res://Resources/Items/Lapislazuli.tres<>uid://yi15oq1o8o5::::res://Resources/Items/Coal_Dust.tres<>uid://b3uqafg32qgqj::::res://Resources/Items/Super_Ammo.tres<>res://Resources/Scripts/Ammo.gd
+::res://Resources/Buildings/::1724393490
+::res://Resources/Buildings/Extraction/::1724396323
+Drill.tres::Resource/Building::6353782773743756351::1724060750::0::1::::<><>::res://Resources/Scripts/Building.gd<>res://Scripts/Buildings/Extraction/Drill.gd<>uid://c6hgcvekqcebq::::res://Textures/Buildings/Extraction/Drill.png<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>res://Resources/Scripts/Item.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://lpjypm5og8tb::::res://Prefabs/Building Info Windows/Extraction/Drill Info Window.tscn
+Drill_Burning.tres::Resource/Building::796424884975792982::1724060854::0::1::::<><>::res://Scripts/Buildings/Extraction/Drill_Burning.gd<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>res://Resources/Scripts/Item.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://07epw6skh772::::res://Textures/Buildings/Extraction/Drill_Burning.png<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres<>uid://c8ig4jfn28b0c::::res://Prefabs/Building Info Windows/Extraction/Drill Burning Info Window.tscn<>res://Resources/Scripts/Building.gd
+Pump.tres::Resource/Building::5135491037806344829::1724060894::0::1::::<><>::res://Scripts/Buildings/Extraction/Pump.gd<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>res://Resources/Scripts/Item.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://b6x2w1nawkct::::res://Textures/Buildings/Extraction/Pump.png<>res://Resources/Scripts/Building.gd<>uid://dhov7won0vx7j::::res://Prefabs/Building Info Windows/Extraction/Pump Info Window.tscn
+::res://Resources/Buildings/Processing/::1725385837
+Ammo Facility.tres::Resource/Building::7728456955547000956::1725385837::0::1::::<><>::res://Scripts/Buildings/Processing/Ammo Facility.gd<>res://Resources/Scripts/Item.gd<>res://Resources/Scripts/Building.gd<>uid://csrrtid0joyhb::::res://Textures/Buildings/Processing/Ammo Facility.png<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres<>uid://b57qxp2eqch2t::::res://Resources/Items/Iron_Plates.tres<>uid://cqftsk8wklfw7::::res://Prefabs/Building Info Windows/Processing/Ammo Facility Info Window.tscn<>uid://cp7okeo7khiw::::res://Resources/Items/Copper_Plates.tres
+Furnace.tres::Resource/Building::4882177256977926559::1724249813::0::1::::<><>::res://Resources/Scripts/Building.gd<>res://Scripts/Buildings/Processing/Furnace.gd<>uid://ltfabbba4gav::::res://Textures/Buildings/Processing/Furnace.png<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>res://Resources/Scripts/Item.gd<>uid://b1sx0looluv4n::::res://Prefabs/Building Info Windows/Processing/Furnace Info Window.tscn
+Hub.tres::Resource/Building::284467129957089895::1724060970::0::1::::<><>::res://Scripts/Buildings/Processing/Hub.gd<>res://Resources/Scripts/Building.gd<>uid://ck8je4ods1aa3::::res://Textures/Buildings/Processing/Hub.png<>res://Resources/Scripts/Item.gd<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://bkc0uosq780tp::::res://Prefabs/Building Info Windows/Processing/Hub Info Window.tscn
+Legier.tres::Resource/Building::5900896149825443346::1725385837::0::1::::<><>::res://Scripts/Buildings/Processing/Legier.gd<>res://Resources/Scripts/Item.gd<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://okcjk1xmwf1m::::res://Textures/Buildings/Processing/Legier.png<>res://Resources/Scripts/Building.gd<>uid://cso2xr7th26ku::::res://Prefabs/Building Info Windows/Processing/Legier Info Window.tscn
+Ofen.tres::Resource/Building::9062531005502527991::1725385837::0::1::::<><>::res://Resources/Scripts/Item.gd<>res://Scripts/Buildings/Processing/Ofen.gd<>res://Resources/Scripts/Building.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://bfiu7dthvpmkd::::res://Textures/Buildings/Processing/Ofen.png<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://dkftpckw4h284::::res://Prefabs/Building Info Windows/Processing/Ofen Info Window.tscn
+Refinery.tres::Resource/Building::7737065748911141928::1724061011::0::1::::<><>::res://Scripts/Buildings/Processing/Refinery.gd<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>res://Resources/Scripts/Item.gd<>uid://cxeovwte3i7qn::::res://Textures/Buildings/Processing/Refinery.png<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://c0lskp80mle2m::::res://Prefabs/Building Info Windows/Processing/Refinery Info Window.tscn<>res://Resources/Scripts/Building.gd
+Researcher.tres::Resource/Building::1056695875728820705::1724061061::0::1::::<><>::uid://b20ypw7vwojnt::::res://Textures/Buildings/Processing/Researcher.png<>res://Scripts/Buildings/Processing/Researcher.gd<>res://Resources/Scripts/Building.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>res://Resources/Scripts/Item.gd<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://cj016bfqdjvce::::res://Prefabs/Building Info Windows/Processing/Reseacher Info Window.tscn<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres
+Rocket.tres::Resource/Building::6090814152078837121::1724061127::0::1::::<><>::res://Resources/Scripts/Building.gd<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>res://Scripts/Buildings/Processing/Rocket.gd<>uid://becp2itcq0gmg::::res://Textures/Buildings/Processing/Rocket_Ground.png<>res://Resources/Scripts/Item.gd<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://by0uss5dcu7um::::res://Prefabs/Building Info Windows/Processing/Rocket Info Window.tscn
+Stamper.tres::Resource/Building::803001546477866596::1724506617::0::1::::<><>::res://Resources/Scripts/Item.gd<>res://Scripts/Buildings/Processing/Stamper.gd<>res://Resources/Scripts/Building.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://mj5jp68eapti::::res://Textures/Buildings/Processing/Stamper.png<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres<>uid://bey312duo2l61::::res://Prefabs/Building Info Windows/Processing/Stamper Info Window.tscn
+Upgrader.tres::Resource/Building::7150014225764674852::1723975444::0::1::::<><>::res://Scripts/Buildings/Processing/Upgrader.gd<>res://Resources/Scripts/Item.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://bces3gg8u6b8w::::res://Textures/Buildings/Processing/Upgrader.png<>uid://dffnjiggocaka::::res://Prefabs/Building Info Windows/Processing/Upgrader Info Window.tscn<>res://Resources/Scripts/Building.gd
+::res://Resources/Buildings/Transportation/::1724396323
+Conveyor.tres::Resource/Building::1686533472208062548::1724276953::0::1::::<><>::res://Scripts/Buildings/Transportation/Conveyor.gd<>res://Resources/Scripts/Building.gd<>res://Resources/Scripts/Item.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://dhb6guwr72n8n::::res://Textures/Buildings/Transportation/Conveyor - Normal/Icon.png<>uid://do3upkv35ts5m::::res://Prefabs/Building Info Windows/Transportation/Conveyor Info Window.tscn
+Distributor.tres::Resource/Building::2065893160327838727::1724061295::0::1::::<><>::res://Scripts/Buildings/Transportation/Distributor.gd<>res://Resources/Scripts/Item.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres<>uid://b7uedkv4g7ljr::::res://Textures/Buildings/Transportation/Distributor.png<>uid://b1soralkflri8::::res://Prefabs/Building Info Windows/Transportation/Distributor Info Window.tscn<>res://Resources/Scripts/Building.gd
+Item_Filter.tres::Resource/Building::3226337743449418489::1724061295::0::1::::<><>::res://Scripts/Buildings/Transportation/ItemFilter.gd<>res://Resources/Scripts/Building.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>res://Resources/Scripts/Item.gd<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://bdy06pvpk8f8f::::res://Textures/Buildings/Transportation/ItemFilter.png<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres<>uid://b8v8jcvrg2jmv::::res://Prefabs/Building Info Windows/Transportation/Item Filter Info Window.tscn
+::res://Resources/Buildings/Weapons/::1724592435
+Copper_Wall.tres::Resource/Building::3771451465226913694::1724592247::0::1::::<><>::res://Resources/Scripts/Item.gd<>res://Scripts/Buildings/Weapons/Copper_Wall.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>res://Resources/Scripts/Building.gd<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://lyo2k4gdqdtg::::res://Textures/Buildings/Weapons/Copper_Wall.png<>uid://d33x67axj6oqo::::res://Prefabs/Building Info Windows/Weapons/Copper Wall Info Window.tscn
+Gold_Wall.tres::Resource/Building::6896205153898140281::1724592435::0::1::::<><>::res://Scripts/Buildings/Weapons/Copper_Wall.gd<>res://Resources/Scripts/Item.gd<>uid://b1753tjmn4w01::::res://Resources/Items/Gold_Ingot.tres<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://dyhkk7jmwpoub::::res://Textures/Buildings/Weapons/Gold_Wall.png<>uid://d33x67axj6oqo::::res://Prefabs/Building Info Windows/Weapons/Copper Wall Info Window.tscn<>res://Resources/Scripts/Building.gd
+Gun.tres::Resource/Building::3634579521490764029::1724061609::0::1::::<><>::uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>res://Resources/Scripts/Building.gd<>res://Scripts/Buildings/Weapons/Gun.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>res://Resources/Scripts/Item.gd<>uid://cdf7pn7eeslto::::res://Textures/Buildings/Weapons/Gun.png<>uid://d3xmegw4d6uk2::::res://Prefabs/Building Info Windows/Weapons/Gun Info Window.tscn
+Iron_Wall.tres::Resource/Building::6497046948695281345::1724592362::0::1::::<><>::res://Scripts/Buildings/Weapons/Copper_Wall.gd<>res://Resources/Scripts/Item.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://b3ektlkx512::::res://Textures/Buildings/Weapons/Iron_Wall.png<>uid://d33x67axj6oqo::::res://Prefabs/Building Info Windows/Weapons/Copper Wall Info Window.tscn<>res://Resources/Scripts/Building.gd
+Super_Gun.tres::Resource/Building::4104887173489557680::1724061609::0::1::::<><>::res://Scripts/Buildings/Weapons/Super_Gun.gd<>res://Resources/Scripts/Item.gd<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://b1wbt2rkujeeh::::res://Textures/Buildings/Weapons/Super_Gun.png<>uid://d3xmegw4d6uk2::::res://Prefabs/Building Info Windows/Weapons/Gun Info Window.tscn<>res://Resources/Scripts/Building.gd
+::res://Resources/Items/::1725388307
+Coal.tres::Resource/Item::1911774166697976440::1724525019::0::1::::<><>::uid://dprr51ktju31j::::res://Textures/Items/Coal.png<>res://Resources/Scripts/Item.gd<>uid://yi15oq1o8o5::::res://Resources/Items/Coal_Dust.tres
+Coal_Dust.tres::Resource/Item::50078830771160206::1724525185::0::1::::<><>::uid://bwxdjpji04d8::::res://Textures/Items/Coal_Dust.png<>res://Resources/Scripts/Item.gd
+Conbo_Raw.tres::Resource/Item::2959960986576012579::1724061905::0::1::::<><>::uid://dlfl2glphniq2::::res://Textures/Items/Conbo_Raw.png<>res://Resources/Scripts/Item.gd
+Copper_Ingot.tres::Resource/Item::2259965587912831071::1725385950::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://dv3giq018ni2f::::res://Textures/Items/Copper_Ingot.png<>uid://cp7okeo7khiw::::res://Resources/Items/Copper_Plates.tres
+Copper_Plates.tres::Resource/Item::173311830562136018::1725385907::0::1::::<><>::uid://dcunijtrkgqn2::::res://Textures/Items/Copper_Plates.png<>res://Resources/Scripts/Item.gd
+Copper_Raw.tres::Resource/Item::397489629945529682::1724061764::0::1::::<><>::uid://c6klkqvf77td6::::res://Textures/Items/Copper_Raw.png<>res://Resources/Scripts/Item.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres
+Crude_Oil.tres::Resource/Item::1131768854464330550::1724061819::0::1::::<><>::uid://6875usjhl6ff::::res://Textures/Items/Crude_Oil.png<>res://Resources/Scripts/Item.gd<>uid://bqq685ndxl1eg::::res://Resources/Items/Kerosene.tres
+Gold_Ingot.tres::Resource/Item::4279263230834842940::1724507022::0::1::::<><>::uid://4jgl4nm7ds0::::res://Textures/Items/Gold_Ingot.png<>res://Resources/Scripts/Item.gd<>uid://c6421juk0jmi0::::res://Resources/Items/Gold_Plates.tres
+Gold_Plates.tres::Resource/Item::7010248768573531505::1725385907::0::1::::<><>::uid://cd6rvxn3rh52m::::res://Textures/Items/Gold_Plates.png<>res://Resources/Scripts/Item.gd
+Gold_Raw.tres::Resource/Item::7391333093455164848::1724244390::0::1::::<><>::uid://bo21uk21ncrwe::::res://Textures/Items/Gold_Raw.png<>res://Resources/Scripts/Item.gd<>uid://b1753tjmn4w01::::res://Resources/Items/Gold_Ingot.tres
+Hard_Ammo.tres::Resource/Item::9118628741339703719::1725387226::0::1::::<><>::uid://b8ys7xrbg7r32::::res://Textures/Items/Hard_Ammo.png<>res://Resources/Scripts/Item.gd
+Iron_Ingot.tres::Resource/Item::8742066865448002847::1724505664::0::1::::<><>::uid://bir8hudhej2jk::::res://Textures/Items/Iron_Ingot.png<>res://Resources/Scripts/Item.gd<>uid://b57qxp2eqch2t::::res://Resources/Items/Iron_Plates.tres
+Iron_Plates.tres::Resource/Item::4559159455871243541::1725385907::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://btlwpq2dvf8vy::::res://Textures/Items/Iron_Plates.png
+Iron_Raw.tres::Resource/Item::532869129273653680::1724061941::0::1::::<><>::uid://cox0o4p4er8qs::::res://Textures/Items/Iron_Raw.png<>res://Resources/Scripts/Item.gd<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres
+K29.tres::Resource/Item::6780347460585599436::1725388307::0::1::::<><>::uid://micj1v0v7o7k::::res://Textures/Items/K29.png<>res://Resources/Scripts/Item.gd
+Keppler.tres::Resource/Item::7937050143003369103::1724061968::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://v21k54367msg::::res://Textures/Items/Keppler.png
+Kerosene.tres::Resource/Item::3544414979891663838::1724061980::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://cvf4kb5auw1ce::::res://Textures/Items/Kerosene.png
+Lapislazuli.tres::Resource/Item::4529796439935995400::1724061993::0::1::::<><>::uid://dwl4nd8dbyqmq::::res://Textures/Items/Lapislazuli.png<>res://Resources/Scripts/Item.gd
+Must.tres::Resource/Item::5363578843800653396::1724525218::0::1::::<><>::uid://crf2g37otwe1::::res://Textures/Items/Must.png<>res://Resources/Scripts/Item.gd
+Stone_Raw.tres::Resource/Item::6773192382150303206::1724062044::0::1::::<><>::uid://bwuyurww5pwl5::::res://Textures/Items/Stone_Raw.png<>res://Resources/Scripts/Item.gd
+Super_Ammo.tres::Resource/Item::4393967605717953265::1725387238::0::1::::<><>::uid://4p6lss3gvqka::::res://Textures/Items/Super_Ammo.png<>res://Resources/Scripts/Item.gd
+::res://Resources/Reseachable/::1725368280
+Ammo Facility.tres::Resource/Reseachable::1852988219743899222::1725368280::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://cp7okeo7khiw::::res://Resources/Items/Copper_Plates.tres<>uid://b57qxp2eqch2t::::res://Resources/Items/Iron_Plates.tres<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres<>uid://didys62befv0o::::res://Resources/Buildings/Processing/Ammo Facility.tres<>res://Resources/Scripts/Reseachable.gd
+Distributor.tres::Resource/Reseachable::6674148130872744279::1725368280::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres<>uid://4oy7ubws7k3h::::res://Resources/Buildings/Transportation/Distributor.tres<>res://Resources/Scripts/Reseachable.gd
+Drill_Burning.tres::Resource/Reseachable::8607100539411536417::1724056715::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://ll2aby2ypjcw::::res://Resources/Buildings/Extraction/Drill_Burning.tres<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres<>res://Resources/Scripts/Reseachable.gd
+Gold_Wall.tres::Resource/Reseachable::3480476839212820002::1724592720::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://b1753tjmn4w01::::res://Resources/Items/Gold_Ingot.tres<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://c5itqx8qxdycn::::res://Resources/Buildings/Weapons/Gold_Wall.tres<>res://Resources/Scripts/Reseachable.gd
+Hub.tres::Resource/Resource::5204193630516267086::1723469166::0::1::::<><>::uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://eb2eqw34ixlf::::res://Resources/Buildings/Processing/Hub.tres<>res://Resources/Scripts/Reseachable.gd
+Item_Filter.tres::Resource/Reseachable::3873545794807054789::1724057092::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://bl74kt2178quj::::res://Resources/Buildings/Transportation/Item_Filter.tres<>res://Resources/Scripts/Reseachable.gd<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres
+Legier.tres::Resource/Reseachable::2483684827143082162::1725366490::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://cp7okeo7khiw::::res://Resources/Items/Copper_Plates.tres<>uid://b57qxp2eqch2t::::res://Resources/Items/Iron_Plates.tres<>uid://cqco5rpuvx2vu::::res://Resources/Buildings/Processing/Legier.tres<>res://Resources/Scripts/Reseachable.gd
+Ofen.tres::Resource/Reseachable::8252911411077644206::1725366458::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://cp7okeo7khiw::::res://Resources/Items/Copper_Plates.tres<>uid://b57qxp2eqch2t::::res://Resources/Items/Iron_Plates.tres<>uid://d2d7tdhpmffgp::::res://Resources/Buildings/Processing/Ofen.tres<>res://Resources/Scripts/Reseachable.gd
+Rocket.tres::Resource/Resource::9088136085133881522::1723469714::0::1::::<><>::uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://cs1o24acah5l2::::res://Resources/Buildings/Processing/Rocket.tres<>res://Resources/Scripts/Reseachable.gd<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://qeickicucqks::::res://Resources/Items/Crude_Oil.tres<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres
+Stamper.tres::Resource/Reseachable::596597831601993982::1724505744::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://c3q8qviaqhssc::::res://Resources/Items/Stone_Raw.tres<>uid://dlc1b6amq78lv::::res://Resources/Items/Keppler.tres<>uid://lo8k21t7xtwu::::res://Resources/Buildings/Processing/Stamper.tres<>res://Resources/Scripts/Reseachable.gd
+Super_Gun.tres::Resource/Reseachable::5990024971114159093::1723796516::0::1::::<><>::res://Resources/Scripts/Item.gd<>uid://dwsytgbduj15t::::res://Resources/Items/Iron_Ingot.tres<>uid://7g0kkk8ygcw2::::res://Resources/Items/Copper_Ingot.tres<>uid://bif3eiqy51804::::res://Resources/Items/Conbo_Raw.tres<>uid://byqo5lf15ojfs::::res://Resources/Buildings/Weapons/Super_Gun.tres<>res://Resources/Scripts/Reseachable.gd
+::res://Resources/SaveData/::1724393489
+::res://Resources/SaveData/Else/::1725278523
+WorldItemSaveData.gd::GDScript::-1::1725278523::0::1::::WorldItemSafeData<>Resource<>::
+::res://Resources/SaveData/Extraction/::1724396323
+DrillBurningSaveData.gd::GDScript::-1::1723104963::0::1::::DrillBurningSaveData<>SaveData<>::
+::res://Resources/SaveData/Processing/::1725371283
+Ammo Facility Save Data.gd::GDScript::-1::1725371283::0::1::::AmmoFacilitySaveData<>SaveData<>::
+FurnaceSaveData.gd::GDScript::-1::1723989755::0::1::::FurnaceSaveData<>SaveData<>::
+HubSaveData.gd::GDScript::-1::1723127334::0::1::::HubSaveData<>SaveData<>::
+RefinerySaveData.gd::GDScript::-1::1723989870::0::1::::RefineSaveData<>SaveData<>::
+ReseacherSaveData.gd::GDScript::-1::1723462023::0::1::::ReseacerSaveData<>SaveData<>::
+RocketSaveData.gd::GDScript::-1::1724055706::0::1::::RocketSaveData<>SaveData<>::
+StamperSaveData.gd::GDScript::-1::1724505120::0::1::::StamperSaveData<>SaveData<>::
+::res://Resources/SaveData/Transportation/::1725284071
+ConveyorSaveData.gd::GDScript::-1::1725283779::0::1::::ConveyorSaveData<>SaveData<>::
+DistributorSaveData.gd::GDScript::-1::1725284053::0::1::::DistributorSaveData<>SaveData<>::
+ItemFilterSaveData.gd::GDScript::-1::1725284071::0::1::::ItemFilterSaveData<>SaveData<>::
+::res://Resources/SaveData/Weapons/::1725211184
+GunSaveData.gd::GDScript::-1::1725211184::0::1::::GunSaveData<>SaveData<>::
+::res://Resources/Scripts/::1725372643
+Ammo.gd::GDScript::-1::1725214780::0::1::::Ammo<>Resource<>::
+Building.gd::GDScript::-1::1725372643::0::1::::Building<>Resource<>::
+GenerationTile.gd::GDScript::-1::1723107804::0::1::::GenerationTile<>Resource<>::
+Item.gd::GDScript::-1::1725367338::0::1::::Item<>Resource<>::
+Reseachable.gd::GDScript::-1::1723387084::0::1::::Reseachable<>Resource<>::
+SaveData.gd::GDScript::-1::1723815430::0::1::::SaveData<>Resource<>::
+SavedGame.gd::GDScript::-1::1723815908::0::1::::SavedGame<>Resource<>::
+UserData.gd::GDScript::-1::1725033478::0::1::::UserData<>Resource<>::
+::res://Scenes/::1725389195
+AllconadeInto.tscn::PackedScene::6732305151060985592::1724591023::0::1::::<><>::uid://c34bridj4k411::::res://Textures/UI/Menus/MenuBackground.png<>uid://dhcgwdovtpuxh::::res://Textures/UI/Ilustration/Allconade_Logo_Round_White.png<>uid://dnbacvwkvirny::::res://Sounds/SFX/Allconade_Intro.mp3
+Credits.tscn::PackedScene::8558944711603327063::1723882785::0::1::::<><>::uid://bb0upyjd836kw::::res://Textures/UI/Button/Arrow_Back.png<>uid://c34bridj4k411::::res://Textures/UI/Menus/MenuBackground.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf<>uid://bcplsm06y2sgp::::res://Textures/UI/Menus/Text_Background_Big.png<>uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png
+Donation.tscn::PackedScene::6959897844801437766::1723808775::0::1::::<><>::uid://bb0upyjd836kw::::res://Textures/UI/Button/Arrow_Back.png
+GameScene.tscn::PackedScene::3176275449781525117::1725389195::0::1::::<><>::uid://dpvx25jopqb3c::::res://Textures/Tilesets/Azuria_Tileset.tres<>uid://dohjmiwc1x1g::::res://Textures/Tilesets/Bukat_Tileset.tres<>uid://rp6iyu7h5cv2::::res://Textures/UI/Button/3Lines.png<>uid://c34bridj4k411::::res://Textures/UI/Menus/MenuBackground.png<>uid://c63k1dc28jmrf::::res://Textures/Tilesets/Mable_Tileset.tres<>uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://dxpjholhm6lt6::::res://Textures/UI/Button/BuildingButton.png<>uid://cctw4c2f3dnqu::::res://Textures/Buildings/Base.png<>uid://bmccu1k4u1e6v::::res://Textures/UI/Button/Close.png<>uid://ltfabbba4gav::::res://Textures/Buildings/Processing/Furnace.png<>uid://c6hgcvekqcebq::::res://Textures/Buildings/Extraction/Drill.png<>uid://dhb6guwr72n8n::::res://Textures/Buildings/Transportation/Conveyor - Normal/Icon.png<>uid://d3ihjqbjfr6hn::::res://Textures/UI/Button/InfoButton.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf<>uid://cdf7pn7eeslto::::res://Textures/Buildings/Weapons/Gun.png<>uid://bnvrmeykkv3a7::::res://Textures/UI/Button/DestroyButton.png<>uid://boxyeaocyrc2m::::res://Textures/UI/Planets/Bukat.png<>uid://dq12c6f7dc2s2::::res://Textures/UI/Planets/Azuria.png<>uid://gcw2wdi3u118::::res://Textures/UI/Button/DestroyConveyorLineButton.png<>uid://bnq68mrafss0::::res://Textures/UI/Button/RoundedButton_Pressed.png<>uid://bfy0dy0y22oct::::res://Textures/UI/Menus/Text_Background_Smal.png<>uid://bir8hudhej2jk::::res://Textures/Items/Iron_Ingot.png<>uid://cgdn5a0gsldgi::::res://Textures/UI/Planets/Mable.png<>uid://w7rbwpqfbcaq::::res://Textures/UI/Button/DictionaryButton.png<>uid://djaofehm2dd6a::::res://Textures/UI/Menus/HealthBar_Under.png<>uid://barsegsd4ojio::::res://Textures/UI/Menus/HealthBar_Progress.png<>uid://da7t2n4xg7uf0::::res://Sounds/SFX/Placing.mp3<>uid://bcplsm06y2sgp::::res://Textures/UI/Menus/Text_Background_Big.png
+Menu.tscn::PackedScene::7334607372352868146::1725277714::0::1::::<><>::uid://bfy0dy0y22oct::::res://Textures/UI/Menus/Text_Background_Smal.png<>uid://dynwi4cw5ijv5::::res://Textures/UI/Ilustration/Title.png<>uid://cihyp2rpf8l1j::::res://Textures/UI/Button/SaveSlot.png<>uid://dhcgwdovtpuxh::::res://Textures/UI/Ilustration/Allconade_Logo_Round_White.png<>uid://devgpfc61ch78::::res://Textures/UI/Button/SaveSlot_X.png<>uid://cfs6o31ntfdyu::::res://Textures/UI/Button/Delete.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf<>uid://b6i3pk1wel3c6::::res://Textures/UI/Button/SettingsButton.png<>uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://cxigji7grc48e::::res://Textures/UI/Button/DonationBurtton.png<>uid://bb0upyjd836kw::::res://Textures/UI/Button/Arrow_Back.png<>uid://c34bridj4k411::::res://Textures/UI/Menus/MenuBackground.png<>uid://bcplsm06y2sgp::::res://Textures/UI/Menus/Text_Background_Big.png<>uid://26jcr5jxtr::::res://Prefabs/Nodes for Multiple Scenes/LoadingScreen.tscn
+Settings.tscn::PackedScene::5858534784455181031::1725033525::0::1::::<><>::uid://bb0upyjd836kw::::res://Textures/UI/Button/Arrow_Back.png<>uid://bfy0dy0y22oct::::res://Textures/UI/Menus/Text_Background_Smal.png<>uid://drl6md4kk1i1a::::res://Textures/Fonts/MilkyNice-Clean.ttf<>uid://lte3qdtcvto2::::res://Textures/UI/Button/RoundedButton.png<>uid://c34bridj4k411::::res://Textures/UI/Menus/MenuBackground.png
+::res://Scripts/::1725374066
+Singelton.gd::GDScript::-1::1723405989::0::1::::<>Node<>::
+WorldItem.gd::GDScript::-1::1725374066::0::1::::<>Sprite2D<>::
+::res://Scripts/Buildings/::1725388553
+BuildingScriptClass.gd::GDScript::-1::1725388553::0::1::::BuildingScriptClass<>Node2D<>::
+::res://Scripts/Buildings/Extraction/::1725388672
+Drill.gd::GDScript::-1::1724249005::0::1::::<>DrillClass<>::
+DrillClass.gd::GDScript::-1::1725388585::0::1::::DrillClass<>BuildingScriptClass<>::
+Drill_Burning.gd::GDScript::-1::1725388672::0::1::::<>DrillClass<>::
+Pump.gd::GDScript::-1::1724249014::0::1::::<>DrillClass<>::
+::res://Scripts/Buildings/Processing/::1725388736
+Ammo Facility.gd::GDScript::-1::1725388685::0::1::::<>BuildingScriptClass<>::
+Furnace.gd::GDScript::-1::1725388692::0::1::::<>BuildingScriptClass<>::
+Hub.gd::GDScript::-1::1725388696::0::1::::<>BuildingScriptClass<>::
+Legier.gd::GDScript::-1::1725388700::0::1::::<>BuildingScriptClass<>::
+Ofen.gd::GDScript::-1::1725388706::0::1::::<>BuildingScriptClass<>::
+Refinery.gd::GDScript::-1::1725388711::0::1::::<>BuildingScriptClass<>::
+Researcher.gd::GDScript::-1::1725367570::0::1::::<>BuildingScriptClass<>::
+Rocket.gd::GDScript::-1::1725388730::0::1::::<>BuildingScriptClass<>::
+Stamper.gd::GDScript::-1::1725388736::0::1::::<>BuildingScriptClass<>::
+Upgrader.gd::GDScript::-1::1725367635::0::1::::<>Node2D<>::
+::res://Scripts/Buildings/Transportation/::1725388818
+Conveyor.gd::GDScript::-1::1725388803::0::1::::<>Node2D<>::
+Distributor.gd::GDScript::-1::1725388811::0::1::::<>Node2D<>::
+ItemFilter.gd::GDScript::-1::1725388818::0::1::::<>Node2D<>::
+::res://Scripts/Buildings/Weapons/::1725388787
+Copper_Wall.gd::GDScript::-1::1724276492::0::1::::<>BuildingScriptClass<>::
+Gun.gd::GDScript::-1::1723796170::0::1::::<>WeaponsClass<>::
+Super_Gun.gd::GDScript::-1::1724061461::0::1::::<>WeaponsClass<>::
+WeaponsClass.gd::GDScript::-1::1725388787::0::1::::WeaponsClass<>Node2D<>::
+::res://Scripts/Enemys/::1724396310
+EnemyClass.gd::GDScript::-1::1723884879::0::1::::EnemyClass<>Area2D<>::
+::res://Sounds/::1724396257
+Licesnce - Summary.png::CompressedTexture2D::5969298798678272007::1723196729::1723197531::1::::<><>::
+::res://Sounds/Music/::1724396316
+Cosmotech - Track 1.mp3::AudioStreamMP3::1722123281321348724::1723196424::1723196482::1::::<><>::
+Mabye Tomorrow.mp3::AudioStreamMP3::2263465159297783969::1723198735::1723198769::1::::<><>::
+Nebula.mp3::AudioStreamMP3::7379342354571936121::1723198718::1723198769::1::::<><>::
+Nightfall Future.mp3::AudioStreamMP3::3783578224713915909::1723197801::1723198769::1::::<><>::
+::res://Sounds/Nutzungsbedingungen von Pixabay_files/::1724396314
+logo.png::CompressedTexture2D::1706606087544308191::1723196759::1723197530::1::::<><>::
+powered_by_logo.svg::CompressedTexture2D::6640571026251830989::1723196759::1723197530::1::::<><>::
+::res://Sounds/SFX/::1724396315
+Allconade_Intro.mp3::AudioStreamMP3::8073786105174395750::1713985341::1723311512::1::::<><>::
+BonusSound.mp3::AudioStreamMP3::3410478017667331684::1723483363::1723483807::1::::<><>::
+Gunshot-1.mp3::AudioStreamMP3::900875372709792126::1723649150::1723649183::1::::<><>::
+Menu Click - 1.mp3::AudioStreamMP3::2388573753043828590::1723808057::1723808081::1::::<><>::
+Menu Click - 2.mp3::AudioStreamMP3::5632386300711409842::1723808078::1723808081::1::::<><>::
+Placing.mp3::AudioStreamMP3::7226524707164404755::1723200941::1723200944::1::::<><>::
+::res://Textures/::1724396257
+Icon.png::CompressedTexture2D::4988150111077476752::1722859538::1722859576::1::::<><>::
+::res://Textures/Buildings/::1724396315
+Base.png::CompressedTexture2D::4953829940874654368::1723573569::1723619465::1::::<><>::
+Placing_Flag.png::CompressedTexture2D::5187020475560002021::1722845401::1722845402::1::::<><>::
+::res://Textures/Buildings/Extraction/::1724396325
+Drill.png::CompressedTexture2D::6963515147633422610::1722690619::1722081596::1::::<><>::
+Drill_Burning.png::CompressedTexture2D::1821052038194516019::1723104565::1723104569::1::::<><>::
+Pump.png::CompressedTexture2D::135630457553101135::1723038166::1723038188::1::::<><>::
+::res://Textures/Buildings/Processing/::1725276933
+Ammo Facility.png::CompressedTexture2D::6072401519620729391::1725213806::1725213808::1::::<><>::
+Furnace.png::CompressedTexture2D::811604096424061045::1723543801::1722081596::1::::<><>::
+Hub.png::CompressedTexture2D::5543409410726814572::1722015364::1722081596::1::::<><>::
+Legier.png::CompressedTexture2D::1003425661064066532::1724590326::1725213404::1::::<><>::
+Ofen.png::CompressedTexture2D::2755151596444076271::1725273982::1725276933::1::::<><>::
+Refinery.png::CompressedTexture2D::6396331006732417517::1723038164::1723038188::1::::<><>::
+Researcher.png::CompressedTexture2D::4334614106437987297::1723384942::1723384944::1::::<><>::
+Rocket.png::CompressedTexture2D::186470790742391684::1723038169::1723038188::1::::<><>::
+Rocket_Ground.png::CompressedTexture2D::2672264234731606526::1722958288::1722958290::1::::<><>::
+Stamper.png::CompressedTexture2D::862683942614985962::1724504668::1724504669::1::::<><>::
+Upgrader.png::CompressedTexture2D::2536199116020782164::1723975313::1723975315::1::::<><>::
+::res://Textures/Buildings/Transportation/::1724396326
+Distributor.png::CompressedTexture2D::4674000019545423663::1723909157::1723909160::1::::<><>::
+Distributor_Crate.png::CompressedTexture2D::8290498086830678944::1723797594::1723797596::1::::<><>::
+ItemFilter.png::CompressedTexture2D::2648106386122189763::1723909141::1723909160::1::::<><>::
+ItemFilter_Crate.png::CompressedTexture2D::9106596309799740386::1723262396::1723262467::1::::<><>::
+::res://Textures/Buildings/Transportation/Conveyor - Normal/::1724396349
+Down2Left.png::CompressedTexture2D::3768664712579912497::1723380909::1723380911::1::::<><>::
+Down2Right.png::CompressedTexture2D::744432155972349123::1723380981::1723381038::1::::<><>::
+Down2Up.png::CompressedTexture2D::5694116281136358137::1723381033::1723381038::1::::<><>::
+Icon.png::CompressedTexture2D::7654542361107721755::1723379428::1723379430::1::::<><>::
+Left2Down.png::CompressedTexture2D::2565783289550116318::1723381091::1723381093::1::::<><>::
+Left2Right.png::CompressedTexture2D::5305595330864696471::1723381210::1723381217::1::::<><>::
+Left2Up.png::CompressedTexture2D::6371899872936715360::1723381242::1723381244::1::::<><>::
+Right2Down.png::CompressedTexture2D::919617482510336112::1723381273::1723381276::1::::<><>::
+Right2Left.png::CompressedTexture2D::4368181355225031795::1723380469::1723378865::1::::<><>::
+Right2Up.png::CompressedTexture2D::3471978568059382396::1723381317::1723381319::1::::<><>::
+Up2Down.png::CompressedTexture2D::1466616224776342455::1723381346::1723381348::1::::<><>::
+Up2Left.png::CompressedTexture2D::6958474912893824126::1723381377::1723381378::1::::<><>::
+Up2Right.png::CompressedTexture2D::487730292728505376::1723381408::1723381409::1::::<><>::
+::res://Textures/Buildings/Weapons/::1724592323
+Copper_Wall.png::CompressedTexture2D::822521170760037576::1723814512::1723814514::1::::<><>::
+Gold_Wall.png::CompressedTexture2D::8858871665762887673::1724592297::1724592323::1::::<><>::
+Gun.png::CompressedTexture2D::4995700250172799504::1723794849::1723794864::1::::<><>::
+Gun_Base.png::CompressedTexture2D::8333765772018977221::1723543821::1723794860::1::::<><>::
+Gun_Toper.png::CompressedTexture2D::7739315534496096812::1723654156::1723654158::1::::<><>::
+Iron_Wall.png::CompressedTexture2D::3772151826018303::1724592321::1724592323::1::::<><>::
+Super_Gun.png::CompressedTexture2D::4256843020821786023::1723796237::1723796240::1::::<><>::
+Super_Gun_Base.png::CompressedTexture2D::2056979230415733776::1723796137::1723796142::1::::<><>::
+Super_Gun_Toper.png::CompressedTexture2D::5977935854665791697::1723796220::1723796240::1::::<><>::
+::res://Textures/Enemys/::1724396315
+Bob.png::CompressedTexture2D::5116437847855442568::1723543071::1723543073::1::::<><>::
+Kevin.png::CompressedTexture2D::30535253804571038::1723885327::1723885328::1::::<><>::
+::res://Textures/Entitys/::1724396315
+Bullet.png::CompressedTexture2D::3614140659316597371::1723545084::1723545085::1::::<><>::
+::res://Textures/Fonts/::1724396315
+MilkyNice-Clean.ttf::FontFile::8377084407361258500::1723275587::1723275748::1::::<><>::
+::res://Textures/Items/::1725388273
+Coal.png::CompressedTexture2D::8248276272094249213::1723476205::1723476207::1::::<><>::
+Coal_Dust.png::CompressedTexture2D::117007498745534115::1724525180::1724525182::1::::<><>::
+Conbo_Raw.png::CompressedTexture2D::7942377656048177491::1723038172::1723038188::1::::<><>::
+Copper_Ingot.png::CompressedTexture2D::8691409813119148851::1708539376::1722082197::1::::<><>::
+Copper_Plates.png::CompressedTexture2D::7341731403541222213::1724506856::1724506858::1::::<><>::
+Copper_Raw.png::CompressedTexture2D::6970025915650998577::1708178710::1722082197::1::::<><>::
+Crude_Oil.png::CompressedTexture2D::2245976214940874131::1722848062::1722848064::1::::<><>::
+Gold_Ingot.png::CompressedTexture2D::60424745730199081::1724244324::1724244326::1::::<><>::
+Gold_Plates.png::CompressedTexture2D::5048474528639916066::1724506980::1724506982::1::::<><>::
+Gold_Raw.png::CompressedTexture2D::3426417619817207444::1723731098::1723731121::1::::<><>::
+Hard_Ammo.png::CompressedTexture2D::4753348875473817559::1725387000::1725387157::1::::<><>::
+Iron_Ingot.png::CompressedTexture2D::2985043071360198608::1708539350::1722082197::1::::<><>::
+Iron_Plates.png::CompressedTexture2D::3744080311107735806::1724506331::1724506332::1::::<><>::
+Iron_Raw.png::CompressedTexture2D::5804510340268760414::1708012720::1722082197::1::::<><>::
+K29.png::CompressedTexture2D::858920051032763954::1725388271::1725388273::1::::<><>::
+Keppler.png::CompressedTexture2D::1531302037323993930::1724592093::1724592095::1::::<><>::
+Kerosene.png::CompressedTexture2D::6258907722179561632::1723476128::1723476129::1::::<><>::
+Lapislazuli.png::CompressedTexture2D::8727908983208865240::1723730884::1723731121::1::::<><>::
+Must.png::CompressedTexture2D::175824270362384626::1724592167::1724592169::1::::<><>::
+Plurana.png::CompressedTexture2D::282014860938420672::1708430224::1722082197::1::::<><>::
+Stone_Raw.png::CompressedTexture2D::3973356650438436484::1708012688::1722082197::1::::<><>::
+Super_Ammo.png::CompressedTexture2D::2068344976830386204::1725387154::1725387157::1::::<><>::
+::res://Textures/Particles/::1724396317
+Smoke.png::CompressedTexture2D::3939118588113915020::1723812176::1723812177::1::::<><>::
+::res://Textures/Tilemaps/::1724592169
+Azuria_Tilemap.png::CompressedTexture2D::8025355317660896030::1724591842::1724591844::1::::<><>::
+Bukat_Tilemap.png::CompressedTexture2D::8161067990117736376::1724592168::1724592169::1::::<><>::
+Mable_Tilemap.png::CompressedTexture2D::3335671401984100790::1723714141::1723714142::1::::<><>::
+::res://Textures/Tilesets/::1725389184
+Azuria_Tileset.tres::TileSet::8256892936014621102::1725389184::0::1::::<><>::uid://dmlsoutshplw5::::res://Textures/Tilemaps/Azuria_Tilemap.png
+Bukat_Tileset.tres::TileSet::239909554207381766::1725389184::0::1::::<><>::uid://dojjukwgk7lx5::::res://Textures/Tilemaps/Bukat_Tilemap.png
+Mable_Tileset.tres::TileSet::7007151859778954671::1725389184::0::1::::<><>::uid://bnr3ax4l74ygc::::res://Textures/Tilemaps/Mable_Tilemap.png
+::res://Textures/UI/::1724393474
+::res://Textures/UI/Button/::1724396328
+3Lines.png::CompressedTexture2D::1226073814205408589::1722799152::1722799155::1::::<><>::
+Accept.png::CompressedTexture2D::1882338044162355658::1722799909::1722799910::1::::<><>::
+Arrow_Back.png::CompressedTexture2D::2509461372591715830::1722800171::1722800173::1::::<><>::
+BuildingButton.png::CompressedTexture2D::8805130827212243497::1722679955::1722679957::1::::<><>::
+CheckBox_Checked.png::CompressedTexture2D::468944031022357880::1723382610::1723382612::1::::<><>::
+CheckBox_Unchecked.png::CompressedTexture2D::218928759711056876::1723382516::1723382518::1::::<><>::
+Close.png::CompressedTexture2D::3232974095121769587::1722681354::1722681355::1::::<><>::
+Delete.png::CompressedTexture2D::5162853124474839496::1723275982::1723275984::1::::<><>::
+DestroyButton.png::CompressedTexture2D::3343281449863947928::1722774297::1722774300::1::::<><>::
+DestroyConveyorLineButton.png::CompressedTexture2D::426646968162442525::1724317523::1724317537::1::::<><>::
+DictionaryButton.png::CompressedTexture2D::1611249802257019568::1724057680::1724057681::1::::<><>::
+DonationBurtton.png::CompressedTexture2D::6404080637111153978::1722841224::1722841233::1::::<><>::
+InfoButton.png::CompressedTexture2D::9141506628405908911::1722770430::1722770432::1::::<><>::
+RoundedButton.png::CompressedTexture2D::811594173420704043::1722680270::1722680272::1::::<><>::
+RoundedButton_Pressed.png::CompressedTexture2D::98054338516952589::1724324812::1724324813::1::::<><>::
+SaveSlot.png::CompressedTexture2D::5350288200585500833::1723210991::1723210993::1::::<><>::
+SaveSlot_X.png::CompressedTexture2D::7483760714481550477::1723211875::1723211879::1::::<><>::
+SettingsButton.png::CompressedTexture2D::4580517287614423339::1723224529::1723224531::1::::<><>::
+::res://Textures/UI/Ilustration/::1724396329
+Allconade_Logo_Round_White.png::CompressedTexture2D::7655116481653615917::1713984061::1723311764::1::::<><>::
+Title.png::CompressedTexture2D::8871982796693716844::1723209995::1723209997::1::::<><>::
+::res://Textures/UI/Ilustration/Social Icons/::1724396351
+Discord Icon.png::CompressedTexture2D::2878093964958351367::1700000478::1723311762::1::::<><>::
+Istagram.png::CompressedTexture2D::2322517686708585166::1700000480::1723311763::1::::<><>::
+TikTok.png::CompressedTexture2D::998308690030064360::1700000486::1723311762::1::::<><>::
+X.png::CompressedTexture2D::3054543828787141141::1700000488::1723311762::1::::<><>::
+YouTube.png::CompressedTexture2D::4254857922812588157::1700000478::1723311762::1::::<><>::
+::res://Textures/UI/Menus/::1725212886
+HealthBar_Progress.png::CompressedTexture2D::2422615497679734498::1725212884::1725212886::1::::<><>::
+HealthBar_Under.png::CompressedTexture2D::7791820832178309682::1725212575::1725212576::1::::<><>::
+MenuBackground.png::CompressedTexture2D::6798087444877306498::1720884271::1722679750::1::::<><>::
+MenuToggler_In.png::CompressedTexture2D::6555495901604517132::1721041491::1722014097::1::::<><>::
+MenuToggler_Out.png::CompressedTexture2D::6149475411361740313::1721041466::1722014097::1::::<><>::
+Text_Background_Big.png::CompressedTexture2D::2558464738832746267::1723290606::1723290607::1::::<><>::
+Text_Background_Smal.png::CompressedTexture2D::2788434550489696471::1723282243::1723290481::1::::<><>::
+::res://Textures/UI/Planets/::1724591747
+Azuria.png::CompressedTexture2D::8337601938691809387::1724591724::1724591747::1::::<><>::
+Bukat.png::CompressedTexture2D::3418009555721820146::1724591742::1724591747::1::::<><>::
+Mable.png::CompressedTexture2D::5201010496116899672::1724591670::1724591684::1::::<><>::

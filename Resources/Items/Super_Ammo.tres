@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b3uqafg32qgqj"]
+
+[ext_resource type="Texture2D" uid="uid://4p6lss3gvqka" path="res://Textures/Items/Super_Ammo.png" id="1_hohvk"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_i7mq4"]
+
+[resource]
+script = ExtResource("2_i7mq4")
+image = ExtResource("1_hohvk")
+name = "Super Ammo"
+energy = 0
+extraction_type = "Drill"
+extraction_time = 0
+bullet_Color = Color(0, 0.215686, 0.756863, 1)
+bullet_damage = 12
+longDescription = "Can be used as Ammo with an damage of 12"
+alloyMultiplicator = 0.0

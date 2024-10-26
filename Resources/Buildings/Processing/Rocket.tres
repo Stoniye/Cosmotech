@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Building" load_steps=9 format=3 uid="uid://cs1o24acah5l2"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="1_dojei"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="1_eu1ko"]
+[ext_resource type="Script" path="res://Scripts/Buildings/Processing/Rocket.gd" id="1_oehj5"]
+[ext_resource type="Texture2D" uid="uid://becp2itcq0gmg" path="res://Textures/Buildings/Processing/Rocket_Ground.png" id="1_scdac"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_l0bej"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="2_savah"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_pn7as"]
+[ext_resource type="PackedScene" uid="uid://by0uss5dcu7um" path="res://Prefabs/Building Info Windows/Processing/Rocket Info Window.tscn" id="6_1rgk1"]
+
+[resource]
+script = ExtResource("1_dojei")
+image = ExtResource("1_scdac")
+name = "Rocket"
+code = ExtResource("1_oehj5")
+building_type = "1 Block Building"
+info_window = ExtResource("6_1rgk1")
+receives_items = true
+gives_items = true
+maxToConnection = 4
+cost_item = Array[ExtResource("2_l0bej")]([ExtResource("1_eu1ko"), ExtResource("2_savah"), ExtResource("3_pn7as")])
+cost_count = Array[int]([300, 150, 150])
+description = "Transports items to another Planet, needs Kerosene"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 10
+has_to_align = false
+longDescription = "Transportes items from one Planet to the other, it needs Kerosene. If the inventory and the fuel is full, the rocket automaticly flyes to the destination Planet"

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Building" load_steps=8 format=3 uid="uid://br1u81ynnxsan"]
+
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="1_1y5ok"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="1_8siad"]
+[ext_resource type="Script" path="res://Scripts/Buildings/Weapons/Gun.gd" id="1_luxce"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="2_3xnc4"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_7bjba"]
+[ext_resource type="Texture2D" uid="uid://cdf7pn7eeslto" path="res://Textures/Buildings/Weapons/Gun.png" id="5_n3ikl"]
+[ext_resource type="PackedScene" uid="uid://d3xmegw4d6uk2" path="res://Prefabs/Building Info Windows/Weapons/Gun Info Window.tscn" id="5_u83gr"]
+
+[resource]
+script = ExtResource("1_8siad")
+image = ExtResource("5_n3ikl")
+name = "Gun"
+code = ExtResource("1_luxce")
+building_type = "1 Block Building"
+info_window = ExtResource("5_u83gr")
+receives_items = true
+gives_items = false
+maxToConnection = 0
+cost_item = Array[ExtResource("2_7bjba")]([ExtResource("1_1y5ok"), ExtResource("2_3xnc4")])
+cost_count = Array[int]([100, 80])
+description = "Is a very slow gun with no damage multiplyer"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 10
+has_to_align = false
+longDescription = "Targets enemys in an radius of 320. It has no Damage Multiplyer, very low rotation speed and shoots one Bullet per 1 Second"

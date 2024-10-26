@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://t3rbdj0pjque"]
+
+[ext_resource type="AudioStream" uid="uid://yshebm2ra35y" path="res://Sounds/Music/Cosmotech - Track 1.mp3" id="1_faskm"]
+[ext_resource type="AudioStream" uid="uid://7io68grt8oej" path="res://Sounds/Music/Mabye Tomorrow.mp3" id="2_chimq"]
+[ext_resource type="AudioStream" uid="uid://ddeuxqfhxs87v" path="res://Sounds/Music/Nebula.mp3" id="3_r1ssk"]
+[ext_resource type="AudioStream" uid="uid://bt518lsppsbqb" path="res://Sounds/Music/Nightfall Future.mp3" id="4_hp2nq"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_hkatd"]
+shuffle = true
+stream_count = 4
+stream_0 = ExtResource("1_faskm")
+stream_1 = ExtResource("2_chimq")
+stream_2 = ExtResource("3_r1ssk")
+stream_3 = ExtResource("4_hp2nq")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer"]
+stream = SubResource("AudioStreamPlaylist_hkatd")
+autoplay = true
+bus = &"Music"

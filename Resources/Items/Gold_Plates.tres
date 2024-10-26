@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c6421juk0jmi0"]
+
+[ext_resource type="Texture2D" uid="uid://cd6rvxn3rh52m" path="res://Textures/Items/Gold_Plates.png" id="1_b2hc7"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_pdjue"]
+
+[resource]
+script = ExtResource("2_pdjue")
+image = ExtResource("1_b2hc7")
+name = "Gold Plates"
+energy = 0
+extraction_type = "Drill"
+extraction_time = 0
+bullet_Color = Color(0, 0, 0, 1)
+bullet_damage = 0
+longDescription = "Can be used as Alloy on Ammonation, has an damage multiplier of 2"
+alloyMultiplicator = 2.0

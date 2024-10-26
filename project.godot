@@ -1,0 +1,73 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Cosmotech"
+config/version="1.1"
+run/main_scene="res://Scenes/AllconadeInto.tscn"
+config/features=PackedStringArray("4.3", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/image="res://Textures/Icon.png"
+config/icon="res://Textures/Icon.png"
+
+[autoload]
+
+Singelton="*res://Scripts/Singelton.gd"
+BackgroundMusic="*res://Prefabs/Nodes for Multiple Scenes/BackgroundMusic.tscn"
+MenuClicks="*res://Prefabs/Nodes for Multiple Scenes/MenuClicks.tscn"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/integer_division=0
+
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=2400
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
+window/handheld/orientation=5
+window/vsync/vsync_mode=0
+
+[file_customization]
+
+folder_colors={
+"res://Prefabs/": "red",
+"res://Resources/": "pink",
+"res://Scenes/": "orange",
+"res://Scripts/": "green",
+"res://Sounds/": "gray",
+"res://Textures/": "blue"
+}
+
+[filesystem]
+
+import/blender/enabled=false
+
+[global_group]
+
+gameEvent="Is called in Game Events"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+pointing/android/enable_long_press_as_right_click=true
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
+reflections/sky_reflections/texture_array_reflections=false
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/default_filters/anisotropic_filtering_level=1

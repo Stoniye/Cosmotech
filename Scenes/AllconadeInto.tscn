@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://c26gc2cg1f11u"]
+
+[ext_resource type="Texture2D" uid="uid://c34bridj4k411" path="res://Textures/UI/Menus/MenuBackground.png" id="1_1vl0e"]
+[ext_resource type="Texture2D" uid="uid://dhcgwdovtpuxh" path="res://Textures/UI/Ilustration/Allconade_Logo_Round_White.png" id="2_awr8g"]
+[ext_resource type="AudioStream" uid="uid://dnbacvwkvirny" path="res://Sounds/SFX/Allconade_Intro.mp3" id="3_ahbrh"]
+
+[sub_resource type="GDScript" id="GDScript_r43j3"]
+script/source = "extends Node2D
+
+const path = \"user://gamedata/Worlds/\"
+const userPath = \"user://gamedata/userdata.tres\"
+
+func _ready() -> void:
+	verify_data()
+	load_sound_settings()
+
+func verify_data() -> void:
+	var DirPath: String = path.erase(path.length()-1)
+	if !DirAccess.dir_exists_absolute(DirPath): #Create Folder if it does not exist
+		DirAccess.make_dir_recursive_absolute(DirPath)
+	
+	if !FileAccess.file_exists(userPath):
+		var userData: UserData = UserData.new()
+		ResourceSaver.save(userData, userPath)
+
+func load_sound_settings() -> void:
+	var userData: UserData = ResourceLoader.load(userPath)
+	
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(\"Music\"), true)
+	
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(\"SFX\"), linear_to_db(userData.SFXVolume))
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(\"SFX\"), userData.SFXVolume < 0.05)
+
+func _on_animation_player_animation_finished(_anim_name: String) -> void:
+	get_tree().change_scene_to_file(\"res://Scenes/Menu.tscn\")
+"
+
+[sub_resource type="Animation" id="Animation_1n6wo"]
+resource_name = "FadeIn"
+length = 3.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Logo:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6, 1.7, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q73pk"]
+_data = {
+"FadeIn": SubResource("Animation_1n6wo")
+}
+
+[node name="AllconadeIntro" type="Node2D"]
+script = SubResource("GDScript_r43j3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="CanvasLayer"]
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/CanvasGroup"]
+offset_right = 1080.0
+offset_bottom = 2400.0
+texture = ExtResource("1_1vl0e")
+
+[node name="Logo" type="TextureRect" parent="CanvasLayer/CanvasGroup"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 290.0
+offset_top = 950.0
+offset_right = 790.0
+offset_bottom = 1450.0
+texture = ExtResource("2_awr8g")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CanvasGroup"]
+libraries = {
+"": SubResource("AnimationLibrary_q73pk")
+}
+autoplay = "FadeIn"
+
+[node name="AllconadeIntroSound" type="AudioStreamPlayer" parent="CanvasLayer/CanvasGroup"]
+stream = ExtResource("3_ahbrh")
+autoplay = true
+bus = &"SFX"
+
+[connection signal="animation_finished" from="CanvasLayer/CanvasGroup/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

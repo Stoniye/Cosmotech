@@ -1,0 +1,186 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb0uyagbb1hh0"]
+
+[ext_resource type="Texture2D" uid="uid://bcplsm06y2sgp" path="res://Textures/UI/Menus/Text_Background_Big.png" id="1_nox06"]
+[ext_resource type="FontFile" uid="uid://drl6md4kk1i1a" path="res://Textures/Fonts/MilkyNice-Clean.ttf" id="2_jgk5p"]
+[ext_resource type="AudioStream" uid="uid://bouccsk8ouyv1" path="res://Sounds/SFX/BonusSound.mp3" id="3_7nfry"]
+
+[sub_resource type="GDScript" id="GDScript_jx6yp"]
+script/source = "extends Node2D
+
+@onready var messageText: Label = $CanvasLayer/UI/MessageWindow/MessageText
+@onready var RewardSound: AudioStreamPlayer = $RewardSound
+var lastBuildingCount: int = 0
+var tutorialStep: int = 0
+var finished: bool = false
+
+const userPath = \"user://gamedata/userdata.tres\"
+
+func _ready() -> void:
+	$\"../CanvasLayer/UI/BuildingMenu/BuildingMenuButton\".pressed.connect(buildingMenüOpend)
+	$\"../CanvasLayer/UI/InfoMenu/InfoMenuButton\".pressed.connect(infoWindowOpend)
+	$\"../CanvasLayer/UI/DestroyMenu/DestroyMenuButton\".pressed.connect(destroyMenüOpend)
+	$\"../CanvasLayer/UI/BuildingMenu/Content/Extraction\".pressed.connect(buildingTypeSelected)
+	$\"../CanvasLayer/UI/BuildingMenu/Content/Processing\".pressed.connect(buildingTypeSelected)
+	$\"../CanvasLayer/UI/BuildingMenu/Content/Transportation\".pressed.connect(buildingTypeSelected)
+	$\"../CanvasLayer/UI/BuildingMenu/Content/Weapons\".pressed.connect(buildingTypeSelected)
+	$\"../CanvasLayer/UI/InfoMenu/Content/_Close\".pressed.connect(infoWindowClosed)
+	$\"../CanvasLayer/UI/SwitchBukat\".pressed.connect(switchedToBukat)
+	$\"../CanvasLayer/UI/SwitchAzuria\".pressed.connect(switchedToAzuria)
+	$\"../CanvasLayer/UI/SwitchMable\".pressed.connect(switchedToMable)
+	
+	get_node(\"../Azuria/Buildings/Hub/Script\").inventory_Item.append(load(\"res://Resources/Items/Iron_Ingot.tres\"))
+	get_node(\"../Azuria/Buildings/Hub/Script\").inventory_Count.append(100)
+	
+	messageText.text = \"Open the Building-Menu with the button on the bottom right\"
+	tutorialStep += 1
+
+func switchedToAzuria() -> void:
+	if tutorialStep == 15:
+		RewardSound.play()
+		endTutorial()
+
+func switchedToMable() -> void:
+	if tutorialStep == 14:
+		RewardSound.play()
+		messageText.text = \"The mission you got from the headquater is do defend this base full of Civilians, from the every night attacking Ailiens \\n Switch back to \\\"Azuria\\\"!\"
+		tutorialStep += 1
+
+func switchedToBukat() -> void:
+	if tutorialStep == 13:
+		RewardSound.play()
+		messageText.text = \"Great, you can send resources between Planets with an rocket! Every planet has different ressources an Challenges! \\n Now switch to \\\"Mable\\\"!\"
+		tutorialStep += 1
+
+func buildingMenüOpend() -> void:
+	if tutorialStep == 1:
+		RewardSound.play()
+		messageText.text = \"On the right of the window you can select the different types of buildings \\n 1: Extraction, 2: Processing, 3: Transportation, 4: Weapons\"
+		tutorialStep += 1
+
+func buildingTypeSelected() -> void:
+	if tutorialStep == 2:
+		RewardSound.play()
+		messageText.text = \"Now build a Drill anywhere\"
+		tutorialStep += 1
+
+func destroyMenüOpend() -> void:
+	pass
+
+func infoWindowOpend() -> void:
+	pass
+
+func itemExtracted() -> void:
+	if tutorialStep == 12:
+		RewardSound.play()
+		messageText.text = \"Your Researcher is now Researching! \\n \\n You can switch between more planets \\n On the top of you screen you can see all Planets, switch to the Planet \\\"Bukat\\\"\"
+		tutorialStep += 1
+
+func buildingPlaced(building: Building) -> void:
+	if building.name == \"Drill\":
+		if tutorialStep == 3:
+			RewardSound.play()
+			messageText.text = \"Now connect the Drill and the Hub (the big building) with an Conveyor\"
+			tutorialStep += 1
+	elif building.name == \"Conveyor\":
+		if tutorialStep == 4:
+			RewardSound.play()
+			messageText.text = \"Great, your Hub now gets Ressources \\n Now click on the Hub\"
+			tutorialStep += 1
+		elif tutorialStep == 10:
+			RewardSound.play()
+			messageText.text = \"Now export the items from the hub you need for the Research\"
+			tutorialStep += 1
+	elif building.name == \"Researcher\":
+		if tutorialStep == 7:
+			RewardSound.play()
+			messageText.text = \"Click on the Researcher\"
+			tutorialStep += 1
+
+func builingClicked(building: Area2D) -> void:
+	if building.buildingRes.name == \"Hub\":
+		if tutorialStep == 5:
+			RewardSound.play()
+			messageText.text = \"Here you can see how many ressources you own \\n You can export items out of the hub by clicking on them (Conveyor needs to be conected) \\n Close the window with the X\"
+			tutorialStep += 1
+		if tutorialStep == 11:
+			for child in $\"../CanvasLayer/UI/InfoMenu/Content/Hub Info Window/ScrollContainer/GridContainer\".get_children():
+				child.get_node(\"Item\").pressed.connect(itemExtracted)
+			tutorialStep += 1
+	elif building.buildingRes.name == \"Researcher\":
+		if tutorialStep == 8:
+			RewardSound.play()
+			messageText.text = \"On the left side you can see all avalable Researches, on the right side the items you need for this research \\n Pick any Reseach and press \\\"Start\\\" to activate\"
+			tutorialStep += 1
+			$\"../CanvasLayer/UI/InfoMenu/Content/Refinery Info Window/Accept\".pressed.connect(researchActivated)
+
+func researchActivated() -> void:
+	if tutorialStep == 9:
+		RewardSound.play()
+		messageText.text = \"Build a Conveyor from the hub to the Researcher\"
+		tutorialStep += 1
+
+func infoWindowClosed() -> void:
+	if tutorialStep == 6:
+		RewardSound.play()
+		messageText.text = \"Now build an Researcher anywhere\"
+		tutorialStep += 1
+
+func endTutorial() -> void:
+	messageText.text = \"You learned the Basics of the game, you can create your own world now \\n \\n Good Luck AND HAVE FUN!\"
+	var userData: UserData = ResourceLoader.load(userPath) as UserData
+	userData.playedTutorial = true
+	ResourceSaver.save(userData, userPath)
+	finished = true
+
+func _process(_delta: float) -> void:
+	if !finished:
+		$\"../CanvasLayer/UI/Menu\".visible = false
+	
+	if lastBuildingCount < $\"../Azuria/Buildings\".get_children().size():
+		if $\"../Azuria/Buildings\".get_child(lastBuildingCount) is Area2D:
+			buildingPlaced($\"../Azuria/Buildings\".get_child(lastBuildingCount).buildingRes)
+	lastBuildingCount = $\"../Azuria/Buildings\".get_children().size()
+	
+	if $\"../CanvasLayer/UI/InfoMenu\".size.x > 180:
+		builingClicked($\"../CanvasLayer/UI/InfoMenu/Content\".get_child(1).buildingRef)
+
+func _on_end_timer_timeout() -> void:
+	Singelton.Tutorial = false
+	get_tree().change_scene_to_file(\"res://Scenes/Menu.tscn\")
+"
+
+[node name="Tutorial" type="Node2D"]
+script = SubResource("GDScript_jx6yp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="CanvasGroup" parent="CanvasLayer"]
+
+[node name="MessageWindow" type="TextureRect" parent="CanvasLayer/UI"]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 28.0
+offset_top = 270.0
+offset_right = 1053.0
+offset_bottom = 646.0
+grow_horizontal = 2
+texture = ExtResource("1_nox06")
+
+[node name="MessageText" type="Label" parent="CanvasLayer/UI/MessageWindow"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 1000.0
+offset_bottom = 350.0
+theme_override_fonts/font = ExtResource("2_jgk5p")
+theme_override_font_sizes/font_size = 41
+text = "This is a Message"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="RewardSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7nfry")
+bus = &"SFX"

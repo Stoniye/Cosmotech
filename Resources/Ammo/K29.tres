@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Ammo" load_steps=8 format=3 uid="uid://dl1oxogd33kwg"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_8n0h0"]
+[ext_resource type="Resource" uid="uid://b1753tjmn4w01" path="res://Resources/Items/Gold_Ingot.tres" id="2_6di64"]
+[ext_resource type="Resource" uid="uid://b5sjc55vfrhhg" path="res://Resources/Items/Lapislazuli.tres" id="3_le5wb"]
+[ext_resource type="Resource" uid="uid://dlc1b6amq78lv" path="res://Resources/Items/Keppler.tres" id="3_n1km2"]
+[ext_resource type="Resource" uid="uid://yi15oq1o8o5" path="res://Resources/Items/Coal_Dust.tres" id="4_6lgd6"]
+[ext_resource type="Script" path="res://Resources/Scripts/Ammo.gd" id="6_8isjn"]
+[ext_resource type="Resource" uid="uid://c3uplj4cvk72w" path="res://Resources/Items/K29.tres" id="6_mrhwj"]
+
+[resource]
+script = ExtResource("6_8isjn")
+cost_items = Array[ExtResource("1_8n0h0")]([ExtResource("2_6di64"), ExtResource("3_n1km2"), ExtResource("3_le5wb"), ExtResource("4_6lgd6")])
+cost_count = Array[int]([5, 4, 2, 2])
+output = ExtResource("6_mrhwj")

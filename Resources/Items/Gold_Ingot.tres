@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://b1753tjmn4w01"]
+
+[ext_resource type="Texture2D" uid="uid://4jgl4nm7ds0" path="res://Textures/Items/Gold_Ingot.png" id="1_5hnop"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_yugxm"]
+[ext_resource type="Resource" uid="uid://c6421juk0jmi0" path="res://Resources/Items/Gold_Plates.tres" id="3_fre1h"]
+
+[resource]
+script = ExtResource("2_yugxm")
+image = ExtResource("1_5hnop")
+name = "Gold Ingot"
+energy = 0
+stamped = ExtResource("3_fre1h")
+extraction_type = "Drill"
+extraction_time = 0
+bullet_Color = Color(0.984314, 0.878431, 0.176471, 1)
+bullet_damage = 1
+longDescription = "Can be used as Ammo with a damage of 1, can be stamped to Gold Plates"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Reseachable" load_steps=7 format=3 uid="uid://crlu3os5ehppd"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_aie05"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="2_k5j5v"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_njn7g"]
+[ext_resource type="Resource" uid="uid://bif3eiqy51804" path="res://Resources/Items/Conbo_Raw.tres" id="4_4bfqu"]
+[ext_resource type="Resource" uid="uid://byqo5lf15ojfs" path="res://Resources/Buildings/Weapons/Super_Gun.tres" id="5_pq1so"]
+[ext_resource type="Script" path="res://Resources/Scripts/Reseachable.gd" id="7_yrsyi"]
+
+[resource]
+script = ExtResource("7_yrsyi")
+name = "Aiming better"
+Cost_Item = Array[ExtResource("1_aie05")]([ExtResource("2_k5j5v"), ExtResource("3_njn7g"), ExtResource("4_4bfqu")])
+Cost_Count = Array[int]([210, 150, 300])
+reseachBuilding = ExtResource("5_pq1so")

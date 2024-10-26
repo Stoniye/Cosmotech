@@ -1,0 +1,164 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkc0uosq780tp"]
+
+[ext_resource type="Texture2D" uid="uid://lte3qdtcvto2" path="res://Textures/UI/Button/RoundedButton.png" id="1_7hldf"]
+[ext_resource type="Texture2D" uid="uid://dprr51ktju31j" path="res://Textures/Items/Coal.png" id="2_su42e"]
+[ext_resource type="FontFile" uid="uid://drl6md4kk1i1a" path="res://Textures/Fonts/MilkyNice-Clean.ttf" id="2_x40qx"]
+
+[sub_resource type="GDScript" id="GDScript_stbwe"]
+script/source = "extends Control
+
+var buildingRef: Area2D
+var Hub: Node2D
+
+var prevInvSize: int
+
+func _ready() -> void:
+	Hub = buildingRef.get_node(\"Script\")
+
+func _process(_delta: float) -> void:
+	load_inventory()
+
+func load_inventory() -> void:
+	var items: Array[Item] = Hub.inventory_Item
+	var count: Array[int] = Hub.inventory_Count
+	var exported_items: Array[int] = Hub.exporting_items
+	var ItemPrefab: Control = $ScrollContainer/GridContainer/ItemPrefab
+	var newItem: Control
+	var allItemsCount: int = 0
+	
+	for c: int in count:
+		allItemsCount += c
+	
+	if prevInvSize != items.size():
+		clear_inventory()
+		for i: int in items.size():
+			newItem = ItemPrefab.duplicate()
+			newItem.visible = true
+			newItem.get_node(\"Item/Image\").texture = items[i].image
+			newItem.get_node(\"Item/Name\").text = items[i].name + \"\\n\" + str(count[i])
+			newItem.get_node(\"Item\").pressed.connect(item_pressed.bind(i))
+			$ScrollContainer/GridContainer.add_child(newItem)
+			if exported_items.find(i) != -1:
+				newItem.get_node(\"Item/Exporting\").visible = true
+		prevInvSize = items.size()
+	else:
+		for i: int in $ScrollContainer/GridContainer.get_child_count():
+			if !$ScrollContainer/GridContainer.get_child(i).name.contains(\"Prefab\"):
+				$ScrollContainer/GridContainer.get_child(i).get_node(\"Item/Name\").text = items[i-1].name + \"\\n\" + str(count[i-1])
+				if exported_items.find(i-1) != -1:
+					$ScrollContainer/GridContainer.get_child(i).get_node(\"Item/Exporting\").visible = true
+				else:
+					$ScrollContainer/GridContainer.get_child(i).get_node(\"Item/Exporting\").visible = false
+	
+	$Storage.text = str(allItemsCount) + \"/\" + str(Hub.storage)
+	
+	if allItemsCount >= Hub.storage - (Hub.storage * 0.2):
+		$Storage.self_modulate = Color(\"b2171c\")
+	else:
+		$Storage.self_modulate = Color(\"ffffff\")
+	
+
+func item_pressed(index: int) -> void:
+	if Hub.exporting_items.find(index) == -1:
+		Hub.exporting_items.append(index)
+	else:
+		Hub.exporting_items.erase(index)
+
+func clear_inventory() -> void:
+	for child: Control in $ScrollContainer/GridContainer.get_children():
+		if !child.name.contains(\"Prefab\"):
+			child.queue_free()
+"
+
+[node name="Hub Info Window" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -670.0
+offset_right = 480.0
+offset_bottom = 0.000488281
+grow_horizontal = 2
+grow_vertical = 0
+script = SubResource("GDScript_stbwe")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 670.0
+texture = ExtResource("1_7hldf")
+expand_mode = 1
+
+[node name="Storage" type="Label" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 40.0
+offset_right = 937.0
+offset_bottom = 112.0
+theme_override_fonts/font = ExtResource("2_x40qx")
+theme_override_font_sizes/font_size = 56
+text = "10/1000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 129.0
+offset_right = 919.0
+offset_bottom = 499.0
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 55
+columns = 5
+
+[node name="ItemPrefab" type="Control" parent="ScrollContainer/GridContainer"]
+visible = false
+custom_minimum_size = Vector2(150, 214.425)
+layout_mode = 2
+
+[node name="Item" type="TextureButton" parent="ScrollContainer/GridContainer/ItemPrefab"]
+layout_mode = 2
+offset_right = 150.0
+offset_bottom = 150.0
+texture_normal = ExtResource("1_7hldf")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Image" type="TextureRect" parent="ScrollContainer/GridContainer/ItemPrefab/Item"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 140.0
+offset_bottom = 140.0
+texture = ExtResource("2_su42e")
+
+[node name="Name" type="Label" parent="ScrollContainer/GridContainer/ItemPrefab/Item"]
+layout_mode = 0
+offset_top = 149.0
+offset_right = 150.0
+offset_bottom = 212.0
+theme_override_fonts/font = ExtResource("2_x40qx")
+theme_override_font_sizes/font_size = 25
+text = "Coal
+18"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Exporting" type="TextureRect" parent="ScrollContainer/GridContainer/ItemPrefab/Item"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 150.0
+texture = ExtResource("1_7hldf")
+expand_mode = 1

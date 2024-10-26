@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7io68grt8oej"
+path="res://.godot/imported/Mabye Tomorrow.mp3-f832a44002a01c0d3a04ed298fe012e3.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/Mabye Tomorrow.mp3"
+dest_files=["res://.godot/imported/Mabye Tomorrow.mp3-f832a44002a01c0d3a04ed298fe012e3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Building" load_steps=9 format=3 uid="uid://cqco5rpuvx2vu"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Processing/Legier.gd" id="1_b4hy6"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_6qexd"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="3_rkyc6"]
+[ext_resource type="Resource" uid="uid://dlc1b6amq78lv" path="res://Resources/Items/Keppler.tres" id="4_r15ay"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="5_yfvbk"]
+[ext_resource type="Texture2D" uid="uid://okcjk1xmwf1m" path="res://Textures/Buildings/Processing/Legier.png" id="6_2ku6y"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="6_yh55g"]
+[ext_resource type="PackedScene" uid="uid://cso2xr7th26ku" path="res://Prefabs/Building Info Windows/Processing/Legier Info Window.tscn" id="7_eeda4"]
+
+[resource]
+script = ExtResource("6_yh55g")
+image = ExtResource("6_2ku6y")
+name = "Legier"
+code = ExtResource("1_b4hy6")
+building_type = "1 Block Building"
+info_window = ExtResource("7_eeda4")
+receives_items = true
+gives_items = true
+maxToConnection = 4
+cost_item = Array[ExtResource("2_6qexd")]([ExtResource("3_rkyc6"), ExtResource("4_r15ay"), ExtResource("5_yfvbk")])
+cost_count = Array[int]([300, 280, 400])
+description = "Alloys ammunition"
+ConveyorPlacing = false
+buildingHealth = 10
+has_to_align = false
+longDescription = "Alloys ammunition with ores (e.g. gold, iron) to deal more damage, but the ore must be processed to plates in the stamper and must be heated in the ofen first"

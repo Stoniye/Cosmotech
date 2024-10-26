@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Building" load_steps=9 format=3 uid="uid://eb2eqw34ixlf"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Processing/Hub.gd" id="1_qelxa"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="1_v81ib"]
+[ext_resource type="Texture2D" uid="uid://ck8je4ods1aa3" path="res://Textures/Buildings/Processing/Hub.png" id="2_fmfu8"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_kr1jv"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="2_rv83p"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_2sfpv"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="4_uiep6"]
+[ext_resource type="PackedScene" uid="uid://bkc0uosq780tp" path="res://Prefabs/Building Info Windows/Processing/Hub Info Window.tscn" id="5_72ggv"]
+
+[resource]
+script = ExtResource("1_v81ib")
+image = ExtResource("2_fmfu8")
+name = "Hub"
+code = ExtResource("1_qelxa")
+building_type = "4 Block Building"
+info_window = ExtResource("5_72ggv")
+receives_items = true
+gives_items = true
+maxToConnection = 8
+cost_item = Array[ExtResource("2_kr1jv")]([ExtResource("2_rv83p"), ExtResource("3_2sfpv"), ExtResource("4_uiep6")])
+cost_count = Array[int]([5000, 5000, 5000])
+description = "Stores items for the Player"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 40
+has_to_align = false
+longDescription = "Stores items for the Player. The player can only build a building if the resources which are needed, are in any hub on the planet"

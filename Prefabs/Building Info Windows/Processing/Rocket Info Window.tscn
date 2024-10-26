@@ -1,0 +1,283 @@
+[gd_scene load_steps=8 format=3 uid="uid://by0uss5dcu7um"]
+
+[ext_resource type="Texture2D" uid="uid://lte3qdtcvto2" path="res://Textures/UI/Button/RoundedButton.png" id="1_jprk3"]
+[ext_resource type="Texture2D" uid="uid://dprr51ktju31j" path="res://Textures/Items/Coal.png" id="2_a6fko"]
+[ext_resource type="FontFile" uid="uid://drl6md4kk1i1a" path="res://Textures/Fonts/MilkyNice-Clean.ttf" id="3_isysu"]
+[ext_resource type="Texture2D" uid="uid://dq12c6f7dc2s2" path="res://Textures/UI/Planets/Azuria.png" id="4_70nwo"]
+[ext_resource type="Texture2D" uid="uid://boxyeaocyrc2m" path="res://Textures/UI/Planets/Bukat.png" id="5_worg6"]
+[ext_resource type="Texture2D" uid="uid://cgdn5a0gsldgi" path="res://Textures/UI/Planets/Mable.png" id="6_nncqv"]
+
+[sub_resource type="GDScript" id="GDScript_t4g7x"]
+script/source = "extends Control
+
+var buildingRef: Area2D
+
+func _process(_delta: float) -> void:
+	if buildingRef.get_node(\"Script\").destination != null:
+		$PlanetSelected.visible = true
+		$SelectPlanet.visible = false
+		load_inventory()
+	else:
+		$PlanetSelected.visible = false
+		$SelectPlanet.visible = true
+
+func load_inventory() -> void:
+	clear_inventory()
+	var items: Array[Item] = buildingRef.get_node(\"Script\").inventory_Item
+	var count: Array[int] = buildingRef.get_node(\"Script\").inventory_Count
+	var ItemPrefab: Control = $PlanetSelected/ScrollContainer/GridContainer/ItemPrefab
+	var newItem: Control
+	var allItemsCount: int = 0
+	
+	for c: int in count:
+		allItemsCount += c
+	
+	for i: int in items.size():
+		newItem = ItemPrefab.duplicate()
+		newItem.visible = true
+		newItem.get_node(\"Item/Image\").texture = items[i].image
+		newItem.get_node(\"Item/Name\").text = items[i].name + \"\\n\" + str(count[i])
+		$PlanetSelected/ScrollContainer/GridContainer.add_child(newItem)
+	
+	$PlanetSelected/Storage.text = str(allItemsCount) + \"/\" + str(buildingRef.get_node(\"Script\").rocket_storage)
+	if buildingRef.get_node(\"Script\").flightTimer != 60:
+		$PlanetSelected/FlightTime_Fuel.text = \"Flight Time: \" + str(buildingRef.get_node(\"Script\").flightTimer) + \"/\" + str(buildingRef.get_node(\"Script\").flightTime)
+	elif buildingRef.get_node(\"Script\").destination.get_node(\"Script\").flightTimer != 60:
+		$PlanetSelected/FlightTime_Fuel.text = \"Flight Time: \" + str(buildingRef.get_node(\"Script\").destination.get_node(\"Script\").flightTimer) + \"/\" + str(buildingRef.get_node(\"Script\").destination.get_node(\"Script\").flightTime)
+	else:
+		$PlanetSelected/FlightTime_Fuel.text = \"Fuel: \" + str(buildingRef.get_node(\"Script\").fuel) + \"/\" + str(buildingRef.get_node(\"Script\").needed_Fuel)
+	
+func clear_inventory() -> void:
+	for child: Control in $PlanetSelected/ScrollContainer/GridContainer.get_children():
+		if !child.name.contains(\"Prefab\"):
+			child.queue_free()
+
+
+func _on_planet_selected(planet: String) -> void:
+	buildingRef.get_node(\"Script\").place_destination(planet)
+"
+
+[node name="Rocket Info Window" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -670.0
+offset_right = 480.0
+offset_bottom = 0.000488281
+grow_horizontal = 2
+grow_vertical = 0
+script = SubResource("GDScript_t4g7x")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 670.0
+texture = ExtResource("1_jprk3")
+expand_mode = 1
+
+[node name="PlanetSelected" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Storage" type="Label" parent="PlanetSelected"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 161.0
+offset_right = 937.0
+offset_bottom = 233.0
+theme_override_fonts/font = ExtResource("3_isysu")
+theme_override_font_sizes/font_size = 56
+text = "1/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FlightTime_Fuel" type="Label" parent="PlanetSelected"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 31.0
+offset_right = 937.0
+offset_bottom = 103.0
+theme_override_fonts/font = ExtResource("3_isysu")
+theme_override_font_sizes/font_size = 56
+text = "Flight Time: 60/60"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PlanetSelected"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 250.0
+offset_right = 919.0
+offset_bottom = 620.0
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="PlanetSelected/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+columns = 5
+
+[node name="ItemPrefab" type="Control" parent="PlanetSelected/ScrollContainer/GridContainer"]
+visible = false
+custom_minimum_size = Vector2(150, 214.425)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Item" type="TextureRect" parent="PlanetSelected/ScrollContainer/GridContainer/ItemPrefab"]
+layout_mode = 2
+offset_right = 150.0
+offset_bottom = 150.0
+texture = ExtResource("1_jprk3")
+expand_mode = 1
+
+[node name="Image" type="TextureRect" parent="PlanetSelected/ScrollContainer/GridContainer/ItemPrefab/Item"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 140.0
+offset_bottom = 140.0
+texture = ExtResource("2_a6fko")
+
+[node name="Name" type="Label" parent="PlanetSelected/ScrollContainer/GridContainer/ItemPrefab/Item"]
+layout_mode = 0
+offset_top = 149.0
+offset_right = 150.0
+offset_bottom = 212.0
+theme_override_fonts/font = ExtResource("3_isysu")
+theme_override_font_sizes/font_size = 25
+text = "Coal
+18"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SelectPlanet" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="SelectPlanet"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 150.0
+offset_right = 698.0
+offset_bottom = 248.0
+theme_override_fonts/font = ExtResource("3_isysu")
+theme_override_font_sizes/font_size = 81
+text = "Destination:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Azuria" type="TextureButton" parent="SelectPlanet"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 210.0
+offset_top = 265.0
+offset_right = 340.0
+offset_bottom = 395.0
+grow_horizontal = 0
+texture_normal = ExtResource("1_jprk3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="SelectPlanet/Azuria"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 122.0
+offset_bottom = 122.0
+texture = ExtResource("4_70nwo")
+
+[node name="Name" type="Label" parent="SelectPlanet/Azuria"]
+layout_mode = 0
+offset_top = 130.0
+offset_right = 130.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("3_isysu")
+theme_override_font_sizes/font_size = 26
+text = "Azuria"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bukat" type="TextureButton" parent="SelectPlanet"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 360.0
+offset_top = 265.0
+offset_right = 490.0
+offset_bottom = 395.0
+grow_horizontal = 0
+texture_normal = ExtResource("1_jprk3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="SelectPlanet/Bukat"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 122.0
+offset_bottom = 122.0
+texture = ExtResource("5_worg6")
+
+[node name="Name" type="Label" parent="SelectPlanet/Bukat"]
+layout_mode = 0
+offset_top = 130.0
+offset_right = 130.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("3_isysu")
+theme_override_font_sizes/font_size = 26
+text = "Bukat"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mable" type="TextureButton" parent="SelectPlanet"]
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 510.0
+offset_top = 265.0
+offset_right = 640.0
+offset_bottom = 395.0
+grow_horizontal = 0
+texture_normal = ExtResource("1_jprk3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="SelectPlanet/Mable"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 122.0
+offset_bottom = 122.0
+texture = ExtResource("6_nncqv")
+
+[node name="Name" type="Label" parent="SelectPlanet/Mable"]
+layout_mode = 0
+offset_top = 130.0
+offset_right = 130.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("3_isysu")
+theme_override_font_sizes/font_size = 26
+text = "Mable"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="SelectPlanet/Azuria" to="." method="_on_planet_selected" binds= ["Azuria"]]
+[connection signal="pressed" from="SelectPlanet/Bukat" to="." method="_on_planet_selected" binds= ["Bukat"]]
+[connection signal="pressed" from="SelectPlanet/Mable" to="." method="_on_planet_selected" binds= ["Mable"]]

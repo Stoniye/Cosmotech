@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Building" load_steps=9 format=3 uid="uid://c84rxpiyoy8hs"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Processing/Upgrader.gd" id="1_b4fyd"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_4jwby"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_suqgi"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="4_3u4u4"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="5_il6d4"]
+[ext_resource type="Texture2D" uid="uid://bces3gg8u6b8w" path="res://Textures/Buildings/Processing/Upgrader.png" id="6_r3l3f"]
+[ext_resource type="PackedScene" uid="uid://dffnjiggocaka" path="res://Prefabs/Building Info Windows/Processing/Upgrader Info Window.tscn" id="7_wwvkv"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="8_btkji"]
+
+[resource]
+script = ExtResource("8_btkji")
+image = ExtResource("6_r3l3f")
+name = "Upgrader"
+code = ExtResource("1_b4fyd")
+building_type = "1 Block Building"
+info_window = ExtResource("7_wwvkv")
+receives_items = true
+gives_items = false
+maxToConnection = 0
+cost_item = Array[ExtResource("2_4jwby")]([ExtResource("3_suqgi"), ExtResource("4_3u4u4"), ExtResource("5_il6d4")])
+cost_count = Array[int]([160, 60, 130])
+description = "Upgrades placed Buildings and Buildings you will place"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 10
+has_to_align = false

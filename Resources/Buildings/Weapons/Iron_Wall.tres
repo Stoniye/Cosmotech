@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Building" load_steps=8 format=3 uid="uid://cythocuotv23f"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Weapons/Copper_Wall.gd" id="1_3b7yp"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_g5nhx"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_d37au"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="4_gsx0h"]
+[ext_resource type="Texture2D" uid="uid://b3ektlkx512" path="res://Textures/Buildings/Weapons/Iron_Wall.png" id="5_gftlp"]
+[ext_resource type="PackedScene" uid="uid://d33x67axj6oqo" path="res://Prefabs/Building Info Windows/Weapons/Copper Wall Info Window.tscn" id="6_g7v5y"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="7_ddhcj"]
+
+[resource]
+script = ExtResource("7_ddhcj")
+image = ExtResource("5_gftlp")
+name = "Iron Wall"
+code = ExtResource("1_3b7yp")
+building_type = "1 Block Building"
+info_window = ExtResource("6_g7v5y")
+receives_items = false
+gives_items = false
+maxToConnection = 0
+cost_item = Array[ExtResource("2_g5nhx")]([ExtResource("4_gsx0h"), ExtResource("3_d37au")])
+cost_count = Array[int]([200, 30])
+description = "Can't do anything than protecting your buildings"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 35
+has_to_align = false
+longDescription = "The Ailiens will target this wall to get trough to the base, the wall has 35 health points and keeps the Ailiens busy for some time"

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://d33x67axj6oqo"]
+
+[ext_resource type="Texture2D" uid="uid://lte3qdtcvto2" path="res://Textures/UI/Button/RoundedButton.png" id="1_5j8j5"]
+
+[sub_resource type="GDScript" id="GDScript_lyg5u"]
+script/source = "extends Control
+
+var buildingRef: Area2D
+"
+
+[node name="Conveyor Info Window" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -670.0
+offset_right = 480.0
+offset_bottom = 0.000488281
+grow_horizontal = 2
+grow_vertical = 0
+script = SubResource("GDScript_lyg5u")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 670.0
+texture = ExtResource("1_5j8j5")
+expand_mode = 1

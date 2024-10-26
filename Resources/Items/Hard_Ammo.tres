@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://d26eqoquxxg8f"]
+
+[ext_resource type="Texture2D" uid="uid://b8ys7xrbg7r32" path="res://Textures/Items/Hard_Ammo.png" id="1_5tu64"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_rtp62"]
+
+[resource]
+script = ExtResource("1_rtp62")
+image = ExtResource("1_5tu64")
+name = "Hard Ammo"
+energy = 0
+extraction_type = "Drill"
+extraction_time = 0
+bullet_Color = Color(0.74902, 0.74902, 0.74902, 1)
+bullet_damage = 8
+longDescription = "Can be used as Ammo with an damage of 8"
+alloyMultiplicator = 0.0

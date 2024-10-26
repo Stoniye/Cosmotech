@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Building" load_steps=7 format=3 uid="uid://cbs70mr154832"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="1_028vo"]
+[ext_resource type="Script" path="res://Scripts/Buildings/Processing/Furnace.gd" id="1_ckoig"]
+[ext_resource type="Texture2D" uid="uid://ltfabbba4gav" path="res://Textures/Buildings/Processing/Furnace.png" id="1_klmaf"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="2_5c8w0"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_uedfn"]
+[ext_resource type="PackedScene" uid="uid://b1sx0looluv4n" path="res://Prefabs/Building Info Windows/Processing/Furnace Info Window.tscn" id="4_ut4u1"]
+
+[resource]
+script = ExtResource("1_028vo")
+image = ExtResource("1_klmaf")
+name = "Furnace"
+code = ExtResource("1_ckoig")
+building_type = "1 Block Building"
+info_window = ExtResource("4_ut4u1")
+receives_items = true
+gives_items = true
+maxToConnection = 4
+cost_item = Array[ExtResource("2_uedfn")]([ExtResource("2_5c8w0")])
+cost_count = Array[int]([50])
+description = "Smelts ores with fuel"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 5
+has_to_align = false
+longDescription = "Smelts ores (Raw Iron, Raw Copper,...) with fuel, with a smelt time of 3"

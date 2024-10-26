@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Building" load_steps=9 format=3 uid="uid://lo8k21t7xtwu"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_8y4ms"]
+[ext_resource type="Script" path="res://Scripts/Buildings/Processing/Stamper.gd" id="1_ojy4t"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="2_4sik0"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_kw1eg"]
+[ext_resource type="Texture2D" uid="uid://mj5jp68eapti" path="res://Textures/Buildings/Processing/Stamper.png" id="3_qatg8"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="4_stapt"]
+[ext_resource type="Resource" uid="uid://dlc1b6amq78lv" path="res://Resources/Items/Keppler.tres" id="5_f0eh1"]
+[ext_resource type="PackedScene" uid="uid://bey312duo2l61" path="res://Prefabs/Building Info Windows/Processing/Stamper Info Window.tscn" id="7_dpbqb"]
+
+[resource]
+script = ExtResource("2_4sik0")
+image = ExtResource("3_qatg8")
+name = "Stamper"
+code = ExtResource("1_ojy4t")
+building_type = "1 Block Building"
+info_window = ExtResource("7_dpbqb")
+receives_items = true
+gives_items = true
+maxToConnection = 4
+cost_item = Array[ExtResource("1_8y4ms")]([ExtResource("3_kw1eg"), ExtResource("4_stapt"), ExtResource("5_f0eh1")])
+cost_count = Array[int]([300, 250, 200])
+description = "Stamps ores"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 15
+has_to_align = false
+longDescription = "Stampes ores, but need fuel, has a stamp time of 6"

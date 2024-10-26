@@ -1,0 +1,149 @@
+[gd_scene load_steps=2 format=3 uid="uid://mc7g0t1iu5g7"]
+
+[sub_resource type="GDScript" id="GDScript_vcimy"]
+script/source = "extends Node2D
+##SaverLoader##
+
+const path = \"user://gamedata/Worlds/\"
+
+signal WorldSaved
+signal WorldLoaded
+signal WorldDeleted
+
+func fileExits(p: String) -> bool:
+	return FileAccess.file_exists(p)
+
+func deleteWorld(worldName: String) -> void:
+	DirAccess.remove_absolute(path + worldName + \".tres\")
+	WorldDeleted.emit()
+
+func saveWorld(worldName: String) -> void:
+	var savedGame: SavedGame = SavedGame.new()
+	
+	#Get data from all buildings
+	var saveData: Array[SaveData] = []
+	get_tree().call_group(\"gameEvent\", \"on_game_save\", saveData)
+	savedGame.saveData = saveData
+	
+	#Save Tilemaps
+	savedGame.tilemaps.append($\"../Azuria/TileMap\")
+	savedGame.tilemaps.append($\"../Bukat/TileMap\")
+	savedGame.tilemaps.append($\"../Mable/TileMap\")
+	
+	#Save other things
+	savedGame.CameraPos = get_node(\"../Camera\").offset
+	savedGame.unlockedBuildings = get_parent().unlockedBuildings
+	savedGame.dayTime = get_parent().dayTime
+	savedGame.activePlanet = get_parent().activePlanet.name
+	
+	#Save data as Resource
+	ResourceSaver.save(savedGame, path + worldName + \".tres\")
+	
+	WorldSaved.emit()
+	
+	queue_free()
+
+func loadWorld(worldName: String) -> void:
+	#Test if world exists
+	if !fileExits(path + worldName + \".tres\"):
+		push_error(\"The World you tried to Load (path:\" + path + worldName + \".tres\" + \") , does not Exist\")
+		return
+	
+	#Clear all buildings
+	for child: Area2D in $\"../Azuria/Buildings\".get_children():
+		child.queue_free()
+	
+	#Load Resource
+	var savedGame: SavedGame = SavedGame.new()
+	savedGame = ResourceLoader.load(path + worldName + \".tres\")
+	
+	#Load Tilemaps
+	
+	#Azuria#
+	var loaded_map: TileMapLayer = savedGame.tilemaps[0]
+	for x: int in range(-loaded_map.get_used_rect().size.x/2, loaded_map.get_used_rect().size.x/2):
+		for y: int in range(-loaded_map.get_used_rect().size.y/2, loaded_map.get_used_rect().size.y/2):
+			var atlas_coords: Vector2i = loaded_map.get_cell_atlas_coords(Vector2i(x, y))
+			$\"../Azuria/TileMap\".set_cell(Vector2i(x, y), 0, atlas_coords)
+	
+	#Bukat#
+	loaded_map = savedGame.tilemaps[1]
+	for x: int in range(-loaded_map.get_used_rect().size.x/2, loaded_map.get_used_rect().size.x/2):
+		for y: int in range(-loaded_map.get_used_rect().size.y/2, loaded_map.get_used_rect().size.y/2):
+			var atlas_coords: Vector2i = loaded_map.get_cell_atlas_coords(Vector2i(x, y))
+			$\"../Bukat/TileMap\".set_cell(Vector2i(x, y), 1, atlas_coords)
+	
+	#Mable#
+	loaded_map = savedGame.tilemaps[2]
+	for x: int in range(-loaded_map.get_used_rect().size.x/2, loaded_map.get_used_rect().size.x/2):
+		for y: int in range(-loaded_map.get_used_rect().size.y/2, loaded_map.get_used_rect().size.y/2):
+			var atlas_coords: Vector2i = loaded_map.get_cell_atlas_coords(Vector2i(x, y))
+			$\"../Mable/TileMap\".set_cell(Vector2i(x, y), 2, atlas_coords)
+	
+	#Place Buildings
+	var placedB: Area2D
+	var buiArr: Array[Area2D] = []
+	for savedData: SaveData in savedGame.saveData:
+		if savedData.isBuilding:
+			placedB = placeBuilding(savedData.resource, savedData.position, savedData.planet)
+			placedB.buildingHealth = savedData.buildingHealth
+			
+			#Save building and pos in RAM
+			buiArr.append(placedB)
+			
+			if savedData.resource.name.contains(\"Conveyor\"):
+				placedB.add_to_group(\"isConveyor\")
+		else:
+			placedB = savedData.resource.instantiate()
+			placedB.position = savedData.position
+			get_node(\"../\" + savedData.planet + \"/Enemys\").add_child(placedB)
+			placedB.on_game_load(savedData)
+	
+	#Conect buildings
+	var planet: String
+	var p: String
+	for i: int in buiArr.size():
+		for posIndex: int in savedGame.saveData[i].to_building_pos.size():
+			planet = savedGame.saveData[i].planet
+			for i2: int in buiArr.size():
+				p = savedGame.saveData[i2].planet
+				if p == planet:
+					if buiArr[i2].position == savedGame.saveData[i].to_building_pos[posIndex]:
+						if buiArr[i].get_node(\"Script\").to_building.size() < buiArr[i].buildingRes.maxToConnection:
+							buiArr[i].get_node(\"Script\").to_building.append(buiArr[i2])
+							if savedGame.saveData[i].resource.has_to_align:
+								buiArr[i].get_node(\"Script\").align()
+		if savedGame.saveData[i].resource.has_to_align:
+			for i2: int in buiArr.size():
+				p = savedGame.saveData[i2].planet
+				if p == planet:
+					if buiArr[i2].position == savedGame.saveData[i].from_building_pos && savedGame.saveData[i].from_building_pos != Vector2.INF:
+						buiArr[i].get_node(\"Script\").from_building = buiArr[i2]
+						buiArr[i].get_node(\"Script\").align()
+		
+		if buiArr[i].get_node(\"Script\").has_method(\"on_game_load\"):
+			buiArr[i].get_node(\"Script\").on_game_load(savedGame.saveData[i])
+	
+	#Load other things
+	get_parent()._on_switch_planet(savedGame.activePlanet)
+	get_node(\"../Camera\").offset = savedGame.CameraPos
+	get_parent().unlockedBuildings = savedGame.unlockedBuildings
+	get_parent().dayTime = savedGame.dayTime
+	get_parent().handl_day_night_Cycle()
+	
+	WorldLoaded.emit()
+	
+	queue_free()
+
+func placeBuilding(building: Building, pos: Vector2, planet: String) -> Area2D:
+	var placedB: Area2D = load(\"res://Prefabs/Buildings/\" + building.building_type + \".tscn\").instantiate()
+	placedB.position = pos
+	placedB.get_node(\"Image\").texture = building.image
+	placedB.get_node(\"Script\").set_script(building.code)
+	placedB.buildingRes = building
+	get_node(\"../\" + planet + \"/Buildings\").add_child(placedB)
+	return placedB
+"
+
+[node name="SaverLoader" type="Node2D"]
+script = SubResource("GDScript_vcimy")

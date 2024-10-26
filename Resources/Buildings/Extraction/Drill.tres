@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Building" load_steps=8 format=3 uid="uid://cwr24ylcwjlkx"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="1_1d0sw"]
+[ext_resource type="Script" path="res://Scripts/Buildings/Extraction/Drill.gd" id="1_a13xh"]
+[ext_resource type="Texture2D" uid="uid://c6hgcvekqcebq" path="res://Textures/Buildings/Extraction/Drill.png" id="1_kpjp6"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="2_3aupa"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_yu54h"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_b3gb5"]
+[ext_resource type="PackedScene" uid="uid://lpjypm5og8tb" path="res://Prefabs/Building Info Windows/Extraction/Drill Info Window.tscn" id="5_pijru"]
+
+[resource]
+script = ExtResource("1_1d0sw")
+image = ExtResource("1_kpjp6")
+name = "Drill"
+code = ExtResource("1_a13xh")
+building_type = "1 Block Building"
+info_window = ExtResource("5_pijru")
+receives_items = false
+gives_items = true
+maxToConnection = 4
+cost_item = Array[ExtResource("2_yu54h")]([ExtResource("2_3aupa"), ExtResource("3_b3gb5")])
+cost_count = Array[int]([60, 50])
+description = "Extracts ores out of the Ground"
+ConveyorPlacing = false
+replacesBuildings = false
+buildingHealth = 5
+has_to_align = false
+longDescription = "Extracts ores (Iron, Copper,..) out of the ground with the speed of 1"

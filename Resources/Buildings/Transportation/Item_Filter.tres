@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Building" load_steps=10 format=3 uid="uid://bl74kt2178quj"]
+
+[ext_resource type="Script" path="res://Scripts/Buildings/Transportation/ItemFilter.gd" id="1_13xwq"]
+[ext_resource type="Script" path="res://Resources/Scripts/Building.gd" id="1_vwt6a"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="2_mi3m3"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_o5vya"]
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="3_53dfa"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="4_e0vgm"]
+[ext_resource type="Texture2D" uid="uid://bdy06pvpk8f8f" path="res://Textures/Buildings/Transportation/ItemFilter.png" id="5_bbbsr"]
+[ext_resource type="Resource" uid="uid://dlc1b6amq78lv" path="res://Resources/Items/Keppler.tres" id="6_4gyxh"]
+[ext_resource type="PackedScene" uid="uid://b8v8jcvrg2jmv" path="res://Prefabs/Building Info Windows/Transportation/Item Filter Info Window.tscn" id="6_q70xb"]
+
+[resource]
+script = ExtResource("1_vwt6a")
+image = ExtResource("5_bbbsr")
+name = "Item Filter"
+code = ExtResource("1_13xwq")
+building_type = "1 Block Building"
+info_window = ExtResource("6_q70xb")
+receives_items = true
+gives_items = true
+maxToConnection = 2
+cost_item = Array[ExtResource("2_o5vya")]([ExtResource("2_mi3m3"), ExtResource("3_53dfa"), ExtResource("4_e0vgm"), ExtResource("6_4gyxh")])
+cost_count = Array[int]([150, 160, 230, 15])
+description = "Filters a selected item to the side"
+ConveyorPlacing = false
+replacesBuildings = true
+buildingHealth = 3
+has_to_align = true
+longDescription = "In the Item Filter info Window you can see the last 5 Items which went through the Item Filter, select one and the Item Filter will filter it to the building conected to the side"

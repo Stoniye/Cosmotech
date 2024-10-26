@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://fwsujelvx3le"]
+
+[ext_resource type="Texture2D" uid="uid://c6klkqvf77td6" path="res://Textures/Items/Copper_Raw.png" id="1_43hxm"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="1_cdy0p"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="3_vkw5b"]
+
+[resource]
+script = ExtResource("1_cdy0p")
+image = ExtResource("1_43hxm")
+name = "Raw Copper"
+energy = 0
+smelted = ExtResource("3_vkw5b")
+extraction_type = "Drill"
+extraction_time = 3
+bullet_Color = Color(0, 0, 0, 1)
+bullet_damage = 0
+longDescription = "Can be Smelted to an Copper Ingot, has an extraction time of 3"

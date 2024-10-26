@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cp7okeo7khiw"]
+
+[ext_resource type="Texture2D" uid="uid://dcunijtrkgqn2" path="res://Textures/Items/Copper_Plates.png" id="1_jhoml"]
+[ext_resource type="Script" path="res://Resources/Scripts/Item.gd" id="2_rnmij"]
+
+[resource]
+script = ExtResource("2_rnmij")
+image = ExtResource("1_jhoml")
+name = "Copper Plates"
+energy = 0
+extraction_type = "Drill"
+extraction_time = 0
+bullet_Color = Color(0, 0, 0, 1)
+bullet_damage = 0
+longDescription = "Can be used as Alloy on Ammonation, has an damage multiplier of 1.7"
+alloyMultiplicator = 1.7

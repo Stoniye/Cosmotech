@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Reseachable" load_steps=6 format=3 uid="uid://cge7kq6g7dug1"]
+
+[ext_resource type="Resource" uid="uid://dwsytgbduj15t" path="res://Resources/Items/Iron_Ingot.tres" id="1_cw2m0"]
+[ext_resource type="Resource" uid="uid://7g0kkk8ygcw2" path="res://Resources/Items/Copper_Ingot.tres" id="2_40ht3"]
+[ext_resource type="Resource" uid="uid://c3q8qviaqhssc" path="res://Resources/Items/Stone_Raw.tres" id="3_qop2b"]
+[ext_resource type="Resource" uid="uid://eb2eqw34ixlf" path="res://Resources/Buildings/Processing/Hub.tres" id="4_xnnxj"]
+[ext_resource type="Script" path="res://Resources/Scripts/Reseachable.gd" id="5_8ob28"]
+
+[resource]
+script = ExtResource("5_8ob28")
+name = "To many ressources"
+Cost_Item = Array[Resource("res://Resources/Scripts/Item.gd")]([ExtResource("1_cw2m0"), ExtResource("2_40ht3"), ExtResource("3_qop2b")])
+Cost_Count = Array[int]([200, 200, 200])
+reseachBuilding = ExtResource("4_xnnxj")
